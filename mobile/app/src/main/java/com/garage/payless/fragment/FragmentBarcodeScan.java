@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.garage.payless.FragmentHelper;
+import com.garage.payless.MainActivity;
+
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
@@ -57,6 +60,7 @@ public class FragmentBarcodeScan extends Fragment implements  ZBarScannerView.Re
     @Override
     public void handleResult(Result result) {
         Log.e(LOG_TAG, result.getContents());
-        Log.e(LOG_TAG, result.getBarcodeFormat().getName());
+        FragmentHelper.add(getFragmentManager(), FragmentFillPriceItem.newInstance(result.getContents()),
+                MainActivity.FRAME_CONTAINER);
     }
 }
