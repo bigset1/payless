@@ -1,4 +1,4 @@
-package net.payless.util;
+package com.letionik.payless.server.util;
 
 import com.letionik.payless.model.Product;
 import org.jsoup.Jsoup;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BarcodeInfoParser {
     private static final String DATABASE_SITE_URL = "http://www.ean13.info/";
-    public static Product getProduct(long barcode) throws IOException {
+    public static Product getProduct(String barcode) throws IOException {
         Document doc = Jsoup.connect(DATABASE_SITE_URL + String.valueOf(barcode) + ".htm").get();
 
         String name = doc.select(".col_rght h1 span").get(0).text();
@@ -30,7 +30,7 @@ public class BarcodeInfoParser {
         result.setName(checkIsUndefined(name));
         result.setBarcode(barcode);
         result.setDescription(checkIsUndefined(description));
-        result.setImage(checkIsUndefined(imageUrl));
+        result.setImageUrl(checkIsUndefined(imageUrl));
         result.setProducer(checkIsUndefined(producer));
         return result;
     }

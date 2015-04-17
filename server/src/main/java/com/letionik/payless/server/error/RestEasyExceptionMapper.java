@@ -1,4 +1,4 @@
-package net.payless.error;
+package com.letionik.payless.server.error;
 
 import org.jboss.resteasy.spi.Failure;
 import org.springframework.stereotype.Component;

@@ -1,10 +1,11 @@
-package net.payless.error;
+package com.letionik.payless.server.error;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.*;
 
 /**
  * @author Roman Kishchenko

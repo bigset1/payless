@@ -1,4 +1,4 @@
-package net.payless.config;
+package com.letionik.payless.server.config;
 
 import org.jboss.resteasy.plugins.spring.SpringContextLoaderSupport;
 import org.springframework.web.context.ConfigurableWebApplicationContext;

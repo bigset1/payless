@@ -1,7 +1,7 @@
-package net.payless;
+package com.letionik.payless.server;
 
-import net.payless.config.RestEasyAnnotatedContextLoader;
-import net.payless.config.SpringApplicationConfiguration;
+import com.letionik.payless.server.config.SpringApplicationConfiguration;
+import com.letionik.payless.server.config.RestEasyAnnotatedContextLoader;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap;
 import org.springframework.web.WebApplicationInitializer;

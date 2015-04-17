@@ -1,4 +1,4 @@
-package net.payless.test;
+package com.letionik.payless.server.test;
 
 import org.springframework.stereotype.Component;
 
