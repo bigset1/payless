@@ -298,7 +298,7 @@ var CreateList = React.createClass({
                 {/*<p className="order-result">Displaying 1 to 10 (of 93 orders)</p>*/}
 
                 <div className="table-responsive">
-                    <CreateList.ListTable list={this.state.shops} removeListItem={this.handleRemoveListItem}/>
+                    <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
                 </div>
 
                 {ConfirmButton}
