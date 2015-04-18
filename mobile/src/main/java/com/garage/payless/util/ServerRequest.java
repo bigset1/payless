@@ -11,7 +11,7 @@ import com.letionik.payless.model.Product;
 public class ServerRequest {
     public static void addPriceItem(final PayLessApi payLessApi,
                                     final ResponseCallback responseCallback,
-                                    final String barcode, final String storeId, final double price ) {
+                                    final String barcode, final String storeId, final double price) {
         new Thread(new Runnable() {
             @Override
             public void run() {

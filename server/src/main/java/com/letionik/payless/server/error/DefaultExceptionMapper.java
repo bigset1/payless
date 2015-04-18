@@ -1,9 +1,9 @@
 package com.letionik.payless.server.error;
 
 import com.letionik.payless.server.error.model.ErrorResponseBuilder;
+import org.apache.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
@@ -12,16 +12,17 @@ import javax.ws.rs.ext.Provider;
  * @author Roman Kishchenko
  * @since 4/18/15
  */
-@Provider
 @Component
-public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundException>{
+@Provider
+public class DefaultExceptionMapper implements ExceptionMapper<Exception> {
 
     @Override
-    public Response toResponse(NotFoundException e) {
+    public Response toResponse(Exception e) {
         return new ErrorResponseBuilder()
-                .status(404)
+                .status(HttpStatus.SC_BAD_REQUEST)
+                .message("An unexpected error occurred")
                 .cause(e)
-                .message("Resource not found")
                 .buildErrorResponse();
+
     }
 }

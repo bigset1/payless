@@ -1,5 +1,6 @@
 package com.letionik.payless.server.error;
 
+import com.letionik.payless.server.error.model.ErrorResponseBuilder;
 import org.jboss.resteasy.spi.Failure;
 import org.springframework.stereotype.Component;
 

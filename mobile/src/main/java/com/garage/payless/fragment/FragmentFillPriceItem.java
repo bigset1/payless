@@ -6,21 +6,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.garage.payless.R;
 import com.garage.payless.api.PayLessApi;
 import com.garage.payless.api.ResponseCallback;
 import com.garage.payless.util.RestProvider;
 import com.garage.payless.util.ServerRequest;
-import com.letionik.payless.model.PriceItem;
 import com.letionik.payless.model.Product;
 
-public class FragmentFillPriceItem extends Fragment {
+public class FragmentFillPriceItem extends Fragment implements View.OnClickListener {
     private static final String BARCODE = "barcode";
     private TextView textViewBarcode, textViewProductName;
     private Spinner spinner;
+    private Button buttonSubmit;
+    private EditText editTextPrice;
     private String barcode;
 
     public static final PayLessApi payLessApi =
@@ -53,6 +57,8 @@ public class FragmentFillPriceItem extends Fragment {
         textViewBarcode = (TextView) view.findViewById(R.id.textview_barcode);
         textViewBarcode.setText(getString(R.string.barcode) + ": " + barcode);
         textViewProductName = (TextView) view.findViewById(R.id.textview_product_name);
+        view.findViewById(R.id.button_submit).setOnClickListener(this);
+        editTextPrice = (EditText) view.findViewById(R.id.edittext_price);
 
         spinner = (Spinner) view.findViewById(R.id.spinner);
         //TEST
@@ -64,12 +70,12 @@ public class FragmentFillPriceItem extends Fragment {
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, array_spinner);
         spinner.setAdapter(adapter);
 
-        ServerRequest.getProduct(payLessApi, responseCallbackPriceItem, barcode);
+        ServerRequest.getProduct(payLessApi, responseCallbackProduct, barcode);
 
         return view;
     }
 
-    private ResponseCallback responseCallbackPriceItem = new ResponseCallback() {
+    private ResponseCallback responseCallbackProduct = new ResponseCallback() {
         @Override
         public void complete(Object response) {
             final Product product = (Product)response;
@@ -81,4 +87,28 @@ public class FragmentFillPriceItem extends Fragment {
             });
         }
     };
+
+    private ResponseCallback responseCallbackPriceItem = new ResponseCallback() {
+        @Override
+        public void complete(Object response) {
+            String test = response.toString();
+        }
+    };
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_submit:
+                String storeId = "1";
+                String priceStr = editTextPrice.getText().toString();
+                if (!priceStr.isEmpty()) {
+                    double price = Double.parseDouble(priceStr);
+                    ServerRequest.addPriceItem(payLessApi, responseCallbackPriceItem, barcode, storeId, price);
+                } else {
+                    Toast.makeText(getActivity(), getString(R.string.enter_price), Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+        }
+    }
 }

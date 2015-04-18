@@ -40,4 +40,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'me.dm7.barcodescanner:zbar:1.6.3'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+
+    //ReactiveLocation
+    compile 'pl.charmas.android:android-reactive-location:0.5@aar'
+    compile 'com.google.android.gms:play-services-location:7.0.0'
+    compile 'com.netflix.rxjava:rxjava-android:0.18.4'
+    //end ReactiveLocation
+
+    compile 'de.greenrobot:eventbus:2.4.0'
 }

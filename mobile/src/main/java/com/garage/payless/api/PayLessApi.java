@@ -3,7 +3,6 @@ package com.garage.payless.api;
 import com.letionik.payless.model.PriceItem;
 import com.letionik.payless.model.Product;
 
-import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;

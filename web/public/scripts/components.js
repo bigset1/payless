@@ -140,20 +140,22 @@ var AppBreadcrumb = React.createClass({
 
         var links = [];
 
+        {
+            /*<section className="page-indecator">
+             <div className="container">
+             <h2 className="heading">Headers</h2>
 
+             <ol className="breadcrumb">
+             <li><a href="index.html">Home</a></li>
+             <li className="active">Headers</li>
+             </ol>
+
+             <div className="devider devider--bottom-sm"></div>
+             </div>
+             </section>*/
+        }
         return (
-            <section className="page-indecator">
-                <div className="container">
-                    <h2 className="heading">Headers</h2>
-
-                    <ol className="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li className="active">Headers</li>
-                    </ol>
-
-                    <div className="devider devider--bottom-sm"></div>
-                </div>
-            </section>
+            <div></div>
         );
     }
 });
@@ -202,6 +204,28 @@ var AppFooter = React.createClass({
                     <div className="devider devider--bottom-sm"></div>
                 </div>
             </section>
+        );
+    }
+});
+
+
+var SearchBar = React.createClass({
+    getDefaultProps: function () {
+        return {
+            'custom-class-names': []
+        }
+    },
+    componentDidMount: function () {
+        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+    },
+    componentDidUnMount: function () {
+        DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+    },
+
+    render: function () {
+        return (
+            <select className={'search-input '+this.props['custom-class-names']} multiple="multiple"
+                    ref="barcodeSearchTool"></select>
         );
     }
 });
