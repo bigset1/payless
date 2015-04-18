@@ -56,6 +56,8 @@ public class BarcodeInfoParser {
 			String name = body.substring(nameStart + 6, nameEnd);
 			productBO.setName(validateString(name));
 
+			productBO.setImageUrl(ImageUrlSearch.getImageUrl(name));
+
 			int manStart = body.indexOf("<man>");
 			int manEnd = body.indexOf("</man>");
 			String man = body.substring(manStart + 5, manEnd);
