@@ -16,7 +16,9 @@ import com.letionik.payless.server.util.BarcodeInfoParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
@@ -39,7 +41,8 @@ public class ProductServiceImpl implements ProductService {
     private StoreRepository storeRepository;
 
 	@Override
-    public void addPriceItem(PriceItemDTO priceItemDto) throws ServiceException {
+    public void addPriceItem(PriceItemDTO priceItemDto)
+			throws ServiceException, ParserConfigurationException, SAXException {
         StoreBO store = storeRepository.findOne(priceItemDto.getStoreId());
         if (store == null) {
             throw new ServiceException("Store " + priceItemDto.getStoreId() + " doesn't exist");
@@ -56,11 +59,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
 	@Override
-    public Product parseProduct(String barcode) throws ServiceException {
+    public Product parseProduct(String barcode) throws ServiceException, ParserConfigurationException, SAXException {
         return ConversionUtils.convertProduct(getProduct(barcode));
 	}
 
-    private ProductBO getProduct(String barcode) throws ServiceException {
+    private ProductBO getProduct(String barcode) throws ServiceException, ParserConfigurationException, SAXException {
         ProductBO product = null;
         try {
             product = productRepository.findOne(barcode);
@@ -72,7 +75,8 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-    private ProductBO parseAndInsertProduct(String barcode) throws ServiceException {
+    private ProductBO parseAndInsertProduct(String barcode)
+			throws ServiceException, ParserConfigurationException, SAXException {
         ProductBO product;
         try {
             product = BarcodeInfoParser.getProduct(barcode);
