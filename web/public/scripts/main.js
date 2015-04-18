@@ -351,7 +351,7 @@ var CreateList = React.createClass({
         var ContentTable;
         if (this.state.confirm && this.state.shops !== false) {
 
-            ContentTable = <div className="col-sm-9">
+            ContentTable = <div className="col-sm-12">
                 <div className="devider-brand present-devider"></div>
                 <div className="row">
                     <botton className="btn btn-general btn-md-rect btn-rect" onClick={this.handleBackToList}>
@@ -380,7 +380,7 @@ var CreateList = React.createClass({
                     </button>
             }
 
-            ContentTable = <div className="col-sm-9 list-creation-content">
+            ContentTable = <div className="col-sm-12 list-creation-content">
                 <SearchBar custom-class-names="select-box list-item-search"/>
 
                 <div className="devider-brand present-devider"></div>
@@ -417,22 +417,34 @@ CreateList.ListTable = React.createClass({
     },
     render: function () {
         return (
-            <table className="table table--target table-present">
-                <colgroup className="col-large"/>
-                <colgroup className="col-small"/>
-                {/*<thead>
-                 <tr>
-                 <th className="table-main">Product Name</th>
-                 <th>Remove</th>
-                 </tr>
-                 </thead>*/}
+<div className="table-responsive product-list-item">
+           		<table className="table table--target table-present">
+	              	<colgroup className="col-wide">
+	              	</colgroup><colgroup className="col-middle">
+	              	</colgroup><colgroup className="col-middle">
+	              	</colgroup>
+	              	{/*<colgroup className="col-small">
+		            </colgroup>*/}
+		            <colgroup className="col-small">
+		            </colgroup>
+		            <thead>
+		                <tr>
+		                    <th className="table-main">Product Name</th>
+		                    <th>Country</th>
+		                    <th>Producer</th>
+		                    {/*<th>Price Range</th>*/}
+		                    <th>Actions</th>
+		                </tr>
+		            </thead>
 
-                <tbody>
-
+		            <tbody>
                 {this.props.list.map(function (result, i) {
                     return (
                         <tr key={result.barcode}>
-                            <td>{result.name} ({result.barcode})</td>
+		                  <td><span className="product-name-column">{result.name}</span> <span>{result.description}</span></td>
+		                  <td>{result.country}</td>
+		                  <td>{result.producer}</td>
+		                  {/*<td></td>*/}
                             <td>
                                 <button onClick={this.handleClick.bind(this,i,result)}
                                         className="btn btn-danger btn-sm-rect btn-sm"
@@ -443,8 +455,9 @@ CreateList.ListTable = React.createClass({
                         </tr>
                     );
                 }, this)}
-                </tbody>
-            </table>
+		            </tbody>
+           		</table>
+           		</div>
         );
     }
 });
