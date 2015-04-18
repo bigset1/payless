@@ -4,8 +4,10 @@ import com.letionik.payless.model.Product;
 import com.letionik.payless.model.Store;
 import com.letionik.payless.model.transport.ProductSearchResult;
 import com.letionik.payless.server.service.ProductService;
+import com.letionik.payless.server.util.BarcodeInfoParser;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,9 +22,11 @@ public class ProductServiceImpl implements ProductService {
 		//TODO: replace stub with real implementation
 	}
 
-	@Override public Product parseProduct(String barcode) {
-		//TODO: replace stub with real implementation
-		return new Product("123123123", "test_name", "test_producer", "test_country", "test_imageUrl", "test_description");
+	@Override public Product parseProduct(String barcode) throws IOException {
+
+		//TODO: check if this product is already in db
+		Product product = BarcodeInfoParser.getProduct(barcode);
+		return product;
 	}
 
 	@Override public List<ProductSearchResult> searchProductByLocation(String barcode, double latitude,
