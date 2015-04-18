@@ -3,6 +3,7 @@ package com.garage.payless.api;
 import com.letionik.payless.model.PriceItem;
 import com.letionik.payless.model.Product;
 import com.letionik.payless.model.Store;
+import com.letionik.payless.model.transport.ProductSearchResult;
 
 import java.util.List;
 
@@ -26,4 +27,10 @@ public interface PayLessApi {
 
     @GET("/store/search")
     public List<Store> getStores(@Query("latitude") double latitude, @Query("longitude") double longitude);
+
+    @GET("/search/location")
+    public List<ProductSearchResult> getShopsProduct(@Query("barcode") String barcode, @Query("latitude") double latitude,
+                                                     @Query("longitude") double longitude);
+
+
 }

@@ -5,6 +5,7 @@ import com.garage.payless.api.ResponseCallback;
 import com.letionik.payless.model.PriceItem;
 import com.letionik.payless.model.Product;
 import com.letionik.payless.model.Store;
+import com.letionik.payless.model.transport.ProductSearchResult;
 
 import java.util.List;
 
@@ -44,6 +45,18 @@ public class ServerRequest {
             public void run() {
                 List<Store> stores = payLessApi.getStores(latitude, longitude);
                 responseCallback.complete(stores);
+            }
+        }).start();
+    }
+
+    public static void getShopsProduct(final PayLessApi payLessApi,
+                                       final ResponseCallback responseCallback,
+                                       final String barcode, final double latitude, final double longitude) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<ProductSearchResult> productSearchResults = payLessApi.getShopsProduct(barcode, latitude, longitude);
+                responseCallback.complete(productSearchResults);
             }
         }).start();
 
