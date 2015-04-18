@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.Iterator;
 
 /**
@@ -20,6 +21,9 @@ public class ImageUrlSearch {
 	private static final String SE_ID = "012701134718858323306:oby2dr-7yee";
 
 	public static String getImageUrl(String query) throws IOException {
+
+		query = query.replace("\"", " ").replace("'", " ").replace(".", " ");
+		query = URLEncoder.encode(query, "UTF-8");
 
 		URL url = new URL("https://www.googleapis.com/customsearch/v1?key=" + KEY_CODE
 				+ "&cx=" + SE_ID + "&q=" + query + "&searchType=image&fileType=jpg&imgSize=small&alt=json");

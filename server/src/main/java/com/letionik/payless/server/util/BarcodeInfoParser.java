@@ -53,20 +53,20 @@ public class BarcodeInfoParser {
 		if (body != null && !body.isEmpty() && !body.equals("no info")) {
 			int nameStart = body.indexOf("<name>");
 			int nameEnd = body.indexOf("</name>");
-			String name = body.substring(nameStart + 6, nameEnd);
-			productBO.setName(validateString(name));
+			String name = validateString(body.substring(nameStart + 6, nameEnd));
+			productBO.setName(name);
 
 			productBO.setImageUrl(ImageUrlSearch.getImageUrl(name));
 
 			int manStart = body.indexOf("<man>");
 			int manEnd = body.indexOf("</man>");
-			String man = body.substring(manStart + 5, manEnd);
-			productBO.setProducer(validateString(man));
+			String man = validateString(body.substring(manStart + 5, manEnd));
+			productBO.setProducer(man);
 
 			int descStart = body.indexOf("<desc>");
 			int descEnd = body.indexOf("</desc>");
-			String desc = body.substring(descStart + 6, descEnd);
-			productBO.setDescription(validateString(desc));
+			String desc = validateString(body.substring(descStart + 6, descEnd));
+			productBO.setDescription(desc);
 		}
 
 		return productBO;
@@ -77,6 +77,4 @@ public class BarcodeInfoParser {
 			return null;
 		return value.replace("&quot;", "\"").replace("&#34;", "'");
 	}
-
-
 }
