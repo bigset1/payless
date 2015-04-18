@@ -22285,3 +22285,9 @@ margin-top:20px;
 header.header--light .z-nav .z-nav__link, header.header--light .logo .logo__slogan{
     color: #FFF;
 }
+
+.logo .logo__text{
+background-image: url(http://themullarkeygroup.com/wp-content/uploads/2014/06/moneybox.png);
+  background-position: 0px 2px;
+  padding: 9px 0 9px 80px;
+}
