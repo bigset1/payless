@@ -334,20 +334,20 @@ var CreateList = React.createClass({
         } else {
             var ConfirmButton;
             if (this.state.confirm) {
-                ConfirmButton = <div className="btn-container">
-                    <button className="btn btn-lg btn-warning">
+                ConfirmButton =
+                    <button className="btn btn-lg btn-lg-rect btn-warning">
                         <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
                     </button>
-                </div>
             } else {
-                ConfirmButton = <div className="btn-container btn-container-info">
-                    <button className="btn btn-info btn--minimal btn-lg-bordered btn-inverse"
-                            onClick={this.handleConfirmList}>Button
+                ConfirmButton =
+                    <button className="btn btn-general btn-lg-rect btn-rect"
+                            onClick={this.handleConfirmList}>
+                            <i className="fa fa-arrow-circle-right"></i>
+                            Evaluate
                     </button>
-                </div>
             }
 
-            ContentTable = <div className="col-sm-9">
+            ContentTable = <div className="col-sm-9 list-creation-content">
                 <SearchBar custom-class-names="select-box list-item-search"/>
 
                 <div className="devider-brand present-devider"></div>
@@ -401,7 +401,7 @@ CreateList.ListTable = React.createClass({
                         <tr key={result.barcode}>
                             <td>{result.name} ({result.barcode})</td>
                             <td>
-                                <button onClick={this.handleClick.bind(this,i,result)} className="btn btn-danger btn-sm"
+                                <button onClick={this.handleClick.bind(this,i,result)} className="btn btn-danger btn-sm-rect btn-sm"
                                         key={i}>
                                     <i className="fa fa-times"></i> Remove
                                 </button>
