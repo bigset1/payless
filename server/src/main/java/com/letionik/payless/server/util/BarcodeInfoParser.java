@@ -50,7 +50,7 @@ public class BarcodeInfoParser {
 		ProductBO productBO = new ProductBO();
 		productBO.setBarcode(barcode);
 
-		if (body != null && !body.isEmpty() && !body.equals("no info")) {
+		if (body != null && !body.isEmpty() && !body.contains("no info")) {
 			int nameStart = body.indexOf("<name>");
 			int nameEnd = body.indexOf("</name>");
 			String name = validateString(body.substring(nameStart + 6, nameEnd));
