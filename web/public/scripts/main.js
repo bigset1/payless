@@ -339,6 +339,12 @@ var CreateList = React.createClass({
             confirm: true
         })
     },
+    handleBackToList: function () {
+        this.setState({
+            confirm: false,
+            shops: false
+        })
+    },
     render: function () {
         console.log(this.state);
 
@@ -347,9 +353,15 @@ var CreateList = React.createClass({
 
             ContentTable = <div className="col-sm-9">
                 <div className="devider-brand present-devider"></div>
-
-                <div className="table-responsive">
-                    <CreateList.Confirm list={this.state.shops}/>
+                <div className="row">
+                    <botton className="btn btn-general btn-md-rect btn-rect" onClick={this.handleBackToList}>
+                        <i className="fa fa-arrow-circle-left"></i>BACK TO LIST
+                    </botton>
+                </div>
+                <div className="row">
+                    <div className="table-responsive">
+                        <CreateList.Confirm list={this.state.shops}/>
+                    </div>
                 </div>
             </div>
         } else {
@@ -363,8 +375,8 @@ var CreateList = React.createClass({
                 ConfirmButton =
                     <button className="btn btn-general btn-lg-rect btn-rect"
                             onClick={this.handleConfirmList}>
-                            <i className="fa fa-arrow-circle-right"></i>
-                            Evaluate
+                        <i className="fa fa-arrow-circle-right"></i>
+                        Evaluate
                     </button>
             }
 
@@ -422,7 +434,8 @@ CreateList.ListTable = React.createClass({
                         <tr key={result.barcode}>
                             <td>{result.name} ({result.barcode})</td>
                             <td>
-                                <button onClick={this.handleClick.bind(this,i,result)} className="btn btn-danger btn-sm-rect btn-sm"
+                                <button onClick={this.handleClick.bind(this,i,result)}
+                                        className="btn btn-danger btn-sm-rect btn-sm"
                                         key={i}>
                                     <i className="fa fa-times"></i> Remove
                                 </button>
