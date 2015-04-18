@@ -126,7 +126,16 @@ public class ProductServiceImpl implements ProductService {
         }
 
         List<ProductBO> products = productRepository.searchByName(name, page, perPage);
-        return ConversionUtils.convertProducts(products);
+		List<Product> productList = new ArrayList<Product>(products.size());
+
+		for (ProductBO product : products) {
+			Product convertProduct = ConversionUtils.convertProduct(product);
+			convertProduct.setMaxPrice(priceItemRepository.getMaxPriceByProduct(product));
+			convertProduct.setMinPrice(priceItemRepository.getMinPriceByProduct(product));
+			productList.add(convertProduct);
+		}
+
+        return productList;
 	}
 
 	@Override
