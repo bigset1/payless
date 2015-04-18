@@ -16,6 +16,7 @@ var App = React.createClass({
                 <AppHeader/>
                 {/* <AppBreadcrumb/>*/}
                 {this.props.children}
+                <AppFooter/>
             </div>
         );
     }
@@ -254,11 +255,10 @@ var AppIndex = React.createClass({
                 <AppHeader/>
                 <main>
                     <div className="search-container start-block">
+                        <SearchBar customClassNames="select-box home-item-search"/>
                         <img
-                            src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png"/*Insert our logo here  Yopta*/
+                            src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"/*Insert our logo here  Yopta*/
                             className="search-logo"/>
-
-                        <SearchBar customClassNames="select-box"/>
                     </div>
                 </main>
             </div>
@@ -292,22 +292,39 @@ var CreateList = React.createClass({
             shops: false
         };
     },
+    componentDidUpdate: function () {
+        if (this.state.confirm && this.state.shops === false) {
+            var list = [];
+            for (var i in this.state.list) {
+                list.push(this.state.list[i].barcode);
+            }
+
+            $.ajax({
+                url: getApiRequestUrl('basket/search'),
+                dataType: 'json',
+                type: 'GET',
+                data: {
+                    list: list,
+                    location: null
+                },
+                success: function (data) {
+                    data.productPricesSum = 0;
+
+                    for (var i in data.productPrices) {
+                        data.productPricesSum += +data.productPrices[i];
+                    }
+
+                    this.setState({shops: data});
+                }.bind(this),
+                error: function (xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            });
+        }
+    },
 
     componentDidMount: function () {
-        /* $.ajax({
-         url: getApiRequestUrl('search/name'),
-         dataType: 'json',
-         type: 'GET',
-         data: {
-         name: this.props.barcode
-         },
-         success: function (data) {
-         this.setState({list: data});
-         }.bind(this),
-         error: function (xhr, status, err) {
-         console.error(this.props.url, status, err.toString());
-         }.bind(this)
-         });*/
+
     },
 
     handleRemoveListItem: function (i) {
@@ -322,33 +339,49 @@ var CreateList = React.createClass({
             confirm: true
         })
     },
+    handleBackToList: function () {
+        this.setState({
+            confirm: false,
+            shops: false
+        })
+    },
     render: function () {
+        console.log(this.state);
+
         var ContentTable;
         if (this.state.confirm && this.state.shops !== false) {
 
             ContentTable = <div className="col-sm-9">
-                <div className="table-responsive">
-                    <CreateList.Confirm list={this.state.shops}/>
+                <div className="devider-brand present-devider"></div>
+                <div className="row">
+                    <botton className="btn btn-general btn-md-rect btn-rect" onClick={this.handleBackToList}>
+                        <i className="fa fa-arrow-circle-left"></i>BACK TO LIST
+                    </botton>
+                </div>
+                <div className="row">
+                    <div className="table-responsive">
+                        <CreateList.Confirm list={this.state.shops}/>
+                    </div>
                 </div>
             </div>
         } else {
             var ConfirmButton;
             if (this.state.confirm) {
-                ConfirmButton = <div className="btn-container">
-                    <button className="btn btn-lg btn-warning">
+                ConfirmButton =
+                    <button className="btn btn-lg btn-lg-rect btn-warning">
                         <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
                     </button>
-                </div>
             } else {
-                ConfirmButton = <div className="btn-container btn-container-info">
-                    <button className="btn btn-info btn--minimal btn-lg-bordered btn-inverse"
-                            onClick={this.handleConfirmList}>Button
+                ConfirmButton =
+                    <button className="btn btn-general btn-lg-rect btn-rect"
+                            onClick={this.handleConfirmList}>
+                        <i className="fa fa-arrow-circle-right"></i>
+                        Evaluate
                     </button>
-                </div>
             }
 
-            ContentTable = <div className="col-sm-9">
-                <SearchBar custom-class-names="select-box"/>
+            ContentTable = <div className="col-sm-9 list-creation-content">
+                <SearchBar custom-class-names="select-box list-item-search"/>
 
                 <div className="devider-brand present-devider"></div>
 
@@ -401,7 +434,8 @@ CreateList.ListTable = React.createClass({
                         <tr key={result.barcode}>
                             <td>{result.name} ({result.barcode})</td>
                             <td>
-                                <button onClick={this.handleClick.bind(this,i,result)} className="btn btn-danger btn-sm"
+                                <button onClick={this.handleClick.bind(this,i,result)}
+                                        className="btn btn-danger btn-sm-rect btn-sm"
                                         key={i}>
                                     <i className="fa fa-times"></i> Remove
                                 </button>
@@ -438,31 +472,30 @@ CreateList.Confirm = React.createClass({
 
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Ship to</th>
-                    <th>Order Total</th>
-                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Working Hours</th>
+                    <th>Distance</th>
+                    <th>Basket Sum</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                {/*this.props.list.map(function (result) {
-                 return (
-                 <tr>
-                 <td>100032993</td>
-                 <td>05/14/2014</td>
-                 <td>John Stewart</td>
-                 <td>$ 2 199.00</td>
-                 <td className="table__wait"><i
-                 className="fa fa-spinner"></i> Pending
-                 </td>
-                 <td><a className="btn btn-primary btn-sm" href="#">View
-                 Order</a></td>
-                 </tr>
-                 );
-                 })*/}
+                {this.props.list.map(function (result, i) {
+                    return (
+                        <tr key={result.store.brand+i}>
+                            <td>{result.store.brand}</td>
+                            <td>{result.store.workingHours}</td>
+                            <td>{result.distance}</td>
+                            <td>{result.productPricesSum}</td>
+                            <td>
+                                <botton disabled="disabled" className="btn btn-primary btn-sm">View
+                                    Order
+                                </botton>
+                            </td>
+                        </tr>
+                    );
+                })}
                 </tbody>
             </table>
         );

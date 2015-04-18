@@ -16,9 +16,9 @@ var AppHeader = React.createClass({
                     <div className="fixed-top header-down">
                         <AppHeader.Container/>
 
-                        <div className="devider-color"></div>
                     </div>
                 </div>
+             <div className="devider-color"></div>
             </header>
         );
     }
@@ -122,8 +122,8 @@ AppHeader.Logo = React.createClass({
     render: function () {
         return (
             <a className="logo" href="#">
-                <h1 className="logo__text">Alle<span className="highlight">c</span><br/>
-                    <span className="logo__slogan">your business universe</span>
+                <h1 className="logo__text">Pay<span className="highlight">Less</span><br/>
+                    <span className="logo__slogan">buy more</span>
                 </h1>
             </a>
         );
@@ -196,18 +196,34 @@ var AppFooter = React.createClass({
 
     render: function () {
         return (
-            <section className="page-indecator">
+            <footer className="footer footer--light footer--cut">
                 <div className="container">
-                    <h2 className="heading">Headers</h2>
+                    <h3 className="heading-info heading-info--mobile">Contact info:</h3>
+                    <address className="contact-info contact-info--primary">
+                        <span className="contact-info__item">
+                            <i className="fa fa-location-arrow"></i>
+                            101 West Street, New York, NY 12345
+                        </span>
+                        <span className="contact-info__item">
+                            <i className="fa fa-mobile"></i>
+                            +1-888-555-5555
+                        </span>
+                        <span className="contact-info__item">
+                            <i className="fa fa-envelope"></i>
+                            info@allec.com / sales@allec.com
+                        </span>
 
-                    <ol className="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li className="active">Headers</li>
-                    </ol>
+                        <span className="contact-info__item">
+                            <i className="fa fa-skype"></i>
+                            allec-support
+                        </span>
+                    </address>
 
-                    <div className="devider devider--bottom-sm"></div>
+                    <div className="copy">
+                        &copy; <a href="index.html">Allec, 2014.</a> All rights reserved. Done by <a href="http://gozha.net/" target="_blank">Olia Gozha</a>
+                    </div>
                 </div>
-            </section>
+            </footer>
         );
     }
 });

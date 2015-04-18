@@ -798,7 +798,7 @@ input[type="search"]::-webkit-input-placeholder {
 }
 ul,
 ol {
-  font-style: italic;
+  /*font-style: italic;*/
   color: #34495e;
   margin-bottom: 0;
 }
@@ -962,6 +962,9 @@ ol {
   height: 3px;
   background-image: url("../images/components/stripe.png");
   background-repeat: repeat-x;
+  bottom: 0;
+  z-index: 3;
+  position: relative;
 }
 .top-space {
   margin-bottom: 120px;
@@ -3226,9 +3229,6 @@ ol {
     display: none !important;
   }
 }
-.header {
-  min-height: 152px;
-}
 .header--dark {
   background-color: #34495e;
 }
@@ -3437,8 +3437,15 @@ ol {
   .z-nav .z-nav__item {
     padding: 0;
   }
+
+  .z-nav .z-nav__link:hover {
+    background-color: rgba(255,255,255,0.4) !important;
+  }
+
   .z-nav .z-nav__link {
-    padding: 42px 20px;
+    border-radius: 10px;
+    margin: 42px 20px;
+    padding: 5px 5px;
     font: 14px 'Open Sans', sans-serif;
     color: #ffffff;
     -webkit-transition: color 300ms ease, background 300ms ease;
@@ -4423,6 +4430,7 @@ ol {
 }
 .header--light .header-fixed {
   background-color: #f3f7f7;
+  position:relative;
 }
 .header--light .fixed-top {
   background: #f3f7f7;
@@ -18994,7 +19002,7 @@ body.overlay-layer:after {
   text-transform: none;
 }
 .present-devider {
-  margin-top: 52px;
+  margin-top: 12px;
   margin-bottom: 55px;
 }
 .present-devider-full {
@@ -22155,9 +22163,23 @@ ul.select2-selection__rendered {
     font-size: 24px;
 }
 
-.search-logo{
-  width: 70px;
-  margin-right: 20px;
+.logo__text{
+  font-family: 'Verdana' !important;
+  color: #13b4e3 !important;
+  font-style: italic !important;
+  font-weight: bold !important;
+}
+
+.logo__text .highlight{
+    color: #fff !important;
+}
+
+.search-logo {
+  width: 54px;
+  margin-left: -53px;
+  margin-top:-1px;
+  z-index: 2;
+  position: relative;
 }
 
 
@@ -22167,7 +22189,7 @@ main{
   right: 0px;
   left: 0px;
   top: 0px;
-  background-color: #f3f7f7;
+  background-color: #FFF;;
 }
 
 .search-container{
@@ -22216,4 +22238,63 @@ height:200px;
 }
 .table--wide thead{
 border: 2px solid rgba(51,51,51,0.1);
+}
+
+
+.home-item-search .search-container ol,
+.home-item-search .select2-results
+ {
+  font-style: normal;
+}
+
+.home-item-search .select2-results a{
+    color: rgb(51,51,51);
+}
+
+.select2-results__option a{
+  width: 100%;
+  height: 100%;
+  display: block;
+font-size:16px;
+padding:10px;
+}
+
+.select2-results__option a:hover{
+background-color: #BDBDBD;
+font-size:17px;
+}
+
+ .select2-results__option {
+    padding:0;
+}
+
+.header{
+    position:relative;
+}
+
+.list-item-search{
+      width: 100%;
+      margin-top: 20px;
+}
+
+.list-creation-content{
+margin-top:20px;
+}
+
+.select2-container--default .select2-selection--multiple{
+  border-radius: 12px;
+}
+
+.z-nav__item, .header-fixed, .header--light .fixed-top {
+  background: #206da4 !important;
+}
+
+header.header--light .z-nav .z-nav__link, header.header--light .logo .logo__slogan{
+    color: #FFF;
+}
+
+.logo .logo__text{
+background-image: url(http://themullarkeygroup.com/wp-content/uploads/2014/06/moneybox.png);
+  background-position: 0px 2px;
+  padding: 9px 0 9px 80px;
 }
