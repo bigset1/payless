@@ -16,6 +16,7 @@ var App = React.createClass({
                 <AppHeader/>
                 {/* <AppBreadcrumb/>*/}
                 {this.props.children}
+                <AppFooter/>
             </div>
         );
     }
@@ -291,22 +292,39 @@ var CreateList = React.createClass({
             shops: false
         };
     },
+    componentDidUpdate: function () {
+        if (this.state.confirm && this.state.shops === false) {
+            var list = [];
+            for (var i in this.state.list) {
+                list.push(this.state.list[i].barcode);
+            }
+
+            $.ajax({
+                url: getApiRequestUrl('basket/search'),
+                dataType: 'json',
+                type: 'GET',
+                data: {
+                    list: list,
+                    location: null
+                },
+                success: function (data) {
+                    data.productPricesSum = 0;
+
+                    for (var i in data.productPrices) {
+                        data.productPricesSum += +data.productPrices[i];
+                    }
+
+                    this.setState({shops: data});
+                }.bind(this),
+                error: function (xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            });
+        }
+    },
 
     componentDidMount: function () {
-        /* $.ajax({
-         url: getApiRequestUrl('search/name'),
-         dataType: 'json',
-         type: 'GET',
-         data: {
-         name: this.props.barcode
-         },
-         success: function (data) {
-         this.setState({list: data});
-         }.bind(this),
-         error: function (xhr, status, err) {
-         console.error(this.props.url, status, err.toString());
-         }.bind(this)
-         });*/
+
     },
 
     handleRemoveListItem: function (i) {
@@ -322,10 +340,14 @@ var CreateList = React.createClass({
         })
     },
     render: function () {
+        console.log(this.state);
+
         var ContentTable;
         if (this.state.confirm && this.state.shops !== false) {
 
             ContentTable = <div className="col-sm-9">
+                <div className="devider-brand present-devider"></div>
+
                 <div className="table-responsive">
                     <CreateList.Confirm list={this.state.shops}/>
                 </div>
@@ -437,31 +459,30 @@ CreateList.Confirm = React.createClass({
 
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Ship to</th>
-                    <th>Order Total</th>
-                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Working Hours</th>
+                    <th>Distance</th>
+                    <th>Basket Sum</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                {/*this.props.list.map(function (result) {
-                 return (
-                 <tr>
-                 <td>100032993</td>
-                 <td>05/14/2014</td>
-                 <td>John Stewart</td>
-                 <td>$ 2 199.00</td>
-                 <td className="table__wait"><i
-                 className="fa fa-spinner"></i> Pending
-                 </td>
-                 <td><a className="btn btn-primary btn-sm" href="#">View
-                 Order</a></td>
-                 </tr>
-                 );
-                 })*/}
+                {this.props.list.map(function (result, i) {
+                    return (
+                        <tr key={result.store.brand+i}>
+                            <td>{result.store.brand}</td>
+                            <td>{result.store.workingHours}</td>
+                            <td>{result.distance}</td>
+                            <td>{result.productPricesSum}</td>
+                            <td>
+                                <botton disabled="disabled" className="btn btn-primary btn-sm">View
+                                    Order
+                                </botton>
+                            </td>
+                        </tr>
+                    );
+                })}
                 </tbody>
             </table>
         );
