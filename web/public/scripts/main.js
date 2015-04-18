@@ -45,7 +45,14 @@ var AppContent = React.createClass({
 var Product = React.createClass({
     getInitialState: function () {
         return {
-            info: null
+            info: {
+                "barcode":"5252454525",
+                "name":"Test item",
+                "producer":"test producer",
+                "country":"Uk",
+                "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAAD/CAYAAAA+CADKAAAFVElEQVR4nO3a0W3bZhiF4U9FBgjgMTqBV/Ag7godISvEg3gFT5AxDHSEXhRsFIaiSIrkT+k8z1XiKAhv3u+YRk51UM9P76+tnwHW8vH58tb6GfpOrR+gI3aSHOEYNItf7PBTi2Owe/yih8v2PAK7xS96mG6PI7B5/KKH5bY8ApvFL3pYzxZHYPX4RQ/bWfMIrBq/8GF7ax2A1eIXPuxnjQNwc/yih3ZuOQI3xS98aG/pAVgcv/DhOJYcgEXxCx+OZ+4BmB2/8OG45hyAWfELH45v6gGYHL/w4X5MOQB/7PEgwPFMWn6rD/fn2vpfjV/4cL/GDsBo/MKH+3fpAHjnh1AXl9/qw+MYWn/LD6EGl9/qw+Ppr7/lh1C/Lb/Vh8d1vv6WH0L9svxWHx5ft/6WH0L9v/xWH3J8fL68WX4IJX4IJX4Idaryvg+JLD+EEj+EEj+EOnnfh0yWH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0J9af0A/Ofbj6/fz3//95///HXpz4Y+N+Uz9/w8rE/8B9CFch7Otx9fv/cjmRLNGmEd7XnYhm/7G+uHdv7rsfVMeR62Y/kbm7uM5wFe+ruXPjMUdv/rez4PbVn+AxqL9DzQoSUe+8zQ1y79W3s8D22dnp/eX1s/BD9NiXHOZ4c+M/bDvBbPQxuW/0D2CmPofb7l89CG+A9iLLTup+3X/v7Ub6mHvu1v+Ty0If4DuLawU97Vp77PD/1wrx/pns9DO975G7u2jnPf1af855yxn/bv+Ty0JX4I5dt+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CHWqqnp+en9t/SDAfj4+X94sP4QSP4QSP4Q6db/w3g8ZPj5f3qosP8Q6nf/G+sNj61a/yvJDrFP/C9YfHtP56ldZfoj12/JXWX94NP3Vr7L8EGtw+ausPzyKodWvsvwQ6+LyV1l/uHeXVr/qSvxVDgDcq7HwqybEX+UAwL25Fn6Vd36INWn5q6w/3Ispq181I/4qBwCObmr4VTPjr3IA4KjmhF+1IP4qBwCOZm74VQvjr3IA4CiWhF91Q/xVDgC0tjT8qhvj7zgCsK9bou+sEn+VAwB7WSP8qhXjr3IAYGtrhV+1cvwdRwDWtWb0nU3i7zgCcJstou9sGn/HEYB5toy+s0v8HUcAxu0RfWfX+DuOAPxqz+g7TeLvcwxI0yL2vn8BNsLw/lzHAHYAAAAASUVORK5CYII=",
+                "description":"dsf dsf sdf sdf sdf sdf d fs\n sdfv dsf sdfv "
+            }
         };
     },
     getDefaultProps: function () {
@@ -60,7 +67,7 @@ var Product = React.createClass({
 
     componentWillMount: function () {
 
-        $.ajax({
+        /*$.ajax({
             url: getApiRequestUrl('basket/barcode'),
             dataType: 'json',
             type: 'GET',
@@ -73,7 +80,7 @@ var Product = React.createClass({
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
-        });
+        });*/
 
         /*this.setState({data: comments}, function () {
          // `setState` accepts a callback. To avoid (improbable) race condition,
@@ -237,7 +244,8 @@ var CreateList = React.createClass({
                     "description": "dsf dsf sdf sdf sdf sdf d fs\n sdfv dsf sdfv "
                 }
             ],
-            confirm: false
+            confirm: false,
+            shops: false
         };
     },
 
@@ -252,26 +260,54 @@ var CreateList = React.createClass({
             list: list
         });
     },
-
+    handleConfirmList: function () {
+        this.setState({
+            confirm: true
+        })
+    },
     render: function () {
         var ContentTable;
-        if (this.state.confirm) {
-            //ContentTable =
+        if (this.state.confirm && this.state.shops !== false) {
+
+            ContentTable = <div className="col-sm-9">
+                <div className="table-responsive">
+                    <CreateList.Confirm list={this.state.shops}/>
+                </div>
+            </div>
+        } else {
+            var ConfirmButton;
+            if (this.state.confirm) {
+                ConfirmButton = <div className="btn-container btn-container-info">
+                    <button className="btn btn-lg btn-warning">
+                        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+                    </button>
+                </div>
+            } else {
+                ConfirmButton = <div className="btn-container btn-container-info">
+                    <button className="btn btn-info btn--minimal btn-lg-bordered btn-inverse"
+                            onClick={this.handleConfirmList}>Button
+                    </button>
+                </div>
+            }
+
+            ContentTable = <div className="col-sm-9">
+                <CreateList.Search/>
+
+                <div className="devider-brand present-devider"></div>
+
+                {/*<p className="order-result">Displaying 1 to 10 (of 93 orders)</p>*/}
+
+                <div className="table-responsive">
+                    <CreateList.ListTable list={this.state.shops} removeListItem={this.handleRemoveListItem}/>
+                </div>
+
+                {ConfirmButton}
+            </div>
         }
         return (
             <section className="container">
                 <div className="row">
-                    <div className="col-sm-9">
-                        <CreateList.Search/>
-
-                        <div className="devider-brand present-devider"></div>
-
-                        {/*<p className="order-result">Displaying 1 to 10 (of 93 orders)</p>*/}
-
-                        <div className="table-responsive">
-                            <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
-                        </div>
-                    </div>
+                    {ContentTable}
                     <AppSidebar/>
                 </div>
             </section>
@@ -318,7 +354,7 @@ CreateList.ListTable = React.createClass({
         this.props.removeListItem(i);
     },
     render: function () {
-
+        console.info(this.props.list);
         return (
             <table className="table table--target table-present">
                 <colgroup className="col-large"/>
@@ -332,7 +368,7 @@ CreateList.ListTable = React.createClass({
 
                 <tbody>
 
-                {this.props.list.map(function (result, i) {
+                {/*this.props.list.map(function (result, i) {
                     return (
                         <tr key={result.barcode}>
                             <td>{result.name} ({result.barcode})</td>
@@ -344,7 +380,7 @@ CreateList.ListTable = React.createClass({
                             </td>
                         </tr>
                     );
-                }, this)}
+                }, this)*/}
                 </tbody>
             </table>
         );
@@ -361,7 +397,8 @@ CreateList.Confirm = React.createClass({
     },
 
     render: function () {
-        var list = this.props.list;
+
+
         return (
             <table className="table table-bordered table--wide table-present">
                 <colgroup className="col-sm-width"/>
@@ -383,7 +420,7 @@ CreateList.Confirm = React.createClass({
                 </thead>
                 <tbody>
 
-                {list.map(function (result) {
+                {this.props.list.map(function (result) {
                     return (
                         <tr>
                             <td>100032993</td>
