@@ -22,4 +22,9 @@ public interface StoreService {
 	@Produces(MediaType.APPLICATION_JSON)
 	List<Store> searchStores(@QueryParam("latitude") double latitude,
 			@QueryParam("longitude") double longitude, @QueryParam("distance") @DefaultValue("1.0") double distance);
+
+	@GET
+	@Path("/")
+	@Produces(MediaType.APPLICATION_JSON)
+	Store getStoreById(@QueryParam("id") String id);
 }
