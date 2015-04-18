@@ -384,12 +384,11 @@ var CreateList = React.createClass({
         var ContentTable;
         if (this.state.confirm && this.state.shops !== false) {
 
-            ContentTable = <div className="col-sm-12">
-                <div className="devider-brand present-devider"></div>
+            ContentTable = <div className="col-sm-12 basket-results-table">
                 <div className="row">
-                    <botton className="btn btn-general btn-md-rect btn-rect" onClick={this.handleBackToList}>
+                    <button className="btn btn-general btn-md-rect btn-rect" onClick={this.handleBackToList}>
                         <i className="fa fa-arrow-circle-left"></i>BACK TO LIST
-                    </botton>
+                    </button>
                 </div>
                 <div className="row">
                     <div className="table-responsive">
@@ -412,7 +411,7 @@ var CreateList = React.createClass({
                         Evaluate
                     </button>
             }
-            ContentTable = <div className="col-sm-9 list-creation-content">
+            ContentTable = <div className="col-sm-12 list-creation-content">
                 <SearchBar custom-class-names="select-box list-item-search"
                            headerCallbackHandle={this.handleAddItemToList}
                            searchTemplate={this.searchBarTemplate}
@@ -529,7 +528,7 @@ CreateList.Confirm = React.createClass({
                     <th>Name</th>
                     <th>Working Hours</th>
                     <th>Distance</th>
-                    <th>Basket Sum</th>
+                    <th>Total Price</th>
                     <th>Action</th>
                 </tr>
                 </thead>

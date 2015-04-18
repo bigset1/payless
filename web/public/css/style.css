@@ -22166,7 +22166,6 @@ ul.select2-selection__rendered {
 .logo__text{
   font-family: 'Verdana' !important;
   color: #13b4e3 !important;
-  font-style: italic !important;
   font-weight: bold !important;
 }
 
@@ -22299,11 +22298,11 @@ header.header--light .z-nav .z-nav__link, header.header--light .logo .logo__slog
 }
 
 .product-list-item thead tr{
-    background:rgb(72, 134, 197);
+    background:rgba(51,51,51,0.1);
 }
 
-.product-list-item thead tr th{
-    color: #FFF !important;
+.basket-results-table{
+margin-top:20px;
 }
 
 .logo .logo__text{
@@ -22324,3 +22323,4 @@ width: 100%;
 footer{
 margin-top: 20px;
 }
+
