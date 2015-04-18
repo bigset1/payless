@@ -12959,8 +12959,6 @@ table th[class*="col-"] {
 }
 .start-block {
   position: relative;
-  padding-top: 307px;
-  padding-bottom: 560px;
   text-align: center;
 }
 .start-block .start-block__moto {
@@ -22140,11 +22138,6 @@ body.overlay-layer:after {
 }
 
 /*Search styles*/
-.search-container {
-    text-align: right;
-    padding-right: 10%;
-}
-
 .search-container .select2-selection {
     height: 50px;
 }
@@ -22165,4 +22158,29 @@ ul.select2-selection__rendered {
 .search-logo{
   width: 70px;
   margin-right: 20px;
+}
+
+
+main{
+  bottom: 0px;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  background-color: #34495e;
+  background-image: url(../images/components/promo-primary.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-attachment: fixed;
+}
+
+.search-container{
+  position: absolute;
+  top: 40%;
+  width: 100%;
+}
+
+main .devider-color{
+  bottom: 0px;
+  position: absolute;
 }

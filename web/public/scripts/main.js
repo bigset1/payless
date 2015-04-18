@@ -176,13 +176,14 @@ var AppIndex = React.createClass({
                             <AppHeader.Menu/>
                         </div>
                     </div>
-                    <div className="search-container start-block">
-                        <img src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png"/*Insert our logo here  Yopta*/  className="search-logo"/>
-                        <select className="search-input select-box" multiple="multiple" ref="barcodeSearchTool">
-                        </select>
-                    </div>
-                    <div className="devider-color devider-color--onepage"></div>
                 </header>
+                <main>
+                <div className="search-container start-block">
+                <img src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png"/*Insert our logo here  Yopta*/  className="search-logo"/>
+                 <select className="search-input select-box" multiple="multiple" ref="barcodeSearchTool"></select>
+                  </div>
+                 <div className="devider-color devider-color--onepage"></div>
+                 </main>
             </div>
         );
     }
