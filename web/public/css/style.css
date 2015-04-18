@@ -22210,3 +22210,10 @@ height:200px;
 .product_price{
     font-weight: bold;
 }
+
+.table--wide thead, .table--vertical .vertical-heading{
+  background-color: rgba(51,51,51,0.1);
+}
+.table--wide thead{
+border: 2px solid rgba(51,51,51,0.1);
+}
