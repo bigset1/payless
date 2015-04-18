@@ -27,7 +27,15 @@ routie({
             document.getElementById('content')
         );
     },
+    'map': function () {
+        React.render(
+            <App>
+                <ShopsMap/>
+            </App>,
+            document.getElementById('content')
+        );
+    },
     '*': function () {
-
+        routie('');
     }
 });

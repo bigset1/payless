@@ -522,3 +522,36 @@ CreateList.Confirm = React.createClass({
         );
     }
 });
+
+
+var ShopsMap = React.createClass({
+    getDefaultProps: function () {
+        return {}
+    },
+    getInitialState: function () {
+        return {
+            shops: false,
+            location: {
+                lat: 50.439443,
+                log: 30.514974
+            }
+        }
+    },
+    componentDidMount: function () {
+        initMapVintage(React.findDOMNode(this.refs.shopsMapArea), this.state.location);
+    },
+    componentWillUnmount: function () {
+
+    },
+
+    render: function () {
+        return (
+            <div className="row">
+                <div className="col-sm-12">
+                    <div id='map-blackwhite-full' className="map map--wide" style={{height:500+'px'}}
+                         ref="shopsMapArea"></div>
+                </div>
+            </div>
+        );
+    }
+});

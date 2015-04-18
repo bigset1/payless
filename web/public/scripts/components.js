@@ -103,7 +103,7 @@ AppHeader.Menu = React.createClass({
                         </li>
 
                         <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#team">Team</a>
+                            <a className="z-nav__link z-nav__link--simple" href="#map">Map</a>
                         </li>
 
                         <li className="z-nav__item">

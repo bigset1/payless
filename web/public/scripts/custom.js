@@ -110,7 +110,7 @@ var InitSearchBar = function (selector) {
         escapeMarkup: function (markup) {
             return markup;
         }, // let our custom formatter work
-//        minimumInputLength: 1,
+        minimumInputLength: 4,
         templateResult: formatRepo, // omitted for brevity, see the source of this page
         templateSelection: formatBarcodeSearchResults// omitted for brevity, see the source of this page
     })
@@ -118,3 +118,99 @@ var InitSearchBar = function (selector) {
 var DestroySearchBar = function (selector) {
     $(selector).select2('destroy');
 };
+
+function initMapVintage(selector, location) {
+    //Map start init - location New York
+    var mapOptions = {
+        scaleControl: true,
+        center: new google.maps.LatLng(location.lat, location.log),
+        zoom: 12,
+        scrollwheel: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        panControl: true,
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        overviewMapControl: false
+    };
+
+    var myIcon = new google.maps.MarkerImage("http://atech.designzway.com/demo/images/components/marker.png", null, null, null, new google.maps.Size(57, 64));
+
+    var map = new google.maps.Map(selector, mapOptions);
+    var marker = new google.maps.Marker({
+        map: map,
+        position: map.getCenter(),
+        icon: myIcon
+    });
+
+    var roadAtlasStyles = [
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry",
+            "stylers": [
+                {"saturation": -100},
+                {"lightness": -8},
+                {"gamma": 1.18}
+            ]
+        }, {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [
+                {"saturation": -100},
+                {"gamma": 1},
+                {"lightness": -24}
+            ]
+        }, {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [
+                {"saturation": -100}
+            ]
+        }, {
+            "featureType": "administrative",
+            "stylers": [
+                {"saturation": -100}
+            ]
+        }, {
+            "featureType": "transit",
+            "stylers": [
+                {"saturation": -100}
+            ]
+        }, {
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {"saturation": -100}
+            ]
+        }, {
+            "featureType": "road",
+            "stylers": [
+                {"saturation": -100}
+            ]
+        }, {
+            "featureType": "administrative",
+            "stylers": [
+                {"saturation": -100}
+            ]
+        }, {
+            "featureType": "landscape",
+            "stylers": [
+                {"saturation": -100}
+            ]
+        }, {
+            "featureType": "poi",
+            "stylers": [
+                {"saturation": -100}
+            ]
+        }, {}
+    ]
+
+    var styledMapOptions = {};
+
+    var usRoadMapType = new google.maps.StyledMapType(
+        roadAtlasStyles, styledMapOptions);
+
+    map.mapTypes.set('usroadatlas', usRoadMapType);
+    map.setMapTypeId('usroadatlas');
+}
