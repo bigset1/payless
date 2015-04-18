@@ -1,7 +1,6 @@
 package com.letionik.payless.server.service;
 
 import com.letionik.payless.model.Store;
-import org.springframework.stereotype.Component;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,7 +13,6 @@ import java.util.List;
  * @author Anton Nikulin
  * @since 4/18/15.
  */
-@Component
 @Path("/store")
 public interface StoreService {
 

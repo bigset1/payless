@@ -14,6 +14,15 @@ public class BasketSearchResult {
 	private double distance;
 	private Map<String, Double> productPrices;
 
+	public BasketSearchResult() {
+	}
+
+	public BasketSearchResult(Store store, double distance, Map<String, Double> productPrices) {
+		this.store = store;
+		this.distance = distance;
+		this.productPrices = productPrices;
+	}
+
 	public Store getStore() {
 		return store;
 	}

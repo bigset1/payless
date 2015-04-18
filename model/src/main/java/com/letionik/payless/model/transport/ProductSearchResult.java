@@ -12,6 +12,15 @@ public class ProductSearchResult {
 	private double distance;
 	private double price;
 
+	public ProductSearchResult() {
+	}
+
+	public ProductSearchResult(Store store, double distance, double price) {
+		this.store = store;
+		this.distance = distance;
+		this.price = price;
+	}
+
 	public Store getStore() {
 		return store;
 	}

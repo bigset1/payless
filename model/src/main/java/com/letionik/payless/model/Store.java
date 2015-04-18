@@ -12,6 +12,16 @@ public class Store {
 	private double longitude;
 	private String workingHours;
 
+	public Store() {
+	}
+
+	public Store(String brand, double latitude, double longitude, String workingHours) {
+		this.brand = brand;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.workingHours = workingHours;
+	}
+
 	public String getId() {
 		return id;
 	}

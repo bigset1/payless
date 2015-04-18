@@ -2,7 +2,6 @@ package com.letionik.payless.server.service;
 
 import com.letionik.payless.model.Product;
 import com.letionik.payless.model.transport.ProductSearchResult;
-import org.springframework.stereotype.Component;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,7 +16,6 @@ import java.util.List;
  * @author Anton Nikulin
  * @since 4/18/15.
  */
-@Component
 @Path("/product")
 public interface ProductService {
 
