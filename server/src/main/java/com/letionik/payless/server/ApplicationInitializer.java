@@ -1,7 +1,7 @@
 package com.letionik.payless.server;
 
-import com.letionik.payless.server.config.SpringApplicationConfiguration;
 import com.letionik.payless.server.config.RestEasyAnnotatedContextLoader;
+import com.letionik.payless.server.config.SpringApplicationConfiguration;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap;
 import org.springframework.web.WebApplicationInitializer;
@@ -35,6 +35,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 
         servletContext.setInitParameter("resteasy.media.type.mappings", "json:application/json");
         servletContext.setInitParameter("resteasy.servlet.mapping.prefix", REST_API_PREFIX);
+        servletContext.setInitParameter("PARAMETER_ENCODING", "UTF-8");
 	}
 
 }

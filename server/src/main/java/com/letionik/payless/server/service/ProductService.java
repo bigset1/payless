@@ -1,6 +1,7 @@
 package com.letionik.payless.server.service;
 
 import com.letionik.payless.model.Product;
+import com.letionik.payless.model.transport.PriceItemDTO;
 import com.letionik.payless.model.transport.ProductSearchResult;
 
 import javax.ws.rs.Consumes;
@@ -24,12 +25,12 @@ public interface ProductService {
 	@Path("/priceItem")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	void addPriceItem(String barcode, String storeId, double price);
+	void addPriceItem(PriceItemDTO priceItem) throws ServiceException;
 
 	@GET
 	@Path("/parse")
 	@Produces(MediaType.APPLICATION_JSON)
-	Product parseProduct(@QueryParam("barcode") String barcode) throws IOException;
+	Product parseProduct(@QueryParam("barcode") String barcode) throws IOException, ServiceException;
 
 	@GET
 	@Path("/search/location")

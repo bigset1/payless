@@ -1,6 +1,7 @@
 package com.letionik.payless.server.util;
 
 import com.letionik.payless.model.Product;
+import com.letionik.payless.server.persistance.model.ProductBO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class BarcodeInfoParser {
     private static final String DATABASE_SITE_URL = "http://www.ean13.info/";
-    public static Product getProduct(String barcode) throws IOException {
+    public static ProductBO getProduct(String barcode) throws IOException {
         Document doc = Jsoup.connect(DATABASE_SITE_URL + String.valueOf(barcode) + ".htm").get();
 
         String name = doc.select(".col_rght h1 span").get(0).text();
@@ -23,7 +24,7 @@ public class BarcodeInfoParser {
         String producer = children.get(2).getElementsByTag("a").get(0).text();
         String description = children.get(4).getElementsByTag("a").get(0).text();
         Elements imageElement = doc.select(".img_cont a");
-        Product result = new Product();
+        ProductBO result = new ProductBO();
         if(imageElement.size() > 0) {
             String imageUrl = DATABASE_SITE_URL + imageElement.get(0).attributes().get("href");
             result.setImageUrl(checkIsUndefined(imageUrl));

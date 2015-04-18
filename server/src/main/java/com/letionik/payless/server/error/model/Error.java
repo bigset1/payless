@@ -1,4 +1,4 @@
-package com.letionik.payless.server.error;
+package com.letionik.payless.server.error.model;
 
 /**
  * @author Roman Kishchenko
