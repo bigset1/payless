@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,11 +22,15 @@ import com.garage.payless.util.RestProvider;
 import com.garage.payless.util.ServerRequest;
 import com.letionik.payless.model.Product;
 import com.letionik.payless.model.Store;
+import com.letionik.payless.model.transport.PriceItemDTO;
 import com.letionik.payless.model.transport.ProductSearchResult;
 
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class FragmentFillPriceItem extends Fragment implements View.OnClickListener {
     private static final String BARCODE = "barcode";
@@ -36,6 +39,8 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
     private EditText editTextPrice;
     private String barcode;
     private ProgressDialog progressDialog;
+    private List<Store> storeList;
+    private static final double DEFAULT_RADIUS = 1;
 
     public static final PayLessApi payLessApi =
             RestProvider.getInstanse().create(PayLessApi.class);
@@ -106,29 +111,19 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
         }
     };
 
-    private ResponseCallback responseCallbackPriceItem = new ResponseCallback() {
-        @Override
-        public void complete(Object response) {
-            LocationEvent locationEvent = EventBus.getDefault().getStickyEvent(LocationEvent.class);
-            ServerRequest.getShopsProduct(payLessApi, responseCallbackShopsProduct, barcode, locationEvent.getLatLng().latitude,
-                    locationEvent.getLatLng().longitude);
-        }
-    };
-
     private ResponseCallback responseCallbackStores = new ResponseCallback() {
         @Override
         public void complete(Object response) {
-            List<Store> storeList = (List<Store>) response;
+            storeList = (List<Store>) response;
             String array_spinner[] = new String[storeList.size()];
             for (int i = 0; i < storeList.size(); i++) {
                 array_spinner[i] = storeList.get(i).getBrand();
             }
-            final ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, array_spinner);
+            final ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, array_spinner);
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     spinner.setAdapter(adapter);
-
                 }
             });
 
@@ -150,23 +145,37 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_submit:
-                String storeId = "1";
                 String priceStr = editTextPrice.getText().toString();
                 if (!priceStr.isEmpty()) {
                     double price = Double.parseDouble(priceStr);
-                    ServerRequest.addPriceItem(payLessApi, responseCallbackPriceItem, barcode, storeId, price);
+                    int selectedIndex = (int) spinner.getSelectedItemId();
+                    String storeId = storeList.get(selectedIndex).getId();
+                    payLessApi.addPriceItem(new PriceItemDTO(barcode, storeId, price), new Callback<Object>() {
+                        @Override
+                        public void success(Object o, Response response) {
+                            LocationEvent locationEvent = EventBus.getDefault().getStickyEvent(LocationEvent.class);
+                            ServerRequest.getShopsProduct(payLessApi, responseCallbackShopsProduct, barcode,
+                                    locationEvent.getLatLng().latitude, locationEvent.getLatLng().longitude);
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            String responseStr = error.toString();
+                        }
+                    });
+//                    ServerRequest.addPriceItem(payLessApi, responseCallbackPriceItem, barcode, storeId, price);
                 } else {
                     Toast.makeText(getActivity(), getString(R.string.enter_price), Toast.LENGTH_SHORT).show();
                 }
-
                 break;
         }
     }
 
     public void onEventMainThread(LocationEvent locationEvent) {
         progressDialog.show();
+
         ServerRequest.getStores(payLessApi, responseCallbackStores,
-                locationEvent.getLatLng().latitude, locationEvent.getLatLng().longitude);
+                locationEvent.getLatLng().latitude, locationEvent.getLatLng().longitude, DEFAULT_RADIUS);
     }
 
     public void onEvent(LocationEvent locationEvent) {

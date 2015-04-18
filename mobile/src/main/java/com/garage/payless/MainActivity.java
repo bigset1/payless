@@ -3,14 +3,12 @@ package com.garage.payless;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.garage.payless.entity.LocationEvent;
 import com.garage.payless.fragment.FragmentMain;
 import com.garage.payless.util.ReactiveLocationHelper;
 
 import de.greenrobot.event.EventBus;
-
 
 public class MainActivity extends FragmentActivity {
     private FragmentManager fragmentManager = getSupportFragmentManager();
