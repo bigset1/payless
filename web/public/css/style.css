@@ -22251,7 +22251,7 @@ border: 2px solid rgba(51,51,51,0.1);
     color: rgb(51,51,51);
 }
 
-.home-item-search .select2-results__option a{
+.select2-results__option a{
   width: 100%;
   height: 100%;
   display: block;
@@ -22259,12 +22259,12 @@ font-size:16px;
 padding:10px;
 }
 
-.home-item-search .select2-results__option a:hover{
+.select2-results__option a:hover{
 background-color: #BDBDBD;
 font-size:17px;
 }
 
-.home-item-search .select2-results__option {
+ .select2-results__option {
     padding:0;
 }
 
