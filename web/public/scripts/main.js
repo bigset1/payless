@@ -97,15 +97,14 @@ var Product = React.createClass({
 
             var info = this.state.info;
 
-            var imageContainer ;
-            if(info.imageUrl){
-                imageContainer =  <div className="col-sm-3">
-                                                              <div className="img-container thumbnail">
-                                                                  <img alt="" className="img-thumbnail" src={info.imageUrl}/>
-                                                              </div>
-                                                          </div>
+            var imageContainer;
+            if (info.imageUrl) {
+                imageContainer = <div className="col-sm-3">
+                    <div className="img-container thumbnail">
+                        <img alt="" className="img-thumbnail" src={info.imageUrl}/>
+                    </div>
+                </div>
             }
-
 
 
             return (
@@ -113,7 +112,7 @@ var Product = React.createClass({
 
                     <div className="row product_info_container">
                         <div className="col-sm-1"/>
-                       {imageContainer}
+                        {imageContainer}
 
                         <div className="col-sm-7">
 
@@ -403,7 +402,7 @@ var CreateList = React.createClass({
             if (this.state.confirm) {
                 ConfirmButton =
                     <button className="btn btn-lg btn-lg-rect btn-rect btn-warning evaluate-btn">
-                         Loading...
+                        Loading...
                     </button>
             } else {
                 ConfirmButton =
@@ -451,53 +450,6 @@ CreateList.ListTable = React.createClass({
     },
     render: function () {
         return (
-<<<<<<< HEAD
-<div className="table-responsive product-list-item">
-           		<table className="table table--target table-present">
-	              	<colgroup className="col-wide">
-	              	</colgroup><colgroup className="col-middle">
-	              	</colgroup><colgroup className="col-middle">
-	              	</colgroup>
-	              	{/*<colgroup className="col-small">
-		            </colgroup>*/}
-		            <colgroup className="col-small">
-		            </colgroup>
-		            <thead>
-		                <tr>
-		                    <th className="table-main">Product Name</th>
-		                    <th>Country</th>
-		                    <th>Producer</th>
-		                    {/*<th>Price Range</th>*/}
-		                    <th>Actions</th>
-		                </tr>
-		            </thead>
-
-		            <tbody>
-                {this.props.list.map(function (result, i) {
-                    return (
-                        <tr key={result.barcode}>
-		                  <td><span className="product-name-column">{result.name}</span> <span>{result.description}</span></td>
-		                  <td>{result.country}</td>
-		                  <td>{result.producer}</td>
-		                  {/*<td></td>*/}
-                            <td>
-                                <a href={"#product/"+result.barcode} className="actions-btn btn btn-success btn-sm-rect btn-sm">
-                                   <i className="fa fa-arrow-circle-right"></i> View
-                                                           </a>
-
-                                <button onClick={this.onRemoveClick.bind(this,i,result)}
-                                        className="actions-btn btn btn-danger btn-sm-rect btn-sm"
-                                        key={i}>
-                                    <i className="fa fa-times"></i> Remove
-                                </button>
-                            </td>
-                        </tr>
-                    );
-                }, this)}
-		            </tbody>
-           		</table>
-           		</div>
-=======
             <div className="table-responsive product-list-item">
                 <table className="table table--target table-present">
                     <colgroup className="col-wide">
@@ -530,8 +482,13 @@ CreateList.ListTable = React.createClass({
                                 <td>{result.producer}</td>
                                 {/*<td></td>*/}
                                 <td>
-                                    <button onClick={this.handleClick.bind(this,i,result)}
-                                            className="btn btn-danger btn-sm-rect btn-sm"
+                                    <a href={"#product/"+result.barcode}
+                                       className="actions-btn btn btn-success btn-sm-rect btn-sm">
+                                        <i className="fa fa-arrow-circle-right"></i> View
+                                    </a>
+
+                                    <button onClick={this.onRemoveClick.bind(this,i,result)}
+                                            className="actions-btn btn btn-danger btn-sm-rect btn-sm"
                                             key={i}>
                                         <i className="fa fa-times"></i> Remove
                                     </button>
@@ -542,7 +499,6 @@ CreateList.ListTable = React.createClass({
                     </tbody>
                 </table>
             </div>
->>>>>>> v0.0.0.17
         );
     }
 });
