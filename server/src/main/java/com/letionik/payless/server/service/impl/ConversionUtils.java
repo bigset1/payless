@@ -3,6 +3,7 @@ package com.letionik.payless.server.service.impl;
 import com.letionik.payless.model.Product;
 import com.letionik.payless.server.persistance.model.ProductBO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,10 @@ public class ConversionUtils {
     }
 
     public static List<Product> convertProducts(List<ProductBO> productsBo) {
-        return productsBo.stream().map(ConversionUtils::convertProduct).collect(Collectors.toList());
+		List<Product> products = new ArrayList<Product>();
+		for(ProductBO productBO : productsBo) {
+			products.add(convertProduct(productBO));
+		}
+        return products;
     }
 }
