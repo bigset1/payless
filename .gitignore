@@ -93,7 +93,7 @@ build/
 # merger_report
 manifest-merger-release-report.txt
 SignKeystore/
-=======
+
 crashlytics-build.properties
 
 built application files
@@ -142,4 +142,3 @@ build/
 # merger_report
 manifest-merger-release-report.txt
 SignKeystore/
->>>>>>> 14f44059910ba16db17ab5f01ca8d68e0c30cc9a
