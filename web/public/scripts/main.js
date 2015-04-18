@@ -185,8 +185,8 @@ var AppIndex = React.createClass({
                         <img
                             src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png"/*Insert our logo here  Yopta*/
                             className="search-logo"/>
-                        <select className="search-input select-box" multiple="multiple"
-                                ref="barcodeSearchTool"></select>
+
+                        <SearchBar customClassNames="select-box"/>
                     </div>
                 </main>
             </div>
@@ -263,7 +263,7 @@ var CreateList = React.createClass({
             }
 
             ContentTable = <div className="col-sm-9">
-                <CreateList.Search/>
+                <SearchBar custom-class-names="select-box"/>
 
                 <div className="devider-brand present-devider"></div>
 
@@ -281,27 +281,6 @@ var CreateList = React.createClass({
                     <AppSidebar/>
                 </div>
             </section>
-        );
-    }
-});
-
-
-CreateList.Search = React.createClass({
-    getInitialState: function () {
-        return {};
-    },
-
-    componentDidMount: function () {
-        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
-    },
-    componentDidUnMount: function () {
-        DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
-    },
-
-    render: function () {
-        return (
-            <select className="search-input select-box" multiple="multiple"
-                    ref="barcodeSearchTool"></select>
         );
     }
 });

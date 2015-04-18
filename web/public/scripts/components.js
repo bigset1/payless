@@ -208,3 +208,25 @@ var AppFooter = React.createClass({
     }
 });
 
+
+var SearchBar = React.createClass({
+    getDefaultProps: function () {
+        return {
+            'custom-class-names': []
+        }
+    },
+    componentDidMount: function () {
+        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+    },
+    componentDidUnMount: function () {
+        DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+    },
+
+    render: function () {
+        return (
+            <select className={'search-input '+this.props['custom-class-names']} multiple="multiple"
+                    ref="barcodeSearchTool"></select>
+        );
+    }
+});
+
