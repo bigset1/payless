@@ -23,16 +23,16 @@ public class BarcodeInfoParser {
         String producer = children.get(2).getElementsByTag("a").get(0).text();
         String description = children.get(4).getElementsByTag("a").get(0).text();
         Elements imageElement = doc.select(".img_cont a");
+        Product result = new Product();
         if(imageElement.size() > 0) {
             String imageUrl = DATABASE_SITE_URL + imageElement.get(0).attributes().get("href");
+            result.setImageUrl(checkIsUndefined(imageUrl));
         }
 
-        Product result = new Product();
         result.setCountry(checkIsUndefined(country));
         result.setName(checkIsUndefined(name));
         result.setBarcode(barcode);
         result.setDescription(checkIsUndefined(description));
-        result.setImageUrl(checkIsUndefined(imageUrl));
         result.setProducer(checkIsUndefined(producer));
         return result;
     }
