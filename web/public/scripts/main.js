@@ -97,17 +97,23 @@ var Product = React.createClass({
 
             var info = this.state.info;
 
+            var imageContainer ;
+            if(info.imageUrl){
+                imageContainer =  <div className="col-sm-3">
+                                                              <div className="img-container thumbnail">
+                                                                  <img alt="" className="img-thumbnail" src={info.imageUrl}/>
+                                                              </div>
+                                                          </div>
+            }
+
+
 
             return (
                 <div className="product product--single">
 
                     <div className="row product_info_container">
                         <div className="col-sm-1"/>
-                        <div className="col-sm-3">
-                            <div className="img-container thumbnail">
-                                <img alt="" className="img-thumbnail" src={info.image}/>
-                            </div>
-                        </div>
+                       {imageContainer}
 
                         <div className="col-sm-7">
 
@@ -368,8 +374,8 @@ var CreateList = React.createClass({
             var ConfirmButton;
             if (this.state.confirm) {
                 ConfirmButton =
-                    <button className="btn btn-lg btn-lg-rect btn-warning">
-                        <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+                    <button className="btn btn-lg btn-lg-rect btn-rect btn-warning evaluate-btn">
+                         Loading...
                     </button>
             } else {
                 ConfirmButton =
