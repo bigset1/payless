@@ -16,9 +16,9 @@ var AppHeader = React.createClass({
                     <div className="fixed-top header-down">
                         <AppHeader.Container/>
 
-                        <div className="devider-color"></div>
                     </div>
                 </div>
+             <div className="devider-color"></div>
             </header>
         );
     }

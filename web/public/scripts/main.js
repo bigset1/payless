@@ -258,7 +258,7 @@ var AppIndex = React.createClass({
                             src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png"/*Insert our logo here  Yopta*/
                             className="search-logo"/>
 
-                        <SearchBar customClassNames="select-box"/>
+                        <SearchBar customClassNames="select-box home-item-search"/>
                     </div>
                 </main>
             </div>
@@ -348,7 +348,7 @@ var CreateList = React.createClass({
             }
 
             ContentTable = <div className="col-sm-9">
-                <SearchBar custom-class-names="select-box"/>
+                <SearchBar custom-class-names="select-box list-item-search"/>
 
                 <div className="devider-brand present-devider"></div>
 

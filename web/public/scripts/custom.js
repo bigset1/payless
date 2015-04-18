@@ -110,7 +110,7 @@ var InitSearchBar = function (selector) {
         escapeMarkup: function (markup) {
             return markup;
         }, // let our custom formatter work
-        minimumInputLength: 1,
+//        minimumInputLength: 1,
         templateResult: formatRepo, // omitted for brevity, see the source of this page
         templateSelection: formatBarcodeSearchResults// omitted for brevity, see the source of this page
     })
