@@ -99,7 +99,7 @@ public class ProductServiceImpl implements ProductService {
                                                              double longitude,
                                                              Double maxDistance) {
         GeoResults<StoreBO> nearestStores = storeRepository.searchStoresByLocation(new Point(longitude, latitude), maxDistance);
-        List<ProductSearchResult> searchResults = new ArrayList<>();
+        List<ProductSearchResult> searchResults = new ArrayList<ProductSearchResult>();
         for (GeoResult<StoreBO> store : nearestStores) {
             List<PriceItemBO> priceItems = priceItemRepository.findByStore(store.getContent());
             if (priceItems != null && !priceItems.isEmpty()) {

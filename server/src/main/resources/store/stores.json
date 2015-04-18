@@ -1,0 +1,485 @@
+[
+    {
+        "html_attributions": [],
+        "next_page_token": "CpQCAwEAAMtR6Xqs1-jWW-57JHk89EiKx-Foknzjp8bn3AnsHUMaQ1mxIi2AwH1lNvy0-gT-Sj09-4KbkFTHP76rKN2URiafunattUN6X9XUvht5wmPUCfprKwlLWDdkWZp8yiRkvIHFOragMnZ6rR_7yTAOGJAccix6uxUE7rkzW1dNhybafzPXinkeSqqm5yV7rM9zsAeN2wc9aWhZL2s0uLZoZevRUGNt6ekTgRC6T4gJa1mVcT6FtutXrcWR-BJG0doTVTpjnQ5GM60oa4iU6wvVSGvyxNXjomWgu_2PhMXIDXd28DiCyPKOqkWPkw5SHkOh643RgncJv5yQhziZNPFleC-z1gj3jS7O8HYLbwjDakiYEhCfhqVJEIlVasZ6Dn25dvbRGhSJ59pEDx45KWSHecK05-eZoi9Rbg",
+        "results": [
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.441681,
+                        "lng": 30.521566
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "d682e33c09738e5c2a14350178ded7ef1d1549ec",
+                "name": "Ecoclub",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 250,
+                        "html_attributions": [],
+                        "photo_reference": "CnRwAAAAagQ8hz1xPkqbWnH8lvAzK8DVOMIV1ViGe13d0JijvXXw9-h4brQpqxQ7RzZF0vUM3WAPW1Ly0vbZO2f8O9YUkopg4gfUHxI323kUvxrIzIo5BBRw7auWwpnd3Oz08S0HR3GwWPo8Lvls2WFPl7ujZhIQ3uLMlDqAhjqFu7XfAPo7oRoUUpzASCK0wN49EejZHO5qSYQzoh8",
+                        "width": 250
+                    }
+                ],
+                "place_id": "ChIJOanLddDN1EAREdq9FnwcQuk",
+                "reference": "CmRbAAAAJ_bBvuBPW82UG7mJCxe8Q3GHBeJp12InErnvirVO6EokZVWuPJPK2ILS2hLz_5Wh_LSmgjFwME4fGa84jwiyhAOehBMIf4qnOefogb0ddba4aZgG_fmeJ4xyzhJB-njCEhByHnVi7ZcvPbkWYtFbQmsdGhREA05iLFVfBL3b8PMv5jGTiPeT2Q",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "ул. Бассейная, 2, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.442399,
+                        "lng": 30.521103
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "8f7945924ea8ddbee3533f281e596886f3da0837",
+                "name": "Перша українська мережа органічних біо еко продуктів \"Еко шик\"",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 576,
+                        "html_attributions": [],
+                        "photo_reference": "CnRnAAAAW_AIZyN1-jMHlKL3AbiHoktKTTALMXKZNk9odKj4L4nxmNvoBGWfz0huUuL-qnYy4hWHmnNRc_yLU4Kmyer9fGyddkmk6o2x6-W9YnhRWFCiPLpWNWOcKNsf8MIufiJLv549WlJdcXI9RId8eZUVFxIQthunsMdY-lSvq8Y6XanGdRoU5aScCbBtnsIqxRr0hawqSUKTX4g",
+                        "width": 720
+                    }
+                ],
+                "place_id": "ChIJ51-Dxira1EARp537-IUtAR8",
+                "reference": "CtQBxgAAALfGAfNTGaw55XjKZoXn-XVNKFaHWRNWbUdjbSR7ito3AXY2MgmMB2lVOg4EvJExeCnvt4c5yQa5bLNSVfocB2adkQPdqf1TUVpZ24aDuQIO3zbu9vp7Jwdi1aHF9DLRX3VndAk4a6lpbjRInyfvdqY0LpYXTA11AcWcWSvOORxZOrHd-Dm5EZ7enbdZDtYS8TInc79RAWPk7v7bv5DAftFB8OBGuRLtnxEaaJnshBHe6TuJ49WmmRSLY_g42JZ-ntsREf5CPknU0VlUVcDB6xgSEGHq6iCAK4mwZwDtBXR_S5gaFAzslp7vuMEe_okR4Gj839gWn2QI",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "health", "establishment" ],
+                "vicinity": "Бессарабська площа, 2, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.442383,
+                        "lng": 30.521535
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "3d6aeed9d063ee28b15004a3549af558d1bd64a6",
+                "name": "BILLA",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "place_id": "ChIJ7dKDYP_O1EARtKY8IJMNEr0",
+                "reference": "CmRZAAAAB3ADBRXfsnu1ml7rFqPXE5DVxHEHTCbpMoMi088VC-dxIKBrrsrMptYu4Jv363KegIvN0EmRorfoBgP5dtVO5Fs-HDjkT-h4SxHpgBEoIEqEVVvEXLe_7KlhZ6qPN6-MEhBv0zY9uhdkB7DX1htJkoClGhSsS7QuL_sCJoVDSVOORlOUBYMkEQ",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "Бессарабська площа, 2, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.436898,
+                        "lng": 30.502585
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "8f4012e147754ee526c8ae9128a779ba989b49e1",
+                "name": "Vipfood.com.ua",
+                "opening_hours": {
+                    "open_now": false,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 310,
+                        "html_attributions": [],
+                        "photo_reference": "CnRnAAAAbJFRkUN3HSxgceg_sKtx71TuEcA9ZFonrBTbj3y5kCbIdN6UAIWO692wcfRWQux3bhoqx7tmZbn6OFnYW6vg4oiAijIQhnaAuls5t-3b84JkyMW-Ra2HzewCpIg7ywAchp6AltSx6rpTTTu3Nw7PYBIQaQe5JwYUlSBLLhTFn3IjNRoUmq9kBNzrErgWDm_yo2n8xs-D-qc",
+                        "width": 277
+                    }
+                ],
+                "place_id": "ChIJGamEAPDO1EAR7bLKxso11rc",
+                "reference": "CnRiAAAAQO10o-KQ3IYnCMDaKfePllnVvqVWZzofOAgpgWrVCHctZbSaMKvZmrNxHVAMjTGeCGw24rELv7DJS0GiKu1gCiepD3Oid4-v55SoyS0-O2x62a1_5FdMBDzMBgIvtJoJgGmcMU2ZrahwSadyAxbx_BIQAp1fvizDZWpF0elFOcUdqxoUgplBD4RMccJgh70djLJjyiBlmuU",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "health", "establishment" ],
+                "vicinity": "ул. Жилянская, 72, 63, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.445889,
+                        "lng": 30.523936
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "b23f6252c8bd617f1d7e961ef6ae15fa8f662949",
+                "name": "Особливий маркет",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "place_id": "ChIJ7QnnI1TO1EARRFBBS27ztB8",
+                "reference": "CoQBcgAAAAO-cGuRHqVe-uDOmRhrJxt8thfFSYCodynsXfh44YEPDZVts3p9kBMdDXYKaJkRSNyE-zu-kUDgs8dxghEAOx3TAs91RGiaevHcQC4pVkLCq6CVdfE6aPodVAR5FjtYBfZB38EOP33vuFhWvbl6Tkc-3yuYsDAAHjC7QbQIVQrfEhAGuDK24HAfue43GK-dt3OYGhQ2RnoHEZDZIDyhl3NkOjvrWr3fEw",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "Вулиця Лютеранська, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.447428,
+                        "lng": 30.522637
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "28261074196c608790be787e6eef103aaa3b56d3",
+                "name": "Morinda Ukraine",
+                "opening_hours": {
+                    "open_now": false,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 480,
+                        "html_attributions": [],
+                        "photo_reference": "CnRnAAAA5dpk0LUMASJV9Ka8p0wO16og_R_st3Hal2HaZohOltkWk_tK57miNzUCmrQLGnkoqks9ywLgES3PZq-o5eIkgySzMaZ-aHgx-QurEzV_OYPephnGtSw1kDG0pQ4fBC3yTQFeJ2cEMEXMMf_qbz_WRxIQIJQKxDmF1LvROdz2s-w3rRoUOfD-fcLKaYrp6fJBid49qJPAwTY",
+                        "width": 640
+                    }
+                ],
+                "place_id": "ChIJVVUVsFbO1EARhB_olgE5Vpo",
+                "reference": "CnRjAAAAOOPlXGLYQUCcUpYKIZgVWQDD8J6MiIp-F89KcVeexlYXvSb0s-mtXyYYK7KrWRGw5_vQqe_vWd6flyKFCpmn-TQyaWyCdlwlEEdQ_gErNRNrYdHWimTdqhVbP310rYqWcZsShbPPhyNzMe5jdf9WHhIQePcSTlm0z77zHQPdI4d_bRoUTh8KDz2TEVZAbFOEBH6Eh1p3z9M",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "health", "establishment" ],
+                "vicinity": "вулиця Хрещатик, 19А, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.440595,
+                        "lng": 30.497754
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "814b9855dda134f9ccfc669da7ae4f5f29e73d44",
+                "name": "Мама дома",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "place_id": "ChIJMyFOgfHO1EARCUsCeD7TWEc",
+                "reference": "CnRkAAAAqc7lJmN2yXkFRx5Z2l1m4G24osIGyFq8ADlLPOVk4px4WeE5N4tSlcnGeJ1B_TwsGDpfXYRYayznkBfrMNnWrSxGIAkliGicpsQUUQA5t52J4sNLlvGbXN2IJJAd7ssi67--ECzVHCECZm_re6WeXxIQljF2gPo8rlzdTuBZ3OCEWxoU1ocSEHYSGHw54WBvypJEOdtebNE",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "Жилянская улица, 104/24, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.447579,
+                        "lng": 30.503256
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "0113e4d6d22ea09bc8dd5e67a87acd7d5b3b2ffc",
+                "name": "Фора",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "place_id": "ChIJc2EO8_XO1EARtZpJv4s042k",
+                "reference": "CmRbAAAAq58G56-okca6SRZoZX_MxXAh46LWCN5sgmm0efStLMIruviw-VLWze7rH2Y0TZqHLIbigX9LleOf4XQ61kxS48zfFYwaES3uOgovXIqOdTPfFHd8zbLSxyYARQxTOG_OEhARCh5tu-riVzY7SDeA5rAFGhST2sh5YjIeDIiWLMQnYHyf6kJF0w",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "вулиця Богдана Хмельницького, 39/2, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.44399,
+                        "lng": 30.531925
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "2dbf451ded6f4585939b6a8f23512774d40f4733",
+                "name": "Портал продуктов питания Украины - Gastronoma.net",
+                "place_id": "ChIJ7bZnSKvP1EARfcd5GL3hIQI",
+                "reference": "CrQBogAAAJMU8OsMxPw-ZwkJBuTupRIHDjHDqBbi1vtj8D3RaBbD6VjRQxASiVTwqFVRZSpHdfL6CfMRUiYi693-NjbY4geUaok0dHEvkffVHpbyDfGzvQH8fX37DQFeLqaismSZ0i81LoUphLR9e4fWMtjS5FADku39AFz7qhdOJ1L40qnQl2kSSZBJkhIyLErEGxx-sUr_JBQmuMEB3xw8TU3LVxWGWOligdBaQXWh5LrvKlbyEhA2LF5F8KnlFDMLQuNDxBm2GhQcxijnBuECAlTifdICHvc7C5_HCg",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "Шелковичная 11/1, офис 18, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.437445,
+                        "lng": 30.534331
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+                "id": "125897497be1db8cc5b0b4b51b018b03065ec2d4",
+                "name": "Итальянская мебель - Arredamenti.com.ua",
+                "opening_hours": {
+                    "open_now": false,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 250,
+                        "html_attributions": [],
+                        "photo_reference": "CnRsAAAA-VaUyoGkEy9QUtA-g7r3S5wgjOdQOxK_dlyxT530zNv6VZrzMO1pOSXYDqO5GorUgSjyHigAWRJLgGnnsi3NOqG3I-3K4s3QK_Bar-uHRhvqrmeFGYL0w5oUEpwmx1UQbIMM4g9Uy9QiJd4hniWY7BIQXR-0bHZCVqM-pxe26hXNoBoUBvUzjAxslqsRFKrtppAxhujW6zc",
+                        "width": 250
+                    }
+                ],
+                "place_id": "ChIJf8VTOAfP1EARRpvDr-rFQcU",
+                "rating": 4.7,
+                "reference": "CpQBjQAAACE9LZ1YnHbDnSTTxoFTmPLvurCzSvD6WdQZpCl3BT6ZseU6Qkljk8N5O3S5W2KoVscz85TOUez-9hV7he3HX-hJorN5t1dI_tx2FC19phembTs3PFN9P_WKRko9JtAKPRNYgMWMR8j_zvUTl8rv1bS135qpJd7LZg9Ylvlo5jChG5Vt-r1dcQLBtPs1qJLr3xIQyA5HLSaR-5iIUNFYecfZnhoUdvCkNpGAOKenZvOIwuN0jRH_cX4",
+                "scope": "GOOGLE",
+                "types": [
+                    "furniture_store",
+                    "grocery_or_supermarket",
+                    "food",
+                    "general_contractor",
+                    "home_goods_store",
+                    "store",
+                    "establishment"
+                ],
+                "vicinity": "вулиця Мечникова, 16, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.43745,
+                        "lng": 30.534495
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "c6edc61b63099833731933e76c2b2d577ff5b0ad",
+                "name": "Еко-Лавка",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "place_id": "ChIJP-1zOAfP1EARClSM8aFcoOg",
+                "reference": "CnRlAAAAk-a1mf3GNxgZ7tssBdcT0yLDyZvkKkk7h27hcFJJYe14T-UCzyKzvXDa3_5r177yMX1bmNyliWHot-FZiXpjrL7GwSlV4O-TvGl-MUoQdAfMlYWYylNs3bkXBYepCXTrILofkNVmrsFXKhQ3jfpLBRIQRLTqU5Zrh-wZdofZziPBnxoUXHppA0ORxD-iqgPYaqhrsu0KErw",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "вул. Мечникова, 16, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.426429,
+                        "lng": 30.516512
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "2b11958dc3b9a163714ed2506d61de2d0118c810",
+                "name": "BILLA",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 683,
+                        "html_attributions": [
+                            "\u003ca href=\"https://plus.google.com/109440974481695815123\"\u003eПавел Сакун\u003c/a\u003e"
+                        ],
+                        "photo_reference": "CsQBtwAAAErNwGzrmOzJCZr5RTlC5XYsh6rOEcIM_UcARo-wu7fZxj26ZKMgXmyDXB20r8fbuDbijDs4QYyKMnus147ut2GFS7OjBJj3GAXfND8Z5d2vu6fntkRQB1krTlhnyXfbxYKG748qb5gUY5iR4Srye9dxlvwWukMfqvonAyUhGwXTYGQSjVWUDhKOXD91NydIazJGwgEouHkzogmBlnv6ZBuYeeuybjKemS1UVAduSfW0LbW1J7Vdsd5UGIhzngygfRIQi4OkT5lgYDKtGDBEDHqlIBoUcshVx8AWt0vPQdz_MCYsuZ2v4Aw",
+                        "width": 1024
+                    }
+                ],
+                "place_id": "ChIJeZGRpT7P1EARoJJaQVsGiMc",
+                "reference": "CmRZAAAAJ_7eznT_y0U3_IuY0EYEODbEcUYBQxicAe-CQDQ4Bm38Ge5CZ5762rgE-yMRkrofoj8i77nctpC3KoeXR4Q0g46lMrQeWIWv7c993xxfdkMv1rkVVPINgDKOHIAyx0ifEhB7J3N0cVvrM6t7xTvZ25pWGhTX71-DPR3lixByXg0dKS69Ud8BXQ",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "вулиця Червоноармійська, 100, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.433043,
+                        "lng": 30.533656
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "f481ebdd48138dcd5fbefe6d3246f060c7fc6c24",
+                "name": "Home Маркет",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 1536,
+                        "html_attributions": [],
+                        "photo_reference": "CnRnAAAAM8xddSlkc5XRSwNhrUO-nKfsRjYREylmTftxbK4UY6w4R4bvR65CqA40aTWXt31932wTmprCkijrQ9Tycq2R4gXrN7yqOYJuC40QxqYG0ykGUxhLkwZ-tvc8ieoT797PCTp9m1n9YBeSzkm4xZ90xxIQchFe--Lq0w7WVond4INSpxoUUnn9qhLOx0nqdQ3Xy1cJZiCXHJU",
+                        "width": 2048
+                    }
+                ],
+                "place_id": "ChIJQerOoQbP1EARSQdRTHaVfQE",
+                "reference": "CnRkAAAAqZKPWuA8vMt274HVh8uQeEUAiXVVb2NdfDtZa89Yj3STGh4rRnk5lcPxHr6BFn5XmMZRj90gdJuvX4pw-x0f56HPi_EfQlEilTEcevs9XLUWlnUlp5e_KQ5wB8CmeTUIo-5OtjGrPvt3ECY9QWvYlRIQDZHjfn7tcOjmJGRaa5JXnxoU7ZrxDLY6XVrYX7QQl0hMyXzSb38",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "бульвар Лесі Українки, 7-9, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.451382,
+                        "lng": 30.525584
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+                "id": "054d1f965a3f84cd42b8fdf4428a2c9ffa607701",
+                "name": "Хрещатик ТД ЗАТ",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "place_id": "ChIJhXczxFbO1EARl7vnyVxqc98",
+                "reference": "CnRwAAAAHkbZTWago_FHK5KRuszK1J0PB7NZU8zLMl2hgqL_Q9_QdLreP8CiEYBr7uI6fTgbd2OqDDtpcQ7zHG5Ti2qJwc7U-axWaq_yCtyu_BprzjKEWMHREXZkfvLQw9fgcZOHiDBy_WV_slURjwRedBTt3RIQyaiwQjt2_gLwA2r7Km7AYxoU8AM2nNF8YwQypEDrtDEH8nmpHYs",
+                "scope": "GOOGLE",
+                "types": [
+                    "shopping_mall",
+                    "bakery",
+                    "grocery_or_supermarket",
+                    "store",
+                    "food",
+                    "establishment"
+                ],
+                "vicinity": "вулиця Хрещатик, 13, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.438696,
+                        "lng": 30.537234
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "f1f9cbdb18d87a8559de25a030803d1d43fa6ccb",
+                "name": "Эстатэ",
+                "place_id": "ChIJFwrH3KnP1EAR50FFe6EQjzI",
+                "reference": "CmRfAAAAnwA1gTROPgUZyh2gl2fJtAREAsJ19t5KsmrrGc3APJZl6am-qNzmrihZfbD-ZyUSQCiTBX8iFQKc-iKSkM_gUWUBhWQgWLDKtQMoVuxLssn1k-ZXhTqYkkbRZnYCKrc-EhDlfWbbuXIlEPmXKDjsGFtKGhRcI7d_dIKbqrg9davlngkTn81s2Q",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "вулиця Мечникова, 11, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.431192,
+                        "lng": 30.533849
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/wine-71.png",
+                "id": "8088a5778121b08e8fe093cf64e9cd4387cc6bba",
+                "name": "Кулинарный Дом Ибис",
+                "photos": [
+                    {
+                        "height": 403,
+                        "html_attributions": [],
+                        "photo_reference": "CnRnAAAACOwm-v9aNcMAxqk04yEvCST8finwjICNzc2wKHYxk4G70Tef23inMbyzmZZRbe3-qblH9j7YFdHdIUi5Idxf_UK44zT0S0sZOYp0WmdBa6UA6oh8U2FESzb-X3JlUxGWH6Lxh-A3nEdXAXQ1TdN4NhIQTo2UD8gZWgU4lZuH2ONikxoUgHp7tO078lMlJdUlJBP57mta0mU",
+                        "width": 700
+                    }
+                ],
+                "place_id": "ChIJf-EHkAXP1EARnVTbxxzyKvw",
+                "reference": "CoQBeAAAAI6CB7p8R-dVmS5nshTuc_uIwGVA5jm4MLWuiOQOjAkpDufqNEwdbeTjxZXXN8fETxdeSJYbsJWVaca3knpGSs4vW7OhRqNKTwN8a4bwTAwFhGTSXXJxS11sdEkdBa0_NbG91yc4iImN_39o8hJ5K3RCt-9KLYhaFhHONeIDgl1VEhBn4x6fKamC09aEipQhLHoLGhSTjwht3yRTv_OmHs2g3_TwYLGleA",
+                "scope": "GOOGLE",
+                "types": [
+                    "liquor_store",
+                    "convenience_store",
+                    "grocery_or_supermarket",
+                    "food",
+                    "store",
+                    "establishment"
+                ],
+                "vicinity": "бульвар Лесі Українки, 20/22, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.442902,
+                        "lng": 30.492108
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "3bf0d998474d12cdc899f8c42c25a9b03a628b7a",
+                "name": "Эко-маркет",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "place_id": "ChIJ72V1mArF1EAREDmwUDxbXlM",
+                "reference": "CnRmAAAAiGwtYOUm9nQx8lHe5EyqLMGOUtoMvYEzcRoA4O_WLugSuXy6zbXJhAxLK8OYkCtImgBxw5_4yu9EPUQ88SRjxgXUH4rw5e9D-NdTadYxnypDmWFFofOeG5CC4VQNv3ci6WPII13BqLMR2-GiqYQU0hIQAuP4vA9QU897RNDBh06fNBoUP9HiiJslpj3sX0-tIxiDwtYAwgY",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "вулиця Жилянська, 107, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.435823,
+                        "lng": 30.492005
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "6a0c4f34e9bf1ccf03b025a6aeeccfb55a6c9928",
+                "name": "Велика Кишеня Супермаркет ТОВ Фудмаркет",
+                "photos": [
+                    {
+                        "height": 1350,
+                        "html_attributions": [
+                            "\u003ca href=\"https://plus.google.com/104776078532152149820\"\u003eMaksym Kozlenko\u003c/a\u003e"
+                        ],
+                        "photo_reference": "CnRoAAAA8DIT-2HY-Jf3kuF4sf3OmnfQ5FNwXXedGJdsZOYtoynXmLSaYwv1V1Ef7890OwNr18j6xFQlpWRzicIr03QqKiV-JW34OBy-G72Y7rpe6B8uEQYrSPLYJKJfrxcgSXnPSgqoRSc5ZNjZOb8FX4RICxIQqFZKt1rCefkufG2psNmRjhoULLUN_Mub_hPL2LZW9kCgdhdXom0",
+                        "width": 1800
+                    }
+                ],
+                "place_id": "ChIJlYsdnO7O1EARCsd2LV2Z1U0",
+                "rating": 3.7,
+                "reference": "CqQBngAAAHZREfhr3ya-eQxG98Mj_Ak-BFB2wNbvNrYXh21KDaCbwoQTPNGPtelsSvosFsPj6Y1Oue11SOBMNlK_fbrWPrYXYT4W7dtAeM-7dtVS6gbcrNL3DaGj9JVTtmRCm-ja-LDy1rtUAjCpxUVhIPYee8ha3_cJI8d6c1OOxHlsY4IJIsvT0DoB8O30EGz4d9A51SN0tyMW19m9_poin8uEpo4SED8CoG1GDT1ybepGBAzVkIYaFNN-Ux2khiYKRrvpHzNzvLZqz7GH",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "ул. Кудряшова, 1, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.447458,
+                        "lng": 30.494683
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "e0b2eb329d8afd3ef47db3530d9f37590fe1e549",
+                "name": "Сільпо",
+                "place_id": "ChIJVxvuKIvO1EARSnPJIs5sP0Y",
+                "reference": "CmRfAAAAGyHFRj_HQGm1SMwvOW0lWdXjLoKGFAJwEvZE_d0OClUQHjtZqnBv6ic6FYxslnrPVsCixelXlmncjsYldzsJMQnnMcyE6umL7gEe0QPX78tYJJnHFaf4IzbtPEhL2ThgEhDvuHk8xkZG0D4JAp8f_xAvGhRwYmQR6So7DuuYnoAnsW7RMwWd4g",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "вулиця Олеся Гончара, 96, Київ"
+            },
+            {
+                "geometry": {
+                    "location": {
+                        "lat": 50.425071,
+                        "lng": 30.525065
+                    }
+                },
+                "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+                "id": "c8a72736923739ec25620c1a25873b02441ee4bc",
+                "name": "ЕКО-маркет",
+                "place_id": "ChIJj3kWIxrP1EARekZdIykLbZM",
+                "reference": "CnRnAAAAS1Pr40HPRaIBdbYnfYJ1zA_mQA25eNsDO584NjrtwGtJjZjfuCMtYYPNSWu9r6UOUnBmh7QcO-7p5FRKUdTyCvbBiREwAIVj2N7dcbNd_spd7fzNn7G8HUSU4x9l9AFzEz0spRx2IOA4Y2pP6O50uBIQlw0BKKSc78lttZ7TfxP0LBoUl7KSz7MVUBser9oICOkb-PcvaiI",
+                "scope": "GOOGLE",
+                "types": [ "grocery_or_supermarket", "food", "store", "establishment" ],
+                "vicinity": "корпус 2, вулиця Щорса, 15, Київ"
+            }
+        ],
+        "status": "OK"
+    }
+]
