@@ -10,13 +10,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.garage.payless.R;
+import com.garage.payless.api.PayLessApi;
+import com.garage.payless.api.ResponseCallback;
+import com.garage.payless.util.RestProvider;
+import com.garage.payless.util.ServerRequest;
+import com.letionik.payless.model.PriceItem;
+import com.letionik.payless.model.Product;
 
 public class FragmentFillPriceItem extends Fragment {
     private static final String BARCODE = "barcode";
-    private TextView textView;
+    private TextView textViewBarcode, textViewProductName;
     private Spinner spinner;
-
     private String barcode;
+
+    public static final PayLessApi payLessApi =
+            RestProvider.getInstanse().create(PayLessApi.class);
 
     public static FragmentFillPriceItem newInstance(String barcode) {
         FragmentFillPriceItem fragment = new FragmentFillPriceItem();
@@ -42,8 +50,9 @@ public class FragmentFillPriceItem extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fill_price_item, container, false);
-        textView = (TextView) view.findViewById(R.id.textview_barcode);
-        textView.setText(getString(R.string.barcode) + ": " + barcode);
+        textViewBarcode = (TextView) view.findViewById(R.id.textview_barcode);
+        textViewBarcode.setText(getString(R.string.barcode) + ": " + barcode);
+        textViewProductName = (TextView) view.findViewById(R.id.textview_product_name);
 
         spinner = (Spinner) view.findViewById(R.id.spinner);
         //TEST
@@ -54,6 +63,22 @@ public class FragmentFillPriceItem extends Fragment {
         }
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, array_spinner);
         spinner.setAdapter(adapter);
+
+        ServerRequest.getProduct(payLessApi, responseCallbackPriceItem, barcode);
+
         return view;
     }
+
+    private ResponseCallback responseCallbackPriceItem = new ResponseCallback() {
+        @Override
+        public void complete(Object response) {
+            final Product product = (Product)response;
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    textViewProductName.setText(product.getName());
+                }
+            });
+        }
+    };
 }
