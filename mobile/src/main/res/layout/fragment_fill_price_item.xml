@@ -1,52 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context="com.garage.payless.fragment.FragmentFillPriceItem">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+    <TextView android:id="@+id/tv_barcode"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="barcode"
+              android:layout_alignParentTop="true"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="10dp"
+              android:paddingLeft="45dp"
+              android:paddingRight="45dp"
+              android:paddingBottom="20px"
+              android:paddingTop="20px"
+              android:background="@color/btn_background"/>
 
-        <TextView
-            android:id="@+id/textview_product_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:id="@+id/textview_barcode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textview_product_name"
-            android:layout_centerHorizontal="true" />
+    <RelativeLayout android:id="@+id/product_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_barcode"
+                    android:paddingRight="30dp">
 
-        <EditText
-            android:id="@+id/edittext_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textview_barcode"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:hint="@string/price"
-            android:inputType="numberDecimal" />
+        <ImageView android:id="@+id/img_product"
+                   android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:layout_alignParentLeft="true"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginTop="20dp"/>
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/edittext_price" />
+        <TextView android:id="@+id/tv_product_name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Name"
+                  android:layout_toRightOf="@id/img_product"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginLeft="40dp"
+                  android:padding="10dp"/>
+
+        <TextView android:id="@+id/tv_description"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Description"
+                  android:layout_toRightOf="@id/tv_product_name"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginLeft="10dp"
+                  android:padding="10dp"/>
+        <View android:id="@+id/line"
+              android:layout_width="fill_parent"
+              android:layout_height="2dp"
+              android:background="@color/btn_background"
+              android:layout_toRightOf="@id/img_product"
+              android:layout_below="@id/tv_product_name"
+              android:layout_alignLeft="@id/tv_product_name"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/tv_producer"
+                  android:layout_below="@id/line"
+                  android:text="Producer"
+                  android:layout_alignLeft="@id/tv_description"
+                  android:layout_marginTop="10dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/tv_country"
+                  android:layout_alignBaseline="@id/tv_producer"
+                  android:layout_marginLeft="5dp"
+                  android:layout_toRightOf="@id/tv_producer"
+                  android:text="Country"/>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/button_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="10dp"
-        android:text="@string/submit" />
+    <RelativeLayout android:id="@+id/send_price_info" android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/product_info">
+
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="@string/et_price_description"
+                      android:background="@color/btn_background"
+                      android:padding="10dp"
+                      android:textColor="#FFFFFF"/>
+            <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/et_price"
+                      android:text="price"
+                      android:padding="10dp"
+                      android:layout_marginLeft="10dp"
+                      android:layout_marginTop="30dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="100dp" android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp">
+            <Spinner android:id="@+id/spinner_closest_store"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:background="@drawable/choose_store_btn"
+                     android:padding="10dp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_below="@id/send_price_info"
+            android:id="@+id/btn_submit_price"
+            android:text="@string/btn_submit_price_lbl"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/btn_background"/>
+
+    <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/btn_background"/>
+
 
 </RelativeLayout>

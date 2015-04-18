@@ -15,4 +15,7 @@
     <string name="barcode_btn">Scan bar-code</string>
     <string name="map_btn">Map</string>
     <string name="custom_font">fonts/DroidSans.ttf</string>
+    <string name="closest_store">Choose Store</string>
+    <string name="et_price_description">Enter the price</string>
+    <string name="btn_submit_price_lbl">Submit</string>
 </resources>
