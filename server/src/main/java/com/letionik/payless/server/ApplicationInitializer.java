@@ -24,7 +24,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 			throws ServletException {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
 		rootContext.register(SpringApplicationConfiguration.class);
-        rootContext.getEnvironment().setDefaultProfiles("prod");
+        rootContext.getEnvironment().setDefaultProfiles("local");
 
         servletContext.addListener(new ResteasyBootstrap());
         servletContext.addListener(new RestEasyAnnotatedContextLoader(rootContext));
