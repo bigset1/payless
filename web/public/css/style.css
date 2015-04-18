@@ -22156,6 +22156,17 @@ ul.select2-selection__rendered {
     font-size: 24px;
 }
 
+.logo__text{
+  font-family: 'Verdana' !important;
+  color: #13b4e3 !important;
+  font-style: italic !important;
+  font-weight: bold !important;
+}
+
+.logo__text .highlight{
+    color: #fff !important;
+}
+
 .search-logo {
   width: 54px;
   margin-left: -53px;
@@ -22265,4 +22276,12 @@ margin-top:20px;
 
 .select2-container--default .select2-selection--multiple{
   border-radius: 12px;
+}
+
+.z-nav__item, .header-fixed, .header--light .fixed-top {
+  background: #206da4 !important;
+}
+
+header.header--light .z-nav .z-nav__link, header.header--light .logo .logo__slogan{
+    color: #FFF;
 }
