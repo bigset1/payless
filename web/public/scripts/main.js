@@ -78,15 +78,16 @@ var Product = React.createClass({
         });
 
         $.ajax({
-            url: getApiRequestUrl('basket/search'),
+            url: getApiRequestUrl('product/search/location'),
             dataType: 'json',
-            type: 'POST',
-            'contentType': 'application/json',
-            data: JSON.stringify({
-                barcodeList: [list.props.barcode],
+            type: 'GET',
+            //'contentType': 'application/json',
+            data: {
+                barcode: this.props.barcode,
                 latitude: 50.439443,
-                longitude: 30.514974
-            }),
+                longitude: 30.514974,
+                distance:1.0
+            },
             success: function (data) {
                 this.setState({shops: data});
             }.bind(this),
@@ -184,37 +185,25 @@ var Product = React.createClass({
                                     <tr>
                                         <th>Market</th>
                                         <th>Price</th>
-                                        <th>Last Update</th>
                                         <th>Address</th>
+                                        <th>Working Hours</th>
                                         <th>Distance</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Silpo</td>
-                                        <td className="product_price">$ 2</td>
-                                        <td>5 jul 2015</td>
-                                        <td>Yanhelya str., 22</td>
-                                        <td>5 km</td>
-                                        <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>MegaMarket</td>
-                                        <td className="product_price">$ 5</td>
-                                        <td>13 sept 2014</td>
-                                        <td>Metalistov str., 11</td>
-                                        <td>5 km</td>
-                                        <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fora</td>
-                                        <td className="product_price">$ 1</td>
-                                        <td>5 jul 2015</td>
-                                        <td>TestStreet str., 12</td>
-                                        <td>5 km</td>
-                                        <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
-                                    </tr>
+                                      {this.state.shops.map(function (result, i) {
+                                                            return (
+                                                                <tr key={i}>
+                                                                    <td>{result.store.brand}</td>
+                                                                    <td className="product_price">{result.price}</td>
+                                                                    <td>{result.address}</td>
+                                                                    <td>{result.store.workingHours}</td>
+                                                                    <td>{result.distance.toFixed(2)+" km"}</td>
+                                                                    <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
+                                                                </tr>
+                                                            );
+                                                        }, this)}
                                     </tbody>
                                 </table>
                             </div>
