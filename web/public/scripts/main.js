@@ -457,8 +457,8 @@ CreateList.ListTable = React.createClass({
                     </colgroup>
                     <colgroup className="col-middle">
                     </colgroup>
-                    {/*<colgroup className="col-small">
-                     </colgroup>*/}
+                    <colgroup className="col-small">
+                     </colgroup>
                     <colgroup className="col-small">
                     </colgroup>
                     <thead>
@@ -466,7 +466,7 @@ CreateList.ListTable = React.createClass({
                         <th className="table-main">Product Name</th>
                         <th>Country</th>
                         <th>Producer</th>
-                        {/*<th>Price Range</th>*/}
+                        <th>Price Range</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -479,7 +479,7 @@ CreateList.ListTable = React.createClass({
                                     <span>{result.description}</span></td>
                                 <td>{result.country}</td>
                                 <td>{result.producer}</td>
-                                {/*<td></td>*/}
+                                <td>{result.minPrice + "-"+result.maxPrice}</td>
                                 <td>
                                     <a href={"#product/"+result.barcode}
                                        className="actions-btn btn btn-success btn-sm-rect btn-sm">
