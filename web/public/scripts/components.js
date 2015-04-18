@@ -29,29 +29,29 @@ AppHeader.Line = React.createClass({
         return (
             <div className="header-line waypoint" data-animate-down="header-up" data-animate-up="header-down">
                 <div className="container">
-                    <address className="contact-info pull-left hidden-lower">
-						<span className="contact-info__item">
-							<i className="fa fa-location-arrow"></i>
-                            101 West Street, New York, NY 12345
-						</span>
-						<span className="contact-info__item">
-							<i className="fa fa-mobile"></i>
-                            +1 - 888 - 555 - 5555
-						</span>
-						<span className="contact-info__item">
-							<i className="fa fa-envelope"></i>
-                            info@allec.com
-						</span>
-                    </address>
+                    {/*                    <address className="contact-info pull-left hidden-lower">
+                     <span className="contact-info__item">
+                     <i className="fa fa-location-arrow"></i>
+                     101 West Street, New York, NY 12345
+                     </span>
+                     <span className="contact-info__item">
+                     <i className="fa fa-mobile"></i>
+                     +1 - 888 - 555 - 5555
+                     </span>
+                     <span className="contact-info__item">
+                     <i className="fa fa-envelope"></i>
+                     info@allec.com
+                     </span>
+                     </address>
 
 
-                    <form className="search pull-right" id="search-form" name="search-form" method="get" action="#">
-                        <input className="search__field" name="search-request" type="search" placeholder="search"
-                               value=""/>
-                        <button className="search__btn" type="submit">
-                            <i className="fa fa-search"></i>
-                        </button>
-                    </form>
+                     <form className="search pull-right" id="search-form" name="search-form" method="get" action="#">
+                     <input className="search__field" name="search-request" type="search" placeholder="search"
+                     value=""/>
+                     <button className="search__btn" type="submit">
+                     <i className="fa fa-search"></i>
+                     </button>
+                     </form>*/}
                 </div>
             </div>
         );
@@ -96,6 +96,10 @@ AppHeader.Menu = React.createClass({
 
                         <li className="z-nav__item">
                             <a className="z-nav__link z-nav__link--simple" href="#about">About</a>
+                        </li>
+
+                        <li className="z-nav__item">
+                            <a className="z-nav__link z-nav__link--simple" href="#create-list">Create List</a>
                         </li>
 
                         <li className="z-nav__item">
@@ -218,7 +222,8 @@ var SearchBar = React.createClass({
     componentDidMount: function () {
         InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
     },
-    componentDidUnMount: function () {
+    componentWillUnmount: function () {
+        console.log(React.findDOMNode(this.refs.barcodeSearchTool));
         DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
     },
 

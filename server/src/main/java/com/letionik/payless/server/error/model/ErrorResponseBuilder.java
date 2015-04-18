@@ -1,4 +1,4 @@
-package com.letionik.payless.server.error;
+package com.letionik.payless.server.error.model;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -47,7 +47,7 @@ public class ErrorResponseBuilder {
 	}
 
 	public Error buildError() {
-        Error error = new Error();
+        Error error = new com.letionik.payless.server.error.model.Error();
         error.setStatus(status);
         error.setMessage(message);
         error.setDeveloperMessage(developerMessage);

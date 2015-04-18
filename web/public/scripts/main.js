@@ -14,7 +14,7 @@ var App = React.createClass({
         return (
             <div className="wrapper" id="top">
                 <AppHeader/>
-                <AppBreadcrumb/>
+                {/* <AppBreadcrumb/>*/}
                 {this.props.children}
             </div>
         );
@@ -67,20 +67,20 @@ var Product = React.createClass({
 
     componentWillMount: function () {
 
-        /*$.ajax({
-         url: getApiRequestUrl('basket/barcode'),
-         dataType: 'json',
-         type: 'GET',
-         data: {
-         barcode: this.props.barcode
-         },
-         success: function (data) {
-         this.setState({loaded: data});
-         }.bind(this),
-         error: function (xhr, status, err) {
-         console.error(this.props.url, status, err.toString());
-         }.bind(this)
-         });*/
+        $.ajax({
+            url: getApiRequestUrl('product/search/barcode'),
+            dataType: 'json',
+            type: 'GET',
+            data: {
+                barcode: this.props.barcode
+            },
+            success: function (data) {
+                this.setState({info: data});
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
 
         /*this.setState({data: comments}, function () {
          // `setState` accepts a callback. To avoid (improbable) race condition,
@@ -99,27 +99,109 @@ var Product = React.createClass({
 
             return (
                 <div className="product product--single">
+
+                    <div className="row product_info_container">
+                        <div className="col-sm-1"/>
+                        <div className="col-sm-3">
+                            <div className="img-container thumbnail">
+                                <img alt="" className="img-thumbnail" src={info.image}/>
+                            </div>
+                        </div>
+
+                        <div className="col-sm-7">
+
+                            <table className="table table--vertical table-present">
+                                <colgroup className="col-width-1">
+                                </colgroup>
+                                <colgroup className="col-width-3">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td className="vertical-heading">Name</td>
+                                    <td>{info.name}</td>
+                                </tr>
+                                <tr>
+                                    <td className="vertical-heading">Producer</td>
+                                    <td>{info.producer}</td>
+                                </tr>
+                                <tr>
+                                    <td className="vertical-heading">Country</td>
+                                    <td>{info.country}</td>
+                                </tr>
+                                <tr>
+                                    <td className="vertical-heading">Barcode</td>
+                                    <td>{info.barcode}</td>
+                                </tr>
+                                <tr>
+                                    <td className="vertical-heading">Description</td>
+                                    <td>{info.description}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="col-sm-1"/>
+                    </div>
                     <div className="row">
-                        <div className="col-sm-4">
-                            <div className="img-container">
-                                <img alt="" src={info.image}/>
+
+                        <div className="col-sm-1"/>
+
+                        <div className="col-sm-10">
+                            <div className="table-responsive">
+                                <table className="table table-bordered table--wide table-present">
+                                    <colgroup className="col-sm-width">
+                                    </colgroup>
+                                    <colgroup className="col-sm-width">
+                                    </colgroup>
+                                    <colgroup className="col-sm-width">
+                                    </colgroup>
+                                    <colgroup className="col-sm-width">
+                                    </colgroup>
+                                    <colgroup className="col-sm-width">
+                                    </colgroup>
+                                    <colgroup className="col-sm-width">
+
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>Market</th>
+                                        <th>Price</th>
+                                        <th>Last Update</th>
+                                        <th>Address</th>
+                                        <th>Distance</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Silpo</td>
+                                        <td className="product_price">$ 2</td>
+                                        <td>5 jul 2015</td>
+                                        <td>Yanhelya str., 22</td>
+                                        <td>5 km</td>
+                                        <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MegaMarket</td>
+                                        <td className="product_price">$ 5</td>
+                                        <td>13 sept 2014</td>
+                                        <td>Metalistov str., 11</td>
+                                        <td>5 km</td>
+                                        <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fora</td>
+                                        <td className="product_price">$ 1</td>
+                                        <td>5 jul 2015</td>
+                                        <td>TestStreet str., 12</td>
+                                        <td>5 km</td>
+                                        <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        <div className="col-sm-8">
-                            <div className="product__decribe product__decribe--full">
-                                <h3 className="product__title">{info.name}</h3>
-
-                                <p className="product__info">{info.producer}</p>
-
-                                <p className="product__info">{info.country}</p>
-
-                                <p className="product__info">{info.barcode}</p>
-
-                                <p className="product__info">{info.description}</p>
-
-                            </div>
-                        </div>
+                        <div className="col-sm-1"/>
                     </div>
                 </div>
             );
@@ -136,7 +218,7 @@ var Product = React.createClass({
                                          aria-valuemin="0"
                                          aria-valuemax="100" style={{width: 0+'%'}}>
                                         <span className="progress-number"><span
-                                            class="progress-value">0</span>%</span>
+                                            className="progress-value">0</span>%</span>
                                     </div>
                                 </div>
                             </div>
@@ -169,17 +251,7 @@ var AppIndex = React.createClass({
     render: function () {
         return (
             <div className="wrapper" id="top">
-                <header className="header header--light">
-
-                    <div className="header-fixed header-down">
-                        <div className="container">
-
-                            <AppHeader.Logo/>
-                            <AppHeader.Menu/>
-                        </div>
-                        <div className="devider-color devider-color--onepage"></div>
-                    </div>
-                </header>
+                <AppHeader/>
                 <main>
                     <div className="search-container start-block">
                         <img
@@ -222,7 +294,20 @@ var CreateList = React.createClass({
     },
 
     componentDidMount: function () {
-
+        /* $.ajax({
+         url: getApiRequestUrl('search/name'),
+         dataType: 'json',
+         type: 'GET',
+         data: {
+         name: this.props.barcode
+         },
+         success: function (data) {
+         this.setState({list: data});
+         }.bind(this),
+         error: function (xhr, status, err) {
+         console.error(this.props.url, status, err.toString());
+         }.bind(this)
+         });*/
     },
 
     handleRemoveListItem: function (i) {
@@ -251,7 +336,7 @@ var CreateList = React.createClass({
             if (this.state.confirm) {
                 ConfirmButton = <div className="btn-container">
                     <button className="btn btn-lg btn-warning">
-                        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+                        <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
                     </button>
                 </div>
             } else {
@@ -298,7 +383,6 @@ CreateList.ListTable = React.createClass({
         this.props.removeListItem(i);
     },
     render: function () {
-        console.info(this.props.list);
         return (
             <table className="table table--target table-present">
                 <colgroup className="col-large"/>

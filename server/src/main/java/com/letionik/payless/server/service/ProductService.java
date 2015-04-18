@@ -1,9 +1,11 @@
 package com.letionik.payless.server.service;
 
 import com.letionik.payless.model.Product;
+import com.letionik.payless.model.transport.PriceItemDTO;
 import com.letionik.payless.model.transport.ProductSearchResult;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -24,12 +26,12 @@ public interface ProductService {
 	@Path("/priceItem")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	void addPriceItem(String barcode, String storeId, double price);
+	void addPriceItem(PriceItemDTO priceItem) throws ServiceException;
 
 	@GET
 	@Path("/parse")
 	@Produces(MediaType.APPLICATION_JSON)
-	Product parseProduct(@QueryParam("barcode") String barcode) throws IOException;
+	Product parseProduct(@QueryParam("barcode") String barcode) throws IOException, ServiceException;
 
 	@GET
 	@Path("/search/location")
@@ -40,7 +42,9 @@ public interface ProductService {
 	@GET
 	@Path("/search/name")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<Product> searchProductsByName(@QueryParam("name") String name);
+	List<Product> searchProductsByName(@QueryParam("name") String name,
+                                       @QueryParam("page") @DefaultValue("0") Integer page,
+                                       @QueryParam("perPage") @DefaultValue("5") Integer perPage);
 
 	@GET
 	@Path("/search/barcode")
