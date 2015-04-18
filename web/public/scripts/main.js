@@ -247,13 +247,19 @@ var AppIndex = React.createClass({
     },
 
     componentDidMount: function () {
-        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+
     },
     componentDidUnMount: function () {
-        DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+
     },
     handleChange: function (e) {
         //$.ajax({});
+    },
+
+    searchBarTemplate: function (data) {
+        if (data.disabled === undefined) {
+            return "<a href=\"#product/" + data.barcode + "\">" + data.name + " (" + data.barcode + ")</a>"
+        }
     },
     render: function () {
         return (
@@ -261,12 +267,14 @@ var AppIndex = React.createClass({
                 <AppHeader/>
                 <main>
                     <div className="search-container start-block">
-                        <SearchBar customClassNames="select-box home-item-search"/>
+                        <SearchBar customClassNames="select-box home-item-search"
+                                   searchTemplate={this.searchBarTemplate}/>
                         <img
                             src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"/*Insert our logo here  Yopta*/
                             className="search-logo"/>
                     </div>
                 </main>
+
             </div>
         );
     }
@@ -329,8 +337,17 @@ var CreateList = React.createClass({
         }
     },
 
-    componentDidMount: function () {
-
+    componentWillUpdate: function () {
+        if (this.props.item !== undefined) {
+            var list = this.state.list;
+            list.push(this.props.item);
+            this.setState({
+                list: list
+            });
+            return true;
+        } else {
+            return false;
+        }
     },
 
     handleRemoveListItem: function (i) {
@@ -351,9 +368,20 @@ var CreateList = React.createClass({
             shops: false
         })
     },
-    render: function () {
-        console.log(this.state);
+    handleAddItemToList: function (item) {
+        var list = this.state.list;
+        list.push(item);
+        this.setState({
+            list: list
+        });
+    },
+    searchBarTemplate: function (data) {
+        if (data.disabled === undefined) {
 
+            return "<a href=\"#create-list/" + data + "\">" + data.name + " (" + data.barcode + ")</a>"
+        }
+    },
+    render: function () {
         var ContentTable;
         if (this.state.confirm && this.state.shops !== false) {
 
@@ -385,9 +413,11 @@ var CreateList = React.createClass({
                         Evaluate
                     </button>
             }
-
-            ContentTable = <div className="col-sm-12 list-creation-content">
-                <SearchBar custom-class-names="select-box list-item-search"/>
+            ContentTable = <div className="col-sm-9 list-creation-content">
+                <SearchBar custom-class-names="select-box list-item-search"
+                           headerCallbackHandle={this.handleAddItemToList}
+                           searchTemplate={this.searchBarTemplate}
+                    />
 
                 <div className="devider-brand present-devider"></div>
                 <div className="table-responsive">
@@ -421,6 +451,7 @@ CreateList.ListTable = React.createClass({
     },
     render: function () {
         return (
+<<<<<<< HEAD
 <div className="table-responsive product-list-item">
            		<table className="table table--target table-present">
 	              	<colgroup className="col-wide">
@@ -466,6 +497,52 @@ CreateList.ListTable = React.createClass({
 		            </tbody>
            		</table>
            		</div>
+=======
+            <div className="table-responsive product-list-item">
+                <table className="table table--target table-present">
+                    <colgroup className="col-wide">
+                    </colgroup>
+                    <colgroup className="col-middle">
+                    </colgroup>
+                    <colgroup className="col-middle">
+                    </colgroup>
+                    {/*<colgroup className="col-small">
+                     </colgroup>*/}
+                    <colgroup className="col-small">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th className="table-main">Product Name</th>
+                        <th>Country</th>
+                        <th>Producer</th>
+                        {/*<th>Price Range</th>*/}
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {this.props.list.map(function (result, i) {
+                        return (
+                            <tr key={result.barcode}>
+                                <td><span className="product-name-column">{result.name}</span>
+                                    <span>{result.description}</span></td>
+                                <td>{result.country}</td>
+                                <td>{result.producer}</td>
+                                {/*<td></td>*/}
+                                <td>
+                                    <button onClick={this.handleClick.bind(this,i,result)}
+                                            className="btn btn-danger btn-sm-rect btn-sm"
+                                            key={i}>
+                                        <i className="fa fa-times"></i> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        );
+                    }, this)}
+                    </tbody>
+                </table>
+            </div>
+>>>>>>> v0.0.0.17
         );
     }
 });

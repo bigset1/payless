@@ -85,7 +85,7 @@ var AppConfigObject = function () {
 };
 
 
-var InitSearchBar = function (selector) {
+var InitSearchBar = function (selector, resultTemplateFunction) {
     $(selector).select2({
         placeholder: "  Type product name  . . .",
         ajax: {
@@ -111,8 +111,8 @@ var InitSearchBar = function (selector) {
             return markup;
         }, // let our custom formatter work
         minimumInputLength: 4,
-        templateResult: formatRepo, // omitted for brevity, see the source of this page
-        templateSelection: formatBarcodeSearchResults// omitted for brevity, see the source of this page
+        templateResult: resultTemplateFunction // omitted for brevity, see the source of this page
+        //templateSelection: formatBarcodeSearchResults// omitted for brevity, see the source of this page
     })
 };
 var DestroySearchBar = function (selector) {

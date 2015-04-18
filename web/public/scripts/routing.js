@@ -13,10 +13,10 @@ routie({
             document.getElementById('content')
         );
     },
-    'create-list': function () {
+    'create-list/:barcode?': function (barcode) {
         React.render(
             <App>
-                <CreateList/>
+                <CreateList barcode={barcode}/>
             </App>,
             document.getElementById('content')
         );

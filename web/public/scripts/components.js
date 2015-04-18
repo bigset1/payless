@@ -18,7 +18,7 @@ var AppHeader = React.createClass({
 
                     </div>
                 </div>
-             <div className="devider-color"></div>
+                <div className="devider-color"></div>
             </header>
         );
     }
@@ -95,10 +95,6 @@ AppHeader.Menu = React.createClass({
                         </li>
 
                         <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#about">About</a>
-                        </li>
-
-                        <li className="z-nav__item">
                             <a className="z-nav__link z-nav__link--simple" href="#create-list">Create List</a>
                         </li>
 
@@ -107,7 +103,7 @@ AppHeader.Menu = React.createClass({
                         </li>
 
                         <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#contact">Contact</a>
+                            <a className="z-nav__link z-nav__link--simple" href="#about">About</a>
                         </li>
                     </ul>
                 </div>
@@ -211,14 +207,24 @@ var AppFooter = React.createClass({
 var SearchBar = React.createClass({
     getDefaultProps: function () {
         return {
-            'custom-class-names': []
+            'custom-class-names': [],
+            headerCallbackHandle: null,
+            searchTemplate: function () {
+
+            }
+        }
+    },
+
+    handleSearchItemClick: function (barcode, e) {
+        if (this.props.headerCallbackHandle !== null) {
+            e.preventDefault();
+            this.props.headerCallbackHandle(barcode)
         }
     },
     componentDidMount: function () {
-        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool), this.props.searchTemplate);
     },
     componentWillUnmount: function () {
-        console.log(React.findDOMNode(this.refs.barcodeSearchTool));
         DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
     },
 
@@ -230,3 +236,37 @@ var SearchBar = React.createClass({
     }
 });
 
+
+var AppAbout = React.createClass({
+    render: function () {
+        return (
+            <div className="container">
+                <div className="row">
+                </div>
+            </div>
+        );
+    }
+});
+
+SearchBar.IndexTemplate = React.createClass({
+    render: function () {
+        var data = this.props.data;
+        return (
+            <a href={'#product/' + data.barcode}>{data.name} ({data.barcode})</a>
+        );
+    }
+});
+
+SearchBar.CreateListTemplate = React.createClass({
+    handleItemClick: function (data, e) {
+        e.preventDefault;
+        console.log(this);
+    },
+    render: function () {
+        var data = this.props.data;
+        return (
+            <a href={'#product/' + data.barcode} onClick={this.handleItemClick.bind(this,data)}>{data.name}
+                ({data.barcode})</a>
+        );
+    }
+});
