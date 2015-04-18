@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author Roman Kishchenko
  * @since 4/18/15
  */
-public interface StoreRepository extends MongoRepository<StoreBO, String> {
+public interface StoreRepository extends MongoRepository<StoreBO, String>, CustomStoreRepository {
 }

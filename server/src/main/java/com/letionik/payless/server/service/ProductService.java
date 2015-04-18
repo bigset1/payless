@@ -3,7 +3,6 @@ package com.letionik.payless.server.service;
 import com.letionik.payless.model.Product;
 import com.letionik.payless.model.transport.PriceItemDTO;
 import com.letionik.payless.model.transport.ProductSearchResult;
-import org.xml.sax.SAXException;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -13,8 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -28,26 +26,27 @@ public interface ProductService {
 	@Path("/priceItem")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	void addPriceItem(PriceItemDTO priceItem) throws ServiceException, ParserConfigurationException, SAXException;
+    Response addPriceItem(PriceItemDTO priceItem) throws ServiceException;
 
 	@GET
 	@Path("/parse")
 	@Produces(MediaType.APPLICATION_JSON)
-	Product parseProduct(@QueryParam("barcode") String barcode)
-			throws IOException, ServiceException, ParserConfigurationException, SAXException;
+	Product parseProduct(@QueryParam("barcode") String barcode) throws ServiceException;
 
 	@GET
 	@Path("/search/location")
 	@Produces(MediaType.APPLICATION_JSON)
 	List<ProductSearchResult> searchProductByLocation(@QueryParam("barcode") String barcode,
-			@QueryParam("latitude") double latitude, @QueryParam("longitude") double longitude);
+			@QueryParam("latitude") double latitude,
+            @QueryParam("longitude") double longitude,
+            @QueryParam("maxDistance") Double maxDistance);
 
 	@GET
 	@Path("/search/name")
 	@Produces(MediaType.APPLICATION_JSON)
 	List<Product> searchProductsByName(@QueryParam("name") String name,
-                                       @QueryParam("page") @DefaultValue("0") Integer page,
-                                       @QueryParam("perPage") @DefaultValue("5") Integer perPage);
+                                       @QueryParam("page") @DefaultValue("0") int page,
+                                       @QueryParam("perPage") @DefaultValue("5") int perPage) throws ServiceException;
 
 	@GET
 	@Path("/search/barcode")

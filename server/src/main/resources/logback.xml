@@ -11,6 +11,4 @@
 		<appender-ref ref="stdout" />
 	</root>
 	
-	<logger name="net.exacode" level="trace" />
-	<logger name="java.sql" level="debug" />
 </configuration>
