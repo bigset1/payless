@@ -18,7 +18,7 @@ var AppHeader = React.createClass({
 
                     </div>
                 </div>
-             <div className="devider-color"></div>
+                <div className="devider-color"></div>
             </header>
         );
     }
@@ -95,19 +95,15 @@ AppHeader.Menu = React.createClass({
                         </li>
 
                         <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#about">About</a>
-                        </li>
-
-                        <li className="z-nav__item">
                             <a className="z-nav__link z-nav__link--simple" href="#create-list">Create List</a>
                         </li>
 
                         <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#team">Team</a>
+                            <a className="z-nav__link z-nav__link--simple" href="#map">Map</a>
                         </li>
 
                         <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#contact">Contact</a>
+                            <a className="z-nav__link z-nav__link--simple" href="#about">About</a>
                         </li>
                     </ul>
                 </div>
@@ -198,29 +194,8 @@ var AppFooter = React.createClass({
         return (
             <footer className="footer footer--light footer--cut">
                 <div className="container">
-                    <h3 className="heading-info heading-info--mobile">Contact info:</h3>
-                    <address className="contact-info contact-info--primary">
-                        <span className="contact-info__item">
-                            <i className="fa fa-location-arrow"></i>
-                            101 West Street, New York, NY 12345
-                        </span>
-                        <span className="contact-info__item">
-                            <i className="fa fa-mobile"></i>
-                            +1-888-555-5555
-                        </span>
-                        <span className="contact-info__item">
-                            <i className="fa fa-envelope"></i>
-                            info@allec.com / sales@allec.com
-                        </span>
-
-                        <span className="contact-info__item">
-                            <i className="fa fa-skype"></i>
-                            allec-support
-                        </span>
-                    </address>
-
                     <div className="copy">
-                        &copy; <a href="index.html">Allec, 2014.</a> All rights reserved. Done by <a href="http://gozha.net/" target="_blank">Olia Gozha</a>
+                        &copy; <a href="index.html">PayLess, 2015.</a> All rights reserved.
                     </div>
                 </div>
             </footer>
@@ -232,14 +207,24 @@ var AppFooter = React.createClass({
 var SearchBar = React.createClass({
     getDefaultProps: function () {
         return {
-            'custom-class-names': []
+            'custom-class-names': [],
+            headerCallbackHandle: null,
+            searchTemplate: function () {
+
+            }
+        }
+    },
+
+    handleSearchItemClick: function (barcode, e) {
+        if (this.props.headerCallbackHandle !== null) {
+            e.preventDefault();
+            this.props.headerCallbackHandle(barcode)
         }
     },
     componentDidMount: function () {
-        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool), this.props.searchTemplate);
     },
     componentWillUnmount: function () {
-        console.log(React.findDOMNode(this.refs.barcodeSearchTool));
         DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
     },
 
@@ -251,3 +236,37 @@ var SearchBar = React.createClass({
     }
 });
 
+
+var AppAbout = React.createClass({
+    render: function () {
+        return (
+            <div className="container">
+                <div className="row">
+                </div>
+            </div>
+        );
+    }
+});
+
+SearchBar.IndexTemplate = React.createClass({
+    render: function () {
+        var data = this.props.data;
+        return (
+            <a href={'#product/' + data.barcode}>{data.name} ({data.barcode})</a>
+        );
+    }
+});
+
+SearchBar.CreateListTemplate = React.createClass({
+    handleItemClick: function (data, e) {
+        e.preventDefault;
+        console.log(this);
+    },
+    render: function () {
+        var data = this.props.data;
+        return (
+            <a href={'#product/' + data.barcode} onClick={this.handleItemClick.bind(this,data)}>{data.name}
+                ({data.barcode})</a>
+        );
+    }
+});

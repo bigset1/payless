@@ -97,17 +97,22 @@ var Product = React.createClass({
 
             var info = this.state.info;
 
+            var imageContainer;
+            if (info.imageUrl) {
+                imageContainer = <div className="col-sm-3">
+                    <div className="img-container thumbnail">
+                        <img alt="" className="img-thumbnail" src={info.imageUrl}/>
+                    </div>
+                </div>
+            }
+
 
             return (
                 <div className="product product--single">
 
                     <div className="row product_info_container">
                         <div className="col-sm-1"/>
-                        <div className="col-sm-3">
-                            <div className="img-container thumbnail">
-                                <img alt="" className="img-thumbnail" src={info.image}/>
-                            </div>
-                        </div>
+                        {imageContainer}
 
                         <div className="col-sm-7">
 
@@ -241,13 +246,19 @@ var AppIndex = React.createClass({
     },
 
     componentDidMount: function () {
-        InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+
     },
     componentDidUnMount: function () {
-        DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
+
     },
     handleChange: function (e) {
         //$.ajax({});
+    },
+
+    searchBarTemplate: function (data) {
+        if (data.disabled === undefined) {
+            return "<a href=\"#product/" + data.barcode + "\">" + data.name + " (" + data.barcode + ")</a>"
+        }
     },
     render: function () {
         return (
@@ -255,12 +266,14 @@ var AppIndex = React.createClass({
                 <AppHeader/>
                 <main>
                     <div className="search-container start-block">
-                        <SearchBar customClassNames="select-box home-item-search"/>
+                        <SearchBar customClassNames="select-box home-item-search"
+                                   searchTemplate={this.searchBarTemplate}/>
                         <img
                             src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"/*Insert our logo here  Yopta*/
                             className="search-logo"/>
                     </div>
                 </main>
+
             </div>
         );
     }
@@ -323,8 +336,17 @@ var CreateList = React.createClass({
         }
     },
 
-    componentDidMount: function () {
-
+    componentWillUpdate: function () {
+        if (this.props.item !== undefined) {
+            var list = this.state.list;
+            list.push(this.props.item);
+            this.setState({
+                list: list
+            });
+            return true;
+        } else {
+            return false;
+        }
     },
 
     handleRemoveListItem: function (i) {
@@ -345,13 +367,24 @@ var CreateList = React.createClass({
             shops: false
         })
     },
-    render: function () {
-        console.log(this.state);
+    handleAddItemToList: function (item) {
+        var list = this.state.list;
+        list.push(item);
+        this.setState({
+            list: list
+        });
+    },
+    searchBarTemplate: function (data) {
+        if (data.disabled === undefined) {
 
+            return "<a href=\"#create-list/" + data + "\">" + data.name + " (" + data.barcode + ")</a>"
+        }
+    },
+    render: function () {
         var ContentTable;
         if (this.state.confirm && this.state.shops !== false) {
 
-            ContentTable = <div className="col-sm-9">
+            ContentTable = <div className="col-sm-12">
                 <div className="devider-brand present-devider"></div>
                 <div className="row">
                     <botton className="btn btn-general btn-md-rect btn-rect" onClick={this.handleBackToList}>
@@ -368,27 +401,27 @@ var CreateList = React.createClass({
             var ConfirmButton;
             if (this.state.confirm) {
                 ConfirmButton =
-                    <button className="btn btn-lg btn-lg-rect btn-warning">
-                        <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+                    <button className="btn btn-lg btn-lg-rect btn-rect btn-warning evaluate-btn">
+                        Loading...
                     </button>
             } else {
                 ConfirmButton =
-                    <button className="btn btn-general btn-lg-rect btn-rect"
+                    <button className="btn btn-general btn-lg-rect btn-rect evaluate-btn"
                             onClick={this.handleConfirmList}>
                         <i className="fa fa-arrow-circle-right"></i>
                         Evaluate
                     </button>
             }
-
             ContentTable = <div className="col-sm-9 list-creation-content">
-                <SearchBar custom-class-names="select-box list-item-search"/>
+                <SearchBar custom-class-names="select-box list-item-search"
+                           headerCallbackHandle={this.handleAddItemToList}
+                           searchTemplate={this.searchBarTemplate}
+                    />
 
                 <div className="devider-brand present-devider"></div>
-
                 <div className="table-responsive">
                     <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
                 </div>
-
                 {ConfirmButton}
             </div>
         }
@@ -412,39 +445,60 @@ CreateList.ListTable = React.createClass({
 
     },
 
-    handleClick: function (i, item, e) {
+    onRemoveClick: function (i, item, e) {
         this.props.removeListItem(i);
     },
     render: function () {
         return (
-            <table className="table table--target table-present">
-                <colgroup className="col-large"/>
-                <colgroup className="col-small"/>
-                {/*<thead>
-                 <tr>
-                 <th className="table-main">Product Name</th>
-                 <th>Remove</th>
-                 </tr>
-                 </thead>*/}
+            <div className="table-responsive product-list-item">
+                <table className="table table--target table-present">
+                    <colgroup className="col-wide">
+                    </colgroup>
+                    <colgroup className="col-middle">
+                    </colgroup>
+                    <colgroup className="col-middle">
+                    </colgroup>
+                    {/*<colgroup className="col-small">
+                     </colgroup>*/}
+                    <colgroup className="col-small">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th className="table-main">Product Name</th>
+                        <th>Country</th>
+                        <th>Producer</th>
+                        {/*<th>Price Range</th>*/}
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
+                    <tbody>
+                    {this.props.list.map(function (result, i) {
+                        return (
+                            <tr key={result.barcode}>
+                                <td><span className="product-name-column">{result.name}</span>
+                                    <span>{result.description}</span></td>
+                                <td>{result.country}</td>
+                                <td>{result.producer}</td>
+                                {/*<td></td>*/}
+                                <td>
+                                    <a href={"#product/"+result.barcode}
+                                       className="actions-btn btn btn-success btn-sm-rect btn-sm">
+                                        <i className="fa fa-arrow-circle-right"></i> View
+                                    </a>
 
-                {this.props.list.map(function (result, i) {
-                    return (
-                        <tr key={result.barcode}>
-                            <td>{result.name} ({result.barcode})</td>
-                            <td>
-                                <button onClick={this.handleClick.bind(this,i,result)}
-                                        className="btn btn-danger btn-sm-rect btn-sm"
-                                        key={i}>
-                                    <i className="fa fa-times"></i> Remove
-                                </button>
-                            </td>
-                        </tr>
-                    );
-                }, this)}
-                </tbody>
-            </table>
+                                    <button onClick={this.onRemoveClick.bind(this,i,result)}
+                                            className="actions-btn btn btn-danger btn-sm-rect btn-sm"
+                                            key={i}>
+                                        <i className="fa fa-times"></i> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        );
+                    }, this)}
+                    </tbody>
+                </table>
+            </div>
         );
     }
 });
@@ -498,6 +552,39 @@ CreateList.Confirm = React.createClass({
                 })}
                 </tbody>
             </table>
+        );
+    }
+});
+
+
+var ShopsMap = React.createClass({
+    getDefaultProps: function () {
+        return {}
+    },
+    getInitialState: function () {
+        return {
+            shops: false,
+            location: {
+                lat: 50.439443,
+                log: 30.514974
+            }
+        }
+    },
+    componentDidMount: function () {
+        initMapVintage(React.findDOMNode(this.refs.shopsMapArea), this.state.location);
+    },
+    componentWillUnmount: function () {
+
+    },
+
+    render: function () {
+        return (
+            <div className="row">
+                <div className="col-sm-12">
+                    <div id='map-blackwhite-full' className="map map--wide" style={{height:500+'px'}}
+                         ref="shopsMapArea"></div>
+                </div>
+            </div>
         );
     }
 });

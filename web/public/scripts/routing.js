@@ -13,10 +13,10 @@ routie({
             document.getElementById('content')
         );
     },
-    'create-list': function () {
+    'create-list/:barcode?': function (barcode) {
         React.render(
             <App>
-                <CreateList/>
+                <CreateList barcode={barcode}/>
             </App>,
             document.getElementById('content')
         );
@@ -27,7 +27,15 @@ routie({
             document.getElementById('content')
         );
     },
+    'map': function () {
+        React.render(
+            <App>
+                <ShopsMap/>
+            </App>,
+            document.getElementById('content')
+        );
+    },
     '*': function () {
-
+        routie('');
     }
 });

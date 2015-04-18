@@ -1,7 +1,9 @@
 package com.letionik.payless.server.service.impl;
 
 import com.letionik.payless.model.Product;
+import com.letionik.payless.model.Store;
 import com.letionik.payless.server.persistance.model.ProductBO;
+import com.letionik.payless.server.persistance.model.StoreBO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +31,16 @@ public class ConversionUtils {
 			products.add(convertProduct(productBO));
 		}
         return products;
+    }
+
+    public static Store convertStore(StoreBO storeBO) {
+        Store store = new Store();
+        store.setId(storeBO.getId());
+        store.setBrand(storeBO.getName());
+        double[] location = storeBO.getLocation();
+        store.setLongitude(location[0]);
+        store.setLatitude(location[1]);
+        store.setWorkingHours(storeBO.getWorkingHours());
+        return store;
     }
 }

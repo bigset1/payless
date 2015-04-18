@@ -1,7 +1,6 @@
 package com.letionik.payless.server.service.impl;
 
 import com.letionik.payless.model.Product;
-import com.letionik.payless.model.Store;
 import com.letionik.payless.model.transport.PriceItemDTO;
 import com.letionik.payless.model.transport.ProductSearchResult;
 import com.letionik.payless.server.persistance.PriceItemRepository;
@@ -13,14 +12,16 @@ import com.letionik.payless.server.persistance.model.StoreBO;
 import com.letionik.payless.server.service.ProductService;
 import com.letionik.payless.server.service.ServiceException;
 import com.letionik.payless.server.util.BarcodeInfoParser;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.geo.GeoResult;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Component;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.util.Arrays;
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,11 +42,10 @@ public class ProductServiceImpl implements ProductService {
     private StoreRepository storeRepository;
 
 	@Override
-    public void addPriceItem(PriceItemDTO priceItemDto)
-			throws ServiceException, ParserConfigurationException, SAXException {
+    public Response addPriceItem(PriceItemDTO priceItemDto) throws ServiceException {
         StoreBO store = storeRepository.findOne(priceItemDto.getStoreId());
         if (store == null) {
-            throw new ServiceException("Store " + priceItemDto.getStoreId() + " doesn't exist");
+            throw new ServiceException("Store with id '" + priceItemDto.getStoreId() + "' doesn't exist");
         }
         ProductBO product = getProduct(priceItemDto.getBarcode());
 
@@ -56,14 +56,15 @@ public class ProductServiceImpl implements ProductService {
         priceItem.setStore(store);
 
         priceItemRepository.insert(priceItem);
+        return Response.ok().build();
     }
 
 	@Override
-    public Product parseProduct(String barcode) throws ServiceException, ParserConfigurationException, SAXException {
+    public Product parseProduct(String barcode) throws ServiceException {
         return ConversionUtils.convertProduct(getProduct(barcode));
 	}
 
-    private ProductBO getProduct(String barcode) throws ServiceException, ParserConfigurationException, SAXException {
+    private ProductBO getProduct(String barcode) throws ServiceException {
         ProductBO product = null;
         try {
             product = productRepository.findOne(barcode);
@@ -75,12 +76,11 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-    private ProductBO parseAndInsertProduct(String barcode)
-			throws ServiceException, ParserConfigurationException, SAXException {
+    private ProductBO parseAndInsertProduct(String barcode) throws ServiceException {
         ProductBO product;
         try {
             product = BarcodeInfoParser.getProduct(barcode);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new ServiceException("An unexpected error occurred during parsing barcode '" + barcode + '\'', e);
         }
         if (product == null) {
@@ -94,22 +94,43 @@ public class ProductServiceImpl implements ProductService {
     }
 
 	@Override
-    public List<ProductSearchResult> searchProductByLocation(String barcode, double latitude, double longitude) {
-		//TODO: replace stub with real implementation
-		Store testStore = new Store("test_brand", 55.66, 44.55, "10:00 - 23:00");
-		ProductSearchResult productSearchResult = new ProductSearchResult(testStore, 34.5, 123.4);
-		return Arrays.asList(productSearchResult);
+    public List<ProductSearchResult> searchProductByLocation(String barcode,
+                                                             double latitude,
+                                                             double longitude,
+                                                             Double maxDistance) {
+        GeoResults<StoreBO> nearestStores = storeRepository.searchStoresByLocation(new Point(longitude, latitude), maxDistance);
+        List<ProductSearchResult> searchResults = new ArrayList<ProductSearchResult>();
+        for (GeoResult<StoreBO> store : nearestStores) {
+            List<PriceItemBO> priceItems = priceItemRepository.findByStore(store.getContent());
+            if (priceItems != null && !priceItems.isEmpty()) {
+                for (PriceItemBO priceItem : priceItems) {
+                    ProductBO product = priceItem.getProduct();
+                    if (product != null && product.getBarcode().equals(barcode)) {
+                        ProductSearchResult searchResult = new ProductSearchResult();
+                        searchResult.setStore(ConversionUtils.convertStore(store.getContent()));
+                        searchResult.setDistance(store.getDistance().getValue());
+                        searchResult.setPrice(priceItem.getPrice());
+                        searchResults.add(searchResult);
+                    }
+                }
+
+            }
+        }
+		return searchResults;
 	}
 
 	@Override
-    public List<Product> searchProductsByName(String name, Integer page, Integer perPage) {
+    public List<Product> searchProductsByName(String name, int page, int perPage) throws ServiceException{
+        if (name == null || StringUtils.isBlank(name)) {
+            throw new ServiceException("Query parameter name '" + name + "' cannot be null");
+        }
+
         List<ProductBO> products = productRepository.searchByName(name, page, perPage);
         return ConversionUtils.convertProducts(products);
 	}
 
 	@Override
     public Product searchProductByBarcode(String barcode) {
-		//TODO: replace stub with real implementation
-		return new Product("123123123", "test_name", "test_producer", "test_country", "test_imageUrl", "test_description");
+        return ConversionUtils.convertProduct(productRepository.findOne(barcode));
 	}
 }

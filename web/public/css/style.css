@@ -22292,9 +22292,35 @@ margin-top:20px;
 header.header--light .z-nav .z-nav__link, header.header--light .logo .logo__slogan{
     color: #FFF;
 }
+.product-name-column{
+    font-weight:bold;
+    display: block;
+    font-size: 15px;
+}
+
+.product-list-item thead tr{
+    background:rgb(72, 134, 197);
+}
+
+.product-list-item thead tr th{
+    color: #FFF !important;
+}
 
 .logo .logo__text{
 background-image: url(http://themullarkeygroup.com/wp-content/uploads/2014/06/moneybox.png);
   background-position: 0px 2px;
   padding: 9px 0 9px 80px;
+}
+
+.evaluate-btn{
+    float:right;
+}
+
+.actions-btn{
+width: 100%;
+  margin: 2px;
+  }
+
+footer{
+margin-top: 20px;
 }
