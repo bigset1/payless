@@ -14,6 +14,16 @@ public class PriceItem {
 	private Store store;
 	private Product product;
 
+	public PriceItem() {
+	}
+
+	public PriceItem(double price, Date date, Store store, Product product) {
+		this.price = price;
+		this.date = date;
+		this.store = store;
+		this.product = product;
+	}
+
 	public String getId() {
 		return id;
 	}

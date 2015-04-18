@@ -13,6 +13,19 @@ public class Product {
 	private String imageUrl;
 	private String description;
 
+	public Product() {
+	}
+
+	public Product(String barcode, String name, String producer, String country, String imageUrl,
+			String description) {
+		this.barcode = barcode;
+		this.name = name;
+		this.producer = producer;
+		this.country = country;
+		this.imageUrl = imageUrl;
+		this.description = description;
+	}
+
 	public String getBarcode() {
 		return barcode;
 	}
