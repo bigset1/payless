@@ -14,6 +14,8 @@ public class BasketQueryDTO {
 
     private double longitude;
 
+    private Double maxDistance;
+
     public List<String> getBarcodeList() {
         return barcodeList;
     }
@@ -36,5 +38,13 @@ public class BasketQueryDTO {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public Double getMaxDistance() {
+        return maxDistance;
+    }
+
+    public void setMaxDistance(Double maxDistance) {
+        this.maxDistance = maxDistance;
     }
 }
