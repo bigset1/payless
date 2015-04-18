@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.garage.payless.R;
@@ -15,6 +16,7 @@ import java.util.List;
 import de.greenrobot.event.EventBus;
 
 public class FragmentShopsProduct extends Fragment {
+    private TextView textviewShops;
 
     public static FragmentShopsProduct newInstance() {
         FragmentShopsProduct fragment = new FragmentShopsProduct();
@@ -55,10 +57,15 @@ public class FragmentShopsProduct extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shops_product, container, false);
+        textviewShops = (TextView) view.findViewById(R.id.textview_shops);
         return view;
     }
 
     public void onEventMainThread(List<ProductSearchResult> productSearchResults) {
         Toast.makeText(getActivity(), "" + productSearchResults.size(), Toast.LENGTH_SHORT).show();
+        for (int i = 0; i < productSearchResults.size(); i++) {
+            textviewShops.append("store: " + productSearchResults.get(i).getStore() + " distance: "
+                    + productSearchResults.get(i).getDistance() + " price: " + productSearchResults.get(i).getPrice());
+        }
     }
 }

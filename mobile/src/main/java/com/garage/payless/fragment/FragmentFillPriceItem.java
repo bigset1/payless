@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import com.letionik.payless.model.Product;
 import com.letionik.payless.model.Store;
 import com.letionik.payless.model.transport.PriceItemDTO;
 import com.letionik.payless.model.transport.ProductSearchResult;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,6 +41,7 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
     private EditText editTextPrice;
     private String barcode;
     private ProgressDialog progressDialog;
+    private ImageView imgProduct;
     private List<Store> storeList;
     private static final double DEFAULT_RADIUS = 1;
 
@@ -74,6 +77,7 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
         textViewProductName = (TextView) view.findViewById(R.id.tv_product_name);
         view.findViewById(R.id.btn_submit_price).setOnClickListener(this);
         editTextPrice = (EditText) view.findViewById(R.id.et_price);
+        imgProduct = (ImageView) view.findViewById(R.id.img_product);
 
         spinner = (Spinner) view.findViewById(R.id.spinner_closest_store);
 
@@ -95,6 +99,14 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
         EventBus.getDefault().unregister(this);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
     private ResponseCallback responseCallbackProduct = new ResponseCallback() {
         @Override
         public void complete(Object response) {
@@ -103,6 +115,10 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
                 @Override
                 public void run() {
                     textViewProductName.setText(product.getName());
+                    String imageUrl = product.getImageUrl();
+                    if (!imageUrl.isEmpty()) {
+                        Picasso.with(getActivity()).load(imageUrl).into(imgProduct);
+                    }
                     if (progressDialog != null && progressDialog.isShowing()) {
                         progressDialog.cancel();
                     }
@@ -144,7 +160,7 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button_submit:
+            case R.id.btn_submit_price:
                 String priceStr = editTextPrice.getText().toString();
                 if (!priceStr.isEmpty()) {
                     double price = Double.parseDouble(priceStr);
@@ -172,7 +188,7 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
     }
 
     public void onEventMainThread(LocationEvent locationEvent) {
-        progressDialog.show();
+//        progressDialog.show();
 
         ServerRequest.getStores(payLessApi, responseCallbackStores,
                 locationEvent.getLatLng().latitude, locationEvent.getLatLng().longitude, DEFAULT_RADIUS);

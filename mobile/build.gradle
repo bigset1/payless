@@ -48,4 +48,6 @@ dependencies {
     //end ReactiveLocation
 
     compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'me.grantland:autofittextview:0.2.+'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
