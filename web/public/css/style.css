@@ -12959,7 +12959,7 @@ table th[class*="col-"] {
 }
 .start-block {
   position: relative;
-  padding-top: 347px;
+  padding-top: 307px;
   padding-bottom: 560px;
   text-align: center;
 }
@@ -22137,4 +22137,32 @@ body.overlay-layer:after {
     margin-top: 25px;
     margin-bottom: 20px;
   }
+}
+
+/*Search styles*/
+.search-container {
+    text-align: right;
+    padding-right: 10%;
+}
+
+.search-container .select2-selection {
+    height: 50px;
+}
+
+.search-container .select2-selection__arrow {
+    height: 50px;
+    right: 15px;
+}
+
+.search-container .select2.select2-container.select2-container--default {
+    width: 75% !important;
+}
+
+ul.select2-selection__rendered {
+    font-size: 24px;
+}
+
+.search-logo{
+  width: 70px;
+  margin-right: 20px;
 }

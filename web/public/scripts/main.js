@@ -132,6 +132,7 @@ var AppIndex = React.createClass({
 
     componentDidMount: function () {
         $(React.findDOMNode(this.refs.barcodeSearchTool)).select2({
+         placeholder: "  Type product name  . . .",
             ajax: {
                 url: "https://api.github.com/search/repositories",
                 dataType: 'json',
@@ -175,8 +176,9 @@ var AppIndex = React.createClass({
                             <AppHeader.Menu/>
                         </div>
                     </div>
-                    <div className="start-block">
-                        <select className="select-box" ref="barcodeSearchTool">
+                    <div className="search-container start-block">
+                        <img src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png"/*Insert our logo here  Yopta*/  className="search-logo"/>
+                        <select className="search-input select-box" multiple="multiple" ref="barcodeSearchTool">
                         </select>
                     </div>
                     <div className="devider-color devider-color--onepage"></div>
