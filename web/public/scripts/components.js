@@ -140,20 +140,22 @@ var AppBreadcrumb = React.createClass({
 
         var links = [];
 
+        {
+            /*<section className="page-indecator">
+             <div className="container">
+             <h2 className="heading">Headers</h2>
 
+             <ol className="breadcrumb">
+             <li><a href="index.html">Home</a></li>
+             <li className="active">Headers</li>
+             </ol>
+
+             <div className="devider devider--bottom-sm"></div>
+             </div>
+             </section>*/
+        }
         return (
-            <section className="page-indecator">
-                <div className="container">
-                    <h2 className="heading">Headers</h2>
-
-                    <ol className="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li className="active">Headers</li>
-                    </ol>
-
-                    <div className="devider devider--bottom-sm"></div>
-                </div>
-            </section>
+            <div></div>
         );
     }
 });
