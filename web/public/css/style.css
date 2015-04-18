@@ -22316,6 +22316,11 @@ background-image: url(http://themullarkeygroup.com/wp-content/uploads/2014/06/mo
     float:right;
 }
 
+.actions-btn{
+width: 100%;
+  margin: 2px;
+  }
+
 footer{
 margin-top: 20px;
 }

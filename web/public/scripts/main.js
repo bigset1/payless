@@ -390,11 +390,9 @@ var CreateList = React.createClass({
                 <SearchBar custom-class-names="select-box list-item-search"/>
 
                 <div className="devider-brand present-devider"></div>
-
                 <div className="table-responsive">
                     <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
                 </div>
-
                 {ConfirmButton}
             </div>
         }
@@ -418,7 +416,7 @@ CreateList.ListTable = React.createClass({
 
     },
 
-    handleClick: function (i, item, e) {
+    onRemoveClick: function (i, item, e) {
         this.props.removeListItem(i);
     },
     render: function () {
@@ -452,8 +450,12 @@ CreateList.ListTable = React.createClass({
 		                  <td>{result.producer}</td>
 		                  {/*<td></td>*/}
                             <td>
-                                <button onClick={this.handleClick.bind(this,i,result)}
-                                        className="btn btn-danger btn-sm-rect btn-sm"
+                                <a href={"#product/"+result.barcode} className="actions-btn btn btn-success btn-sm-rect btn-sm">
+                                   <i className="fa fa-arrow-circle-right"></i> View
+                                                           </a>
+
+                                <button onClick={this.onRemoveClick.bind(this,i,result)}
+                                        className="actions-btn btn btn-danger btn-sm-rect btn-sm"
                                         key={i}>
                                     <i className="fa fa-times"></i> Remove
                                 </button>
