@@ -22224,8 +22224,8 @@ margin-top:50px;
 }
 
 .img-container img{
-width: 200px;
-height:200px;
+max-width: 300px;
+max-height:300px;
 }
 
 .product_price{
