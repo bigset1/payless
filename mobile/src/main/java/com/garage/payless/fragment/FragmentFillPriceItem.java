@@ -64,13 +64,13 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fill_price_item, container, false);
-        textViewBarcode = (TextView) view.findViewById(R.id.textview_barcode);
+        textViewBarcode = (TextView) view.findViewById(R.id.tv_barcode);
         textViewBarcode.setText(getString(R.string.barcode) + ": " + barcode);
-        textViewProductName = (TextView) view.findViewById(R.id.textview_product_name);
-        view.findViewById(R.id.button_submit).setOnClickListener(this);
-        editTextPrice = (EditText) view.findViewById(R.id.edittext_price);
+        textViewProductName = (TextView) view.findViewById(R.id.tv_product_name);
+        view.findViewById(R.id.btn_submit_price).setOnClickListener(this);
+        editTextPrice = (EditText) view.findViewById(R.id.et_price);
 
-        spinner = (Spinner) view.findViewById(R.id.spinner);
+        spinner = (Spinner) view.findViewById(R.id.spinner_closest_store);
 
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...Please wait");
