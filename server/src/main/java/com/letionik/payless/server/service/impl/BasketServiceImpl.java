@@ -22,7 +22,7 @@ public class BasketServiceImpl implements BasketService {
     public List<BasketSearchResult> searchBasket(BasketQueryDTO query) {
         BasketSearchResult one = new BasketSearchResult();
         one.setStore(new Store("brand1", 10, 10, "10-16"));
-        Map<String, Double> productPrices = new HashMap<>();
+        Map<String, Double> productPrices = new HashMap<String, Double>();
         productPrices.put("123123", 3.45);
         productPrices.put("234234", 7.34);
         one.setProductPrices(productPrices);
