@@ -22167,11 +22167,7 @@ main{
   right: 0px;
   left: 0px;
   top: 0px;
-  background-color: #34495e;
-  background-image: url(../images/components/promo-primary.png);
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-attachment: fixed;
+  background-color: #f3f7f7;
 }
 
 .search-container{

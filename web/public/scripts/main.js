@@ -167,7 +167,7 @@ var AppIndex = React.createClass({
     render: function () {
         return (
             <div className="wrapper" id="top">
-                <header className="header header--slice">
+                <header className="header header--light">
 
                     <div className="header-fixed header-down">
                         <div className="container">
@@ -175,6 +175,7 @@ var AppIndex = React.createClass({
                             <AppHeader.Logo/>
                             <AppHeader.Menu/>
                         </div>
+                <div className="devider-color devider-color--onepage"></div>
                     </div>
                 </header>
                 <main>
@@ -182,7 +183,6 @@ var AppIndex = React.createClass({
                 <img src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png"/*Insert our logo here  Yopta*/  className="search-logo"/>
                  <select className="search-input select-box" multiple="multiple" ref="barcodeSearchTool"></select>
                   </div>
-                 <div className="devider-color devider-color--onepage"></div>
                  </main>
             </div>
         );

@@ -22,8 +22,10 @@ public class BarcodeInfoParser {
         String country = children.get(1).text();
         String producer = children.get(2).getElementsByTag("a").get(0).text();
         String description = children.get(4).getElementsByTag("a").get(0).text();
-        String imageUrl = DATABASE_SITE_URL+doc.select(".img_cont a").get(0).attributes().get("href");
-
+        Elements imageElement = doc.select(".img_cont a");
+        if(imageElement.size() > 0) {
+            String imageUrl = DATABASE_SITE_URL + imageElement.get(0).attributes().get("href");
+        }
 
         Product result = new Product();
         result.setCountry(checkIsUndefined(country));
