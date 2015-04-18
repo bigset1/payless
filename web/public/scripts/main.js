@@ -251,17 +251,7 @@ var AppIndex = React.createClass({
     render: function () {
         return (
             <div className="wrapper" id="top">
-                <header className="header header--light">
-
-                    <div className="header-fixed header-down">
-                        <div className="container">
-
-                            <AppHeader.Logo/>
-                            <AppHeader.Menu/>
-                        </div>
-                        <div className="devider-color devider-color--onepage"></div>
-                    </div>
-                </header>
+                <AppHeader/>
                 <main>
                     <div className="search-container start-block">
                         <img
