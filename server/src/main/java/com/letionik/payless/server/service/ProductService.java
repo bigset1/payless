@@ -5,6 +5,7 @@ import com.letionik.payless.model.transport.PriceItemDTO;
 import com.letionik.payless.model.transport.ProductSearchResult;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -41,7 +42,9 @@ public interface ProductService {
 	@GET
 	@Path("/search/name")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<Product> searchProductsByName(@QueryParam("name") String name);
+	List<Product> searchProductsByName(@QueryParam("name") String name,
+                                       @QueryParam("page") @DefaultValue("0") Integer page,
+                                       @QueryParam("perPage") @DefaultValue("5") Integer perPage);
 
 	@GET
 	@Path("/search/barcode")

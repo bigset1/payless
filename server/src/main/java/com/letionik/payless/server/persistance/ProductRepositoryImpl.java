@@ -2,7 +2,9 @@ package com.letionik.payless.server.persistance;
 
 import com.letionik.payless.server.persistance.model.ProductBO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.core.query.TextQuery;
 
@@ -18,8 +20,10 @@ public class ProductRepositoryImpl implements CustomProductRepository {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<ProductBO> searchByName(String name) {
-        TextQuery query = TextQuery.queryText(TextCriteria.forDefaultLanguage().matching(name));
+    public List<ProductBO> searchByName(String name, int page, int perPage) {
+        Query query = TextQuery.queryText(TextCriteria.forDefaultLanguage().matching(name))
+                .sortByScore()
+                .with(new PageRequest(page, perPage));
         return mongoTemplate.find(query, ProductBO.class);
     }
 
