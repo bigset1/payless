@@ -373,7 +373,7 @@ var CreateList = React.createClass({
                     </button>
             } else {
                 ConfirmButton =
-                    <button className="btn btn-general btn-lg-rect btn-rect"
+                    <button className="btn btn-general btn-lg-rect btn-rect evaluate-btn"
                             onClick={this.handleConfirmList}>
                         <i className="fa fa-arrow-circle-right"></i>
                         Evaluate

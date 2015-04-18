@@ -198,29 +198,8 @@ var AppFooter = React.createClass({
         return (
             <footer className="footer footer--light footer--cut">
                 <div className="container">
-                    <h3 className="heading-info heading-info--mobile">Contact info:</h3>
-                    <address className="contact-info contact-info--primary">
-                        <span className="contact-info__item">
-                            <i className="fa fa-location-arrow"></i>
-                            101 West Street, New York, NY 12345
-                        </span>
-                        <span className="contact-info__item">
-                            <i className="fa fa-mobile"></i>
-                            +1-888-555-5555
-                        </span>
-                        <span className="contact-info__item">
-                            <i className="fa fa-envelope"></i>
-                            info@allec.com / sales@allec.com
-                        </span>
-
-                        <span className="contact-info__item">
-                            <i className="fa fa-skype"></i>
-                            allec-support
-                        </span>
-                    </address>
-
                     <div className="copy">
-                        &copy; <a href="index.html">Allec, 2014.</a> All rights reserved. Done by <a href="http://gozha.net/" target="_blank">Olia Gozha</a>
+                        &copy; <a href="index.html">PayLess, 2015.</a> All rights reserved.
                     </div>
                 </div>
             </footer>
