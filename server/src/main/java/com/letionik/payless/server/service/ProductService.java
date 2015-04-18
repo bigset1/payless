@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public interface ProductService {
 	@GET
 	@Path("/parse")
 	@Produces(MediaType.APPLICATION_JSON)
-	Product parseProduct(@QueryParam("barcode") String barcode);
+	Product parseProduct(@QueryParam("barcode") String barcode) throws IOException;
 
 	@GET
 	@Path("/search/location")
