@@ -54,25 +54,27 @@ public class BarcodeInfoParser {
 			int nameStart = body.indexOf("<name>");
 			int nameEnd = body.indexOf("</name>");
 			String name = body.substring(nameStart + 6, nameEnd);
-			productBO.setName(name);
+			productBO.setName(validateString(name));
 
 			int manStart = body.indexOf("<man>");
 			int manEnd = body.indexOf("</man>");
 			String man = body.substring(manStart + 5, manEnd);
-			productBO.setProducer(man);
+			productBO.setProducer(validateString(man));
 
 			int descStart = body.indexOf("<desc>");
 			int descEnd = body.indexOf("</desc>");
 			String desc = body.substring(descStart + 6, descEnd);
-			productBO.setDescription(desc);
+			productBO.setDescription(validateString(desc));
 		}
 
 		return productBO;
 	}
 
-	private static String checkIsUndefined(String value) {
+	private static String validateString(String value) {
 		if (value.contains("Не определено"))
 			return null;
-		return value;
+		return value.replace("&quot;", "\"").replace("&#34;", "'");
 	}
+
+
 }
