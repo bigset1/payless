@@ -11,4 +11,5 @@ import java.util.List;
 public interface CustomProductRepository {
 
     List<ProductBO> searchByName(String name, int page, int perPage);
+
 }
