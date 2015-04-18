@@ -22156,9 +22156,12 @@ ul.select2-selection__rendered {
     font-size: 24px;
 }
 
-.search-logo{
-  width: 70px;
-  margin-right: 20px;
+.search-logo {
+  width: 54px;
+  margin-left: -53px;
+  margin-top:-1px;
+  z-index: 2;
+  position: relative;
 }
 
 
@@ -22258,4 +22261,8 @@ font-size:17px;
 
 .list-creation-content{
 margin-top:20px;
+}
+
+.select2-container--default .select2-selection--multiple{
+  border-radius: 12px;
 }

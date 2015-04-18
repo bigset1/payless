@@ -254,11 +254,10 @@ var AppIndex = React.createClass({
                 <AppHeader/>
                 <main>
                     <div className="search-container start-block">
-                        <img
-                            src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png"/*Insert our logo here  Yopta*/
-                            className="search-logo"/>
-
                         <SearchBar customClassNames="select-box home-item-search"/>
+                        <img
+                            src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"/*Insert our logo here  Yopta*/
+                            className="search-logo"/>
                     </div>
                 </main>
             </div>
