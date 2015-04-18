@@ -1,5 +1,6 @@
 package com.garage.payless.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,17 +16,23 @@ import android.widget.Toast;
 import com.garage.payless.R;
 import com.garage.payless.api.PayLessApi;
 import com.garage.payless.api.ResponseCallback;
+import com.garage.payless.entity.LocationEvent;
 import com.garage.payless.util.RestProvider;
 import com.garage.payless.util.ServerRequest;
 import com.letionik.payless.model.Product;
+import com.letionik.payless.model.Store;
+
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 public class FragmentFillPriceItem extends Fragment implements View.OnClickListener {
     private static final String BARCODE = "barcode";
     private TextView textViewBarcode, textViewProductName;
     private Spinner spinner;
-    private Button buttonSubmit;
     private EditText editTextPrice;
     private String barcode;
+    private ProgressDialog progressDialog;
 
     public static final PayLessApi payLessApi =
             RestProvider.getInstanse().create(PayLessApi.class);
@@ -61,28 +68,34 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
         editTextPrice = (EditText) view.findViewById(R.id.edittext_price);
 
         spinner = (Spinner) view.findViewById(R.id.spinner);
-        //TEST
-        int size = 5;
-        String array_spinner[] = new String[size];
-        for (int i = 0; i < size; i++) {
-            array_spinner[i] = "shop " + i;
-        }
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, array_spinner);
-        spinner.setAdapter(adapter);
 
-        ServerRequest.getProduct(payLessApi, responseCallbackProduct, barcode);
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading...Please wait");
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().registerSticky(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     private ResponseCallback responseCallbackProduct = new ResponseCallback() {
         @Override
         public void complete(Object response) {
-            final Product product = (Product)response;
+            final Product product = (Product) response;
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     textViewProductName.setText(product.getName());
+                    progressDialog.dismiss();
                 }
             });
         }
@@ -92,6 +105,26 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
         @Override
         public void complete(Object response) {
             String test = response.toString();
+        }
+    };
+
+    private ResponseCallback responseCallbackStores = new ResponseCallback() {
+        @Override
+        public void complete(Object response) {
+            List<Store> storeList = (List<Store>) response;
+            String array_spinner[] = new String[storeList.size()];
+            for (int i = 0; i < storeList.size(); i++) {
+                array_spinner[i] = storeList.get(i).getBrand();
+            }
+            final ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, array_spinner);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    spinner.setAdapter(adapter);
+                }
+            });
+
+            ServerRequest.getProduct(payLessApi, responseCallbackProduct, barcode);
         }
     };
 
@@ -110,5 +143,14 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
 
                 break;
         }
+    }
+
+    public void onEventMainThread(LocationEvent locationEvent) {
+        progressDialog.show();
+        ServerRequest.getStores(payLessApi, responseCallbackStores,
+                locationEvent.getLatLng().latitude, locationEvent.getLatLng().longitude);
+    }
+
+    public void onEvent(LocationEvent locationEvent) {
     }
 }

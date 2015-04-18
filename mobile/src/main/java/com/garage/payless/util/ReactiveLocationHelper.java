@@ -50,7 +50,7 @@ public class ReactiveLocationHelper {
 //                                .longitude().put(((float) location.getLongitude()))
 //                                .apply();
 
-                        EventBus.getDefault().post(new LocationEvent(new LatLng(location.getLatitude(),
+                        EventBus.getDefault().postSticky(new LocationEvent(new LatLng(location.getLatitude(),
                                 location.getLongitude())));
                     }
                 }, new Action1<Throwable>() {

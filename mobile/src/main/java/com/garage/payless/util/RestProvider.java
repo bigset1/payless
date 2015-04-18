@@ -8,7 +8,7 @@ import retrofit.RetrofitError;
  * Created by Paryshkura Roman on 18.04.2015.
  */
 public class RestProvider {
-    private static String SITE_URL = "http://server-payless2015.rhcloud.com";
+    private static String SITE_URL = "http://payless.cloudapp.net";
     private static final RestAdapter restAdapter = new RestAdapter.Builder()
             .setEndpoint(SITE_URL)
             .setErrorHandler(new ErrorHandler() {

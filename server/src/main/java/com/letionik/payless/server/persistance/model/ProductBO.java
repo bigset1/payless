@@ -1,6 +1,7 @@
 package com.letionik.payless.server.persistance.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -13,6 +14,7 @@ public class ProductBO {
     @Id
     private String barcode;
 
+    @TextIndexed
     private String name;
 
     private String producer;

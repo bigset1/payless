@@ -4,6 +4,9 @@ import com.garage.payless.api.PayLessApi;
 import com.garage.payless.api.ResponseCallback;
 import com.letionik.payless.model.PriceItem;
 import com.letionik.payless.model.Product;
+import com.letionik.payless.model.Store;
+
+import java.util.List;
 
 /**
  * Created by Paryshkura Roman on 18.04.2015.
@@ -31,5 +34,18 @@ public class ServerRequest {
                 responseCallback.complete(product);
             }
         }).start();
+    }
+
+    public static void getStores(final PayLessApi payLessApi,
+                                 final ResponseCallback responseCallback,
+                                 final double latitude, final double longitude) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Store> stores = payLessApi.getStores(latitude, longitude);
+                responseCallback.complete(stores);
+            }
+        }).start();
+
     }
 }

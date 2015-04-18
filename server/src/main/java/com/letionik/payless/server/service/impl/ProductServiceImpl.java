@@ -89,21 +89,22 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-	@Override public List<ProductSearchResult> searchProductByLocation(String barcode, double latitude, double longitude) {
+	@Override
+    public List<ProductSearchResult> searchProductByLocation(String barcode, double latitude, double longitude) {
 		//TODO: replace stub with real implementation
 		Store testStore = new Store("test_brand", 55.66, 44.55, "10:00 - 23:00");
 		ProductSearchResult productSearchResult = new ProductSearchResult(testStore, 34.5, 123.4);
 		return Arrays.asList(productSearchResult);
 	}
 
-	@Override public List<Product> searchProductsByName(String name) {
-		//TODO: replace stub with real implementation
-		Product testProduct =  new Product("123123123", "test_name", "test_producer", "test_country", "http://placekitten.com/g/200/300", "test_description");
-		Product testProduct2 =  new Product("234234234", "test_name2", "test_producer2", "test_country2", "http://placekitten.com/g/200/300", "test_description2");
-		return Arrays.asList(testProduct, testProduct2);
+	@Override
+    public List<Product> searchProductsByName(String name, Integer page, Integer perPage) {
+        List<ProductBO> products = productRepository.searchByName(name, page, perPage);
+        return ConversionUtils.convertProducts(products);
 	}
 
-	@Override public Product searchProductByBarcode(String barcode) {
+	@Override
+    public Product searchProductByBarcode(String barcode) {
 		//TODO: replace stub with real implementation
 		return new Product("123123123", "test_name", "test_producer", "test_country", "test_imageUrl", "test_description");
 	}
