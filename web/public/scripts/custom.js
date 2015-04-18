@@ -119,30 +119,37 @@ var DestroySearchBar = function (selector) {
     $(selector).select2('destroy');
 };
 
-function initMapVintage(selector, location) {
+function initMapVintage(selector, data, component) {
     //Map start init - location New York
     var mapOptions = {
         scaleControl: true,
-        center: new google.maps.LatLng(location.lat, location.log),
-        zoom: 12,
-        scrollwheel: false,
+        center: new google.maps.LatLng(data.location.lat, data.location.log),
+        zoom: 14,
+        scrollwheel: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: true,
         zoomControl: true,
         mapTypeControl: false,
-        scaleControl: false,
+        scaleControl: true,
         streetViewControl: false,
         overviewMapControl: false
     };
 
-    var myIcon = new google.maps.MarkerImage("http://atech.designzway.com/demo/images/components/marker.png", null, null, null, new google.maps.Size(57, 64));
+    var myIcon = new google.maps.MarkerImage("http://atech.designzway.com/demo/images/components/marker.png", null, null, null, new google.maps.Size(37, 44));
+
 
     var map = new google.maps.Map(selector, mapOptions);
+
+    component.setState({
+        map: map
+    });
+
     var marker = new google.maps.Marker({
         map: map,
         position: map.getCenter(),
         icon: myIcon
     });
+
 
     var roadAtlasStyles = [
         {
@@ -211,6 +218,6 @@ function initMapVintage(selector, location) {
     var usRoadMapType = new google.maps.StyledMapType(
         roadAtlasStyles, styledMapOptions);
 
-    map.mapTypes.set('usroadatlas', usRoadMapType);
-    map.setMapTypeId('usroadatlas');
+    //map.mapTypes.set('usroadatlas', usRoadMapType);
+    //map.setMapTypeId('usroadatlas');
 }

@@ -279,33 +279,33 @@ var AppIndex = React.createClass({
     }
 });
 
+var ItemsStaticListFuck = {};
 
 var CreateList = React.createClass({
     getInitialState: function () {
         return {
             list: [
-                {
-                    "barcode": "5252454525",
-                    "name": "Test item",
-                    "producer": "test producer",
-                    "country": "Uk",
-                    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAAD/CAYAAAA+CADKAAAFVElEQVR4nO3a0W3bZhiF4U9FBgjgMTqBV/Ag7godISvEg3gFT5AxDHSEXhRsFIaiSIrkT+k8z1XiKAhv3u+YRk51UM9P76+tnwHW8vH58tb6GfpOrR+gI3aSHOEYNItf7PBTi2Owe/yih8v2PAK7xS96mG6PI7B5/KKH5bY8ApvFL3pYzxZHYPX4RQ/bWfMIrBq/8GF7ax2A1eIXPuxnjQNwc/yih3ZuOQI3xS98aG/pAVgcv/DhOJYcgEXxCx+OZ+4BmB2/8OG45hyAWfELH45v6gGYHL/w4X5MOQB/7PEgwPFMWn6rD/fn2vpfjV/4cL/GDsBo/MKH+3fpAHjnh1AXl9/qw+MYWn/LD6EGl9/qw+Ppr7/lh1C/Lb/Vh8d1vv6WH0L9svxWHx5ft/6WH0L9v/xWH3J8fL68WX4IJX4IJX4Idaryvg+JLD+EEj+EEj+EOnnfh0yWH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0J9af0A/Ofbj6/fz3//95///HXpz4Y+N+Uz9/w8rE/8B9CFch7Otx9fv/cjmRLNGmEd7XnYhm/7G+uHdv7rsfVMeR62Y/kbm7uM5wFe+ruXPjMUdv/rez4PbVn+AxqL9DzQoSUe+8zQ1y79W3s8D22dnp/eX1s/BD9NiXHOZ4c+M/bDvBbPQxuW/0D2CmPofb7l89CG+A9iLLTup+3X/v7Ub6mHvu1v+Ty0If4DuLawU97Vp77PD/1wrx/pns9DO975G7u2jnPf1af855yxn/bv+Ty0JX4I5dt+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CHWqqnp+en9t/SDAfj4+X94sP4QSP4QSP4Q6db/w3g8ZPj5f3qosP8Q6nf/G+sNj61a/yvJDrFP/C9YfHtP56ldZfoj12/JXWX94NP3Vr7L8EGtw+ausPzyKodWvsvwQ6+LyV1l/uHeXVr/qSvxVDgDcq7HwqybEX+UAwL25Fn6Vd36INWn5q6w/3Ispq181I/4qBwCObmr4VTPjr3IA4KjmhF+1IP4qBwCOZm74VQvjr3IA4CiWhF91Q/xVDgC0tjT8qhvj7zgCsK9bou+sEn+VAwB7WSP8qhXjr3IAYGtrhV+1cvwdRwDWtWb0nU3i7zgCcJstou9sGn/HEYB5toy+s0v8HUcAxu0RfWfX+DuOAPxqz+g7TeLvcwxI0yL2vn8BNsLw/lzHAHYAAAAASUVORK5CYII=",
-                    "description": "dsf dsf sdf sdf sdf sdf d fs\n sdfv dsf sdfv "
-                },
-                {
-                    "barcode": "52524545257",
-                    "name": "Test item",
-                    "producer": "test producer",
-                    "country": "Uk",
-                    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAAD/CAYAAAA+CADKAAAFVElEQVR4nO3a0W3bZhiF4U9FBgjgMTqBV/Ag7godISvEg3gFT5AxDHSEXhRsFIaiSIrkT+k8z1XiKAhv3u+YRk51UM9P76+tnwHW8vH58tb6GfpOrR+gI3aSHOEYNItf7PBTi2Owe/yih8v2PAK7xS96mG6PI7B5/KKH5bY8ApvFL3pYzxZHYPX4RQ/bWfMIrBq/8GF7ax2A1eIXPuxnjQNwc/yih3ZuOQI3xS98aG/pAVgcv/DhOJYcgEXxCx+OZ+4BmB2/8OG45hyAWfELH45v6gGYHL/w4X5MOQB/7PEgwPFMWn6rD/fn2vpfjV/4cL/GDsBo/MKH+3fpAHjnh1AXl9/qw+MYWn/LD6EGl9/qw+Ppr7/lh1C/Lb/Vh8d1vv6WH0L9svxWHx5ft/6WH0L9v/xWH3J8fL68WX4IJX4IJX4Idaryvg+JLD+EEj+EEj+EOnnfh0yWH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0KJH0J9af0A/Ofbj6/fz3//95///HXpz4Y+N+Uz9/w8rE/8B9CFch7Otx9fv/cjmRLNGmEd7XnYhm/7G+uHdv7rsfVMeR62Y/kbm7uM5wFe+ruXPjMUdv/rez4PbVn+AxqL9DzQoSUe+8zQ1y79W3s8D22dnp/eX1s/BD9NiXHOZ4c+M/bDvBbPQxuW/0D2CmPofb7l89CG+A9iLLTup+3X/v7Ub6mHvu1v+Ty0If4DuLawU97Vp77PD/1wrx/pns9DO975G7u2jnPf1af855yxn/bv+Ty0JX4I5dt+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CCV+CHWqqnp+en9t/SDAfj4+X94sP4QSP4QSP4Q6db/w3g8ZPj5f3qosP8Q6nf/G+sNj61a/yvJDrFP/C9YfHtP56ldZfoj12/JXWX94NP3Vr7L8EGtw+ausPzyKodWvsvwQ6+LyV1l/uHeXVr/qSvxVDgDcq7HwqybEX+UAwL25Fn6Vd36INWn5q6w/3Ispq181I/4qBwCObmr4VTPjr3IA4KjmhF+1IP4qBwCOZm74VQvjr3IA4CiWhF91Q/xVDgC0tjT8qhvj7zgCsK9bou+sEn+VAwB7WSP8qhXjr3IAYGtrhV+1cvwdRwDWtWb0nU3i7zgCcJstou9sGn/HEYB5toy+s0v8HUcAxu0RfWfX+DuOAPxqz+g7TeLvcwxI0yL2vn8BNsLw/lzHAHYAAAAASUVORK5CYII=",
-                    "description": "dsf dsf sdf sdf sdf sdf d fs\n sdfv dsf sdfv "
-                }
+                
             ],
             confirm: false,
             shops: false
         };
     },
     componentDidUpdate: function () {
+        console.log(this.props.barcode);
+        if (this.props.barcode !== undefined) {
+            var item = ItemsStaticListFuck[this.props.barcode];
+            if (item) {
+                var list = this.state.list;
+                list.unshift(item);
+                this.setState({
+                    list: list
+                });
+                ItemsStaticListFuck = {};
+                routie('create-list');
+            }
+        }
+
         if (this.state.confirm && this.state.shops === false) {
             var list = [];
             for (var i in this.state.list) {
@@ -315,10 +315,11 @@ var CreateList = React.createClass({
             $.ajax({
                 url: getApiRequestUrl('basket/search'),
                 dataType: 'json',
-                type: 'GET',
+                type: 'POST',
                 data: {
-                    list: list,
-                    location: null
+                    barcodeList: list,
+                    latitude: 50.439443,
+                    longitude: 30.514974
                 },
                 success: function (data) {
                     data.productPricesSum = 0;
@@ -335,18 +336,9 @@ var CreateList = React.createClass({
             });
         }
     },
-
-    componentWillUpdate: function () {
-        if (this.props.item !== undefined) {
-            var list = this.state.list;
-            list.push(this.props.item);
-            this.setState({
-                list: list
-            });
-            return true;
-        } else {
-            return false;
-        }
+    componentWillMount: function () {
+    },
+    componentWillReceiveProps: function () {
     },
 
     handleRemoveListItem: function (i) {
@@ -367,17 +359,10 @@ var CreateList = React.createClass({
             shops: false
         })
     },
-    handleAddItemToList: function (item) {
-        var list = this.state.list;
-        list.push(item);
-        this.setState({
-            list: list
-        });
-    },
     searchBarTemplate: function (data) {
         if (data.disabled === undefined) {
-
-            return "<a href=\"#create-list/" + data + "\">" + data.name + " (" + data.barcode + ")</a>"
+            ItemsStaticListFuck[data.barcode] = data;
+            return "<a href=\"#create-list/" + data.barcode + "\">" + data.name + " (" + data.barcode + ")</a>"
         }
     },
     render: function () {
@@ -414,7 +399,6 @@ var CreateList = React.createClass({
             }
             ContentTable = <div className="col-sm-9 list-creation-content">
                 <SearchBar custom-class-names="select-box list-item-search"
-                           headerCallbackHandle={this.handleAddItemToList}
                            searchTemplate={this.searchBarTemplate}
                     />
 
@@ -449,6 +433,7 @@ CreateList.ListTable = React.createClass({
         this.props.removeListItem(i);
     },
     render: function () {
+        console.log(this.props.list);
         return (
             <div className="table-responsive product-list-item">
                 <table className="table table--target table-present">
@@ -475,7 +460,7 @@ CreateList.ListTable = React.createClass({
                     <tbody>
                     {this.props.list.map(function (result, i) {
                         return (
-                            <tr key={result.barcode}>
+                            <tr key={i}>
                                 <td><span className="product-name-column">{result.name}</span>
                                     <span>{result.description}</span></td>
                                 <td>{result.country}</td>
@@ -567,11 +552,47 @@ var ShopsMap = React.createClass({
             location: {
                 lat: 50.439443,
                 log: 30.514974
-            }
+            },
+            distance: 1.0
         }
     },
+    componentWillMount: function () {
+
+    },
     componentDidMount: function () {
-        initMapVintage(React.findDOMNode(this.refs.shopsMapArea), this.state.location);
+
+        initMapVintage(React.findDOMNode(this.refs.shopsMapArea), this.state, this);
+
+        $.ajax({
+            url: getApiRequestUrl('store/search'),
+            dataType: 'json',
+            type: 'GET',
+            data: {
+                latitude: this.state.location.lat,
+                longitude: this.state.location.log,
+                distance: this.state.distance
+            },
+            success: function (data) {
+
+                var shopMarker = new google.maps.MarkerImage("https://cdn3.iconfinder.com/data/icons/mapicons/icons/grocery.png", null, null, null, new google.maps.Size(25, 25));
+
+                var shopsMarkers = [];
+
+                for (var i in data) {
+                    var shop = data[i];
+                    shopsMarkers.push(new google.maps.Marker({
+                        map: this.state.map,
+                        position: new google.maps.LatLng(shop.latitude, shop.longitude),
+                        icon: shopMarker
+                    }));
+                }
+                this.setState({shops: data});
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+
     },
     componentWillUnmount: function () {
 
