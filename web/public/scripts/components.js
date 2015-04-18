@@ -218,7 +218,8 @@ var SearchBar = React.createClass({
     componentDidMount: function () {
         InitSearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
     },
-    componentDidUnMount: function () {
+    componentWillUnmount: function () {
+        console.log(React.findDOMNode(this.refs.barcodeSearchTool));
         DestroySearchBar(React.findDOMNode(this.refs.barcodeSearchTool));
     },
 

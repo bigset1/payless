@@ -6,7 +6,6 @@ var animateHeader = function () {
     //Animated header positioning
     var $head = $('.header-fixed');
 
-    console.log($head);
 
     $('.waypoint').each(function (i) {
         var $el = $(this),
@@ -62,13 +61,19 @@ function initProgressBar($selector, duration) {
     });
 }
 
-var formatBarcodeSearchResults = function () {
+var formatBarcodeSearchResults = function (data, e, e1, e2) {
+    console.log(data, e, e1, e2);
 
-
+};
+var formatRepo = function (data, e, e1, e2) {
+    if (data.disabled === undefined) {
+        console.log(data);
+        return "<a href=\"#product/" + data.barcode + "\">" + data.name + " (" + data.barcode + ")</a>"
+    }
 };
 
 var getApiRequestUrl = function (path) {
-    var url = "http://server-payless2015.rhcloud.com/";
+    var url = " http://payless.cloudapp.net/";
     return url + path;
 };
 
@@ -84,21 +89,20 @@ var InitSearchBar = function (selector) {
     $(selector).select2({
         placeholder: "  Type product name  . . .",
         ajax: {
-            url: "https://api.github.com/search/repositories",
+            url: getApiRequestUrl('product/search/name'),
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            crossDomain: false,
             dataType: 'json',
             delay: 250,
             data: function (params) {
                 return {
-                    q: params.term, // search term
+                    name: params.term, // search term
                     page: params.page
                 };
             },
             processResults: function (data, page) {
-                // parse the results into the format expected by Select2.
-                // since we are using custom formatting functions we do not need to
-                // alter the remote JSON data
                 return {
-                    results: data.items
+                    results: data
                 };
             },
             cache: true
@@ -107,7 +111,7 @@ var InitSearchBar = function (selector) {
             return markup;
         }, // let our custom formatter work
         minimumInputLength: 1,
-        //templateResult: formatRepo, // omitted for brevity, see the source of this page
+        templateResult: formatRepo, // omitted for brevity, see the source of this page
         templateSelection: formatBarcodeSearchResults// omitted for brevity, see the source of this page
     })
 };
