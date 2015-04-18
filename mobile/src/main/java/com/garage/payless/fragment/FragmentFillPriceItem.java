@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.garage.payless.FragmentHelper;
+import com.garage.payless.MainActivity;
 import com.garage.payless.R;
 import com.garage.payless.api.PayLessApi;
 import com.garage.payless.api.ResponseCallback;
@@ -21,6 +23,7 @@ import com.garage.payless.util.RestProvider;
 import com.garage.payless.util.ServerRequest;
 import com.letionik.payless.model.Product;
 import com.letionik.payless.model.Store;
+import com.letionik.payless.model.transport.ProductSearchResult;
 
 import java.util.List;
 
@@ -95,7 +98,9 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
                 @Override
                 public void run() {
                     textViewProductName.setText(product.getName());
-                    progressDialog.dismiss();
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.cancel();
+                    }
                 }
             });
         }
@@ -104,7 +109,9 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
     private ResponseCallback responseCallbackPriceItem = new ResponseCallback() {
         @Override
         public void complete(Object response) {
-            String test = response.toString();
+            LocationEvent locationEvent = EventBus.getDefault().getStickyEvent(LocationEvent.class);
+            ServerRequest.getShopsProduct(payLessApi, responseCallbackShopsProduct, barcode, locationEvent.getLatLng().latitude,
+                    locationEvent.getLatLng().longitude);
         }
     };
 
@@ -121,10 +128,21 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
                 @Override
                 public void run() {
                     spinner.setAdapter(adapter);
+
                 }
             });
 
             ServerRequest.getProduct(payLessApi, responseCallbackProduct, barcode);
+        }
+    };
+
+    private ResponseCallback responseCallbackShopsProduct = new ResponseCallback() {
+        @Override
+        public void complete(Object response) {
+            List<ProductSearchResult> productSearchResults = (List<ProductSearchResult>)response;
+            EventBus.getDefault().postSticky(productSearchResults);
+            FragmentHelper.add(getFragmentManager(), FragmentShopsProduct.newInstance(),
+                    MainActivity.FRAME_CONTAINER);
         }
     };
 

@@ -41,6 +41,6 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void onEventMainThread(LocationEvent event) {
-        Toast.makeText(this, event.getLatLng().toString(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, event.getLatLng().toString(), Toast.LENGTH_SHORT).show();
     }
 }

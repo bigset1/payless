@@ -1,19 +1,79 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_menu_frag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.garage.payless.fragment.FragmentMain">
+    android:layout_gravity="center"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/button_open_scan_barcode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/scan_barcode" />
-    </RelativeLayout>
+            android:layout_height="75dp"
+            android:background="@color/btn_background"
+            android:drawableLeft="@drawable/scan_bar_code_icon"
+            android:gravity="right|center_vertical"
+            android:paddingLeft="110dp"
+            android:paddingRight="50dp"
+            android:text="@string/barcode_btn" />
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:background="@color/btn_underline_background" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/map_btn"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/btn_background"
+            android:drawableLeft="@drawable/map_icon"
+            android:gravity="right|center_vertical"
+            android:paddingLeft="110dp"
+            android:paddingRight="125dp"
+            android:text="@string/map_btn" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:background="@color/btn_underline_background" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/list_btn"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/btn_background"
+            android:drawableLeft="@drawable/list_icon"
+            android:gravity="right|center_vertical"
+            android:paddingLeft="110dp"
+            android:paddingRight="70dp"
+            android:text="@string/list_btn" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:background="@color/btn_underline_background" />
+    </LinearLayout>
+
+</LinearLayout>

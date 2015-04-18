@@ -11,4 +11,8 @@
     <string name="price">price</string>
     <string name="submit">submit</string>
     <string name="enter_price">enter the price</string>
+    <string name="list_btn">Create a list</string>
+    <string name="barcode_btn">Scan bar-code</string>
+    <string name="map_btn">Map</string>
+    <string name="custom_font">fonts/DroidSans.ttf</string>
 </resources>
