@@ -2,6 +2,9 @@ package com.garage.payless.api;
 
 import com.letionik.payless.model.PriceItem;
 import com.letionik.payless.model.Product;
+import com.letionik.payless.model.Store;
+
+import java.util.List;
 
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -20,4 +23,7 @@ public interface PayLessApi {
 
     @GET("/product/parse")
     public Product getProduct(@Query("barcode") String barcode);
+
+    @GET("/store/search")
+    public List<Store> getStores(@Query("latitude") double latitude, @Query("longitude") double longitude);
 }

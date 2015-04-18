@@ -31,7 +31,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+        EventBus.getDefault().registerSticky(this);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class MainActivity extends FragmentActivity {
         EventBus.getDefault().unregister(this);
     }
 
-    public void onEvent(LocationEvent event) {
+    public void onEventMainThread(LocationEvent event) {
         Toast.makeText(this, event.getLatLng().toString(), Toast.LENGTH_SHORT).show();
     }
 }
