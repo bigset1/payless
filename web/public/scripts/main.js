@@ -278,11 +278,8 @@ var AppIndex = React.createClass({
                     <div className="row">
                         <div className="col-sm-6 col-md-4">
                             <div className="service">
-                                <div className="icon icon--circle icon--animate icon--animate-service">
-                                    <div className="icon__item icon__item--top">
-                                        <i className="livicon" data-name="credit-card" data-color="#fff"
-                                           data-hovercolor="#fff"></i>
-                                    </div>
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-credit-card"></i>
                                 </div>
                                 <a className="service__link" href="single-service.html">
                                     <h3 className="service__heading">Reasonable Price</h3>
@@ -296,12 +293,16 @@ var AppIndex = React.createClass({
 
                         <div className="col-sm-6 col-md-4">
                             <div className="service">
-                                <div className="icon icon--circle icon--animate icon--animate-service">
+
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-dashboard"></i>
+                                </div>
+                                {/*<div className="icon icon--circle icon--animate icon--animate-service">
                                     <div className="icon__item">
                                         <i className="livicon" data-name="dashboard" data-color="#fff"
                                            data-hovercolor="#fff"></i>
                                     </div>
-                                </div>
+                                </div>*/}
                                 <a className="service__link" href="single-service.html">
                                     <h3 className="service__heading">Efficient Workflow</h3>
                                 </a>
@@ -313,12 +314,16 @@ var AppIndex = React.createClass({
 
                         <div className="col-sm-6 col-md-4">
                             <div className="service">
-                                <div className="icon icon--circle icon--animate icon--animate-service">
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-magic"></i>
+                                </div>
+
+                                {/*<div className="icon icon--circle icon--animate icon--animate-service">
                                     <div className="icon__item">
                                         <i className="livicon" data-name="magic" data-color="#fff"
                                            data-hovercolor="#fff"></i>
                                     </div>
-                                </div>
+                                </div>*/}
                                 <a className="service__link" href="single-service.html">
                                     <h3 className="service__heading">Innovative Technologies</h3>
                                 </a>
@@ -603,7 +608,7 @@ var ShopsMap = React.createClass({
     },
     getInitialState: function () {
         return {
-            shops: false,
+            shops: [],
             location: {
                 lat: 50.439443,
                 log: 30.514974
@@ -673,14 +678,46 @@ var ShopsMap = React.createClass({
 
     render: function () {
         return (
-            <section className="container">
-                <div className="row">
-                    <div className="col-sm-12">
-                        <div id='map-blackwhite-full' className="map map--wide" style={{height:500+'px'}}
-                             ref="shopsMapArea"></div>
+            <div>
+                <section className="container">
+                    <div className="devider devider--bottom-md"></div>
+                    <div className="row">
+                        <div className="col-sm-6">
+
+                            <table className="table table-bordered table--wide table-present">
+                                <colgroup className="col-md-width"/>
+                                <colgroup className="col-sm-width"/>
+                                <colgroup className="col-sm-width"/>
+
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Distance</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {this.state.shops.map(function (result, i) {
+                                    return (
+                                        <tr key={i}>
+                                            <td>{result.brand}</td>
+                                            <td>{result.distance}</td>
+                                            <td></td>
+                                        </tr>
+                                    );
+                                })}
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div className="col-sm-6">
+                            <div id='map-blackwhite-full' className="map map--wide" style={{height:500+'px'}}
+                                 ref="shopsMapArea"></div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         );
     }
 });
