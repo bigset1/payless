@@ -86,7 +86,7 @@ var Product = React.createClass({
                 barcode: this.props.barcode,
                 latitude: 50.439443,
                 longitude: 30.514974,
-                distance:1.0
+                distance: 1.0
             },
             success: function (data) {
                 this.setState({shops: data});
@@ -192,18 +192,18 @@ var Product = React.createClass({
                                     </tr>
                                     </thead>
                                     <tbody>
-                                      {this.state.shops.map(function (result, i) {
-                                                            return (
-                                                                <tr key={i}>
-                                                                    <td>{result.store.brand}</td>
-                                                                    <td className="product_price">{result.price}</td>
-                                                                    <td>{result.address}</td>
-                                                                    <td>{result.store.workingHours}</td>
-                                                                    <td>{result.distance.toFixed(2)+" km"}</td>
-                                                                    <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
-                                                                </tr>
-                                                            );
-                                                        }, this)}
+                                    {this.state.shops.map(function (result, i) {
+                                        return (
+                                            <tr key={i}>
+                                                <td>{result.store.brand}</td>
+                                                <td className="product_price">{result.price}</td>
+                                                <td>{result.address}</td>
+                                                <td>{result.store.workingHours}</td>
+                                                <td>{result.distance.toFixed(2) + " km"}</td>
+                                                <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
+                                            </tr>
+                                        );
+                                    }, this)}
                                     </tbody>
                                 </table>
                             </div>
@@ -444,7 +444,7 @@ CreateList.ListTable = React.createClass({
                     <colgroup className="col-middle">
                     </colgroup>
                     <colgroup className="col-small">
-                     </colgroup>
+                    </colgroup>
                     <colgroup className="col-small">
                     </colgroup>
                     <thead>
@@ -465,7 +465,7 @@ CreateList.ListTable = React.createClass({
                                     <span>{result.description}</span></td>
                                 <td>{result.country}</td>
                                 <td>{result.producer}</td>
-                                <td>{result.minPrice + "-"+result.maxPrice}</td>
+                                <td>{result.minPrice + "-" + result.maxPrice}</td>
                                 <td>
                                     <a href={"#product/"+result.barcode}
                                        className="actions-btn btn btn-success btn-sm-rect btn-sm">
@@ -553,7 +553,7 @@ var ShopsMap = React.createClass({
                 lat: 50.439443,
                 log: 30.514974
             },
-            distance: 1.0
+            distance: 5.0
         }
     },
     componentWillMount: function () {
@@ -580,11 +580,25 @@ var ShopsMap = React.createClass({
 
                 for (var i in data) {
                     var shop = data[i];
-                    shopsMarkers.push(new google.maps.Marker({
-                        map: this.state.map,
-                        position: new google.maps.LatLng(shop.latitude, shop.longitude),
-                        icon: shopMarker
+
+                    (function (info) {
+
+                        var marker = new google.maps.Marker({
+                            map: this.state.map,
+                            position: new google.maps.LatLng(shop.latitude, shop.longitude),
+                            icon: shopMarker
+                        });
+                        google.maps.event.addListener(marker, 'mouseover', function () {
+                            info.open(this.state.map, marker);
+                        }.bind(this));
+                        google.maps.event.addListener(marker, 'mouseout', function () {
+                            info.close(this.state.map, marker);
+                        }.bind(this));
+                        shopsMarkers.push(marker);
+                    }.bind(this))(new google.maps.InfoWindow({
+                        content: shop.brand
                     }));
+
                 }
                 this.setState({shops: data});
             }.bind(this),
