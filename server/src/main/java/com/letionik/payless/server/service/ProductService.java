@@ -45,8 +45,7 @@ public interface ProductService {
 	@Path("/search/name")
 	@Produces(MediaType.APPLICATION_JSON)
 	List<Product> searchProductsByName(@QueryParam("name") String name,
-                                       @QueryParam("page") @DefaultValue("0") int page,
-                                       @QueryParam("perPage") @DefaultValue("5") int perPage) throws ServiceException;
+                                       @QueryParam("number") @DefaultValue("10") int number) throws ServiceException;
 
 	@GET
 	@Path("/search/barcode")

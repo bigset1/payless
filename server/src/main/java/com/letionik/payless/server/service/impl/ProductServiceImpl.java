@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -120,22 +121,22 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-    public List<Product> searchProductsByName(String name, int page, int perPage) throws ServiceException{
+    public List<Product> searchProductsByName(String name, int number) throws ServiceException{
         if (name == null || StringUtils.isBlank(name)) {
             throw new ServiceException("Query parameter name '" + name + "' cannot be null");
         }
 
-        List<ProductBO> products = productRepository.searchByName(name, page, perPage);
-		List<Product> productList = new ArrayList<Product>(products.size());
+        Collection<ProductBO> foundProducts = productRepository.searchByName(name);
 
-		for (ProductBO product : products) {
-			Product convertProduct = ConversionUtils.convertProduct(product);
-			convertProduct.setMaxPrice(priceItemRepository.getMaxPriceByProduct(product));
-			convertProduct.setMinPrice(priceItemRepository.getMinPriceByProduct(product));
-			productList.add(convertProduct);
+		List<Product> results = new ArrayList<Product>(foundProducts.size());
+		for (ProductBO product : foundProducts) {
+			Product convertedProduct = ConversionUtils.convertProduct(product);
+			convertedProduct.setMaxPrice(priceItemRepository.getMaxPriceByProduct(product));
+			convertedProduct.setMinPrice(priceItemRepository.getMinPriceByProduct(product));
+			results.add(convertedProduct);
 		}
 
-        return productList;
+        return results;
 	}
 
 	@Override
