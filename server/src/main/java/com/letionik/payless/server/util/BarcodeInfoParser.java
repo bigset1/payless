@@ -50,29 +50,31 @@ public class BarcodeInfoParser {
 		ProductBO productBO = new ProductBO();
 		productBO.setBarcode(barcode);
 
-		if (body != null && !body.isEmpty() && !body.equals("no info")) {
+		if (body != null && !body.isEmpty() && !body.contains("no info")) {
 			int nameStart = body.indexOf("<name>");
 			int nameEnd = body.indexOf("</name>");
-			String name = body.substring(nameStart + 6, nameEnd);
+			String name = validateString(body.substring(nameStart + 6, nameEnd));
 			productBO.setName(name);
+
+			productBO.setImageUrl(ImageUrlSearch.getImageUrl(name));
 
 			int manStart = body.indexOf("<man>");
 			int manEnd = body.indexOf("</man>");
-			String man = body.substring(manStart + 5, manEnd);
+			String man = validateString(body.substring(manStart + 5, manEnd));
 			productBO.setProducer(man);
 
 			int descStart = body.indexOf("<desc>");
 			int descEnd = body.indexOf("</desc>");
-			String desc = body.substring(descStart + 6, descEnd);
+			String desc = validateString(body.substring(descStart + 6, descEnd));
 			productBO.setDescription(desc);
 		}
 
 		return productBO;
 	}
 
-	private static String checkIsUndefined(String value) {
+	private static String validateString(String value) {
 		if (value.contains("Не определено"))
 			return null;
-		return value;
+		return value.replace("&quot;", "\"").replace("&#34;", "'");
 	}
 }

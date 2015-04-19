@@ -13,6 +13,9 @@ public class Product {
 	private String imageUrl;
 	private String description;
 
+	private double maxPrice;
+	private double minPrice;
+
 	public Product() {
 	}
 
@@ -72,6 +75,22 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public double getMaxPrice() {
+		return maxPrice;
+	}
+
+	public void setMaxPrice(double maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+
+	public double getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(double minPrice) {
+		this.minPrice = minPrice;
 	}
 
 	@Override public String toString() {

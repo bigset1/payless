@@ -35,4 +35,13 @@ public class StoreServiceImpl implements StoreService {
 		}
 		return storeList;
 	}
+
+	@Override public Store getStoreById(String id) {
+		StoreBO storeBO = storeRepository.findOne(id);
+		if (storeBO != null) {
+			return ConversionUtils.convertStore(storeBO);
+		} else {
+			return null;
+		}
+	}
 }

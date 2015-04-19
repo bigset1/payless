@@ -13,6 +13,7 @@ public class BasketSearchResult {
 	private Store store;
 	private double distance;
 	private Map<String, Double> productPrices;
+    private double totalPrice;
 
 	public BasketSearchResult() {
 	}
@@ -47,11 +48,20 @@ public class BasketSearchResult {
 		this.productPrices = productPrices;
 	}
 
-	@Override public String toString() {
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Override public String toString() {
 		return "BasketSearchResult{" +
 				"store=" + store +
 				", distance=" + distance +
 				", productPrices=" + productPrices +
+                ", totalPrice=" + totalPrice +
 				'}';
 	}
 }
