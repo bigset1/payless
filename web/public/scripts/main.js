@@ -263,75 +263,80 @@ var AppIndex = React.createClass({
         return (
             <div className="wrapper" id="top">
                 <AppHeader/>
-                   <main>
-                                   <div className="search-container start-block">
-                                       <SearchBar customClassNames="select-box home-item-search"
-                                                  searchTemplate={this.searchBarTemplate}/>
+                <main>
+                    <div className="search-container start-block">
+                        <SearchBar customClassNames="select-box home-item-search"
+                                   searchTemplate={this.searchBarTemplate}/>
                         {/*<img
-                            src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"
-                            className="search-logo"/>*/}
+                         src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"
+                         className="search-logo"/>*/}
                     </div>
-                <section className="container">
-                    <div className="row">
-                        <div className="col-sm-6 col-md-4">
-                            <div className="service">
-                                <div className="icon icon--circle">
-                                    <i className="icon__item fa fa-credit-card"></i>
-                                </div>
-                                <a className="service__link" href="single-service.html">
-                                    <h3 className="service__heading">Reasonable Price</h3>
-                                </a>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in lacinia
-                                    quam. Fusce quis nulla tincidunt, interdum magna vitae, viverra est. Nunc eu sodales
-                                    turpis, varius viverra mauris.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-sm-6 col-md-4">
-                            <div className="service">
-
-                                <div className="icon icon--circle">
-                                    <i className="icon__item fa fa-dashboard"></i>
-                                </div>
-                                {/*<div className="icon icon--circle icon--animate icon--animate-service">
-                                    <div className="icon__item">
-                                        <i className="livicon" data-name="dashboard" data-color="#fff"
-                                           data-hovercolor="#fff"></i>
+                    <section className="container">
+                        <div className="row">
+                            <div className="col-sm-6 col-md-4">
+                                <div className="service">
+                                    <div className="icon icon--circle">
+                                        <i className="icon__item fa fa-credit-card"></i>
                                     </div>
-                                </div>*/}
-                                <a className="service__link" href="single-service.html">
-                                    <h3 className="service__heading">Efficient Workflow</h3>
-                                </a>
+                                    <a className="service__link" href="single-service.html">
+                                        <h3 className="service__heading">Reasonable Price</h3>
+                                    </a>
 
-                                <p>Sed eget placerat arcu. Nullam porta faucibus ligula, egestas tempus tellus dapibus
-                                    tincidunt. Nunc vitae interdum massa. Nam in augue quis elit sagittis accumsan.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-sm-6 col-md-4">
-                            <div className="service">
-                                <div className="icon icon--circle">
-                                    <i className="icon__item fa fa-magic"></i>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in lacinia
+                                        quam. Fusce quis nulla tincidunt, interdum magna vitae, viverra est. Nunc eu
+                                        sodales
+                                        turpis, varius viverra mauris.</p>
                                 </div>
+                            </div>
 
-                                {/*<div className="icon icon--circle icon--animate icon--animate-service">
-                                    <div className="icon__item">
-                                        <i className="livicon" data-name="magic" data-color="#fff"
-                                           data-hovercolor="#fff"></i>
+                            <div className="col-sm-6 col-md-4">
+                                <div className="service">
+
+                                    <div className="icon icon--circle">
+                                        <i className="icon__item fa fa-dashboard"></i>
                                     </div>
-                                </div>*/}
-                                <a className="service__link" href="single-service.html">
-                                    <h3 className="service__heading">Innovative Technologies</h3>
-                                </a>
+                                    {/*<div className="icon icon--circle icon--animate icon--animate-service">
+                                     <div className="icon__item">
+                                     <i className="livicon" data-name="dashboard" data-color="#fff"
+                                     data-hovercolor="#fff"></i>
+                                     </div>
+                                     </div>*/}
+                                    <a className="service__link" href="single-service.html">
+                                        <h3 className="service__heading">Efficient Workflow</h3>
+                                    </a>
 
-                                <p>Sed eget placerat arcu. Nullam porta faucibus ligula, egestas tempus tellus dapibus
-                                    tincidunt. Nunc vitae interdum massa. Nam in augue quis elit sagittis accumsan.</p>
+                                    <p>Sed eget placerat arcu. Nullam porta faucibus ligula, egestas tempus tellus
+                                        dapibus
+                                        tincidunt. Nunc vitae interdum massa. Nam in augue quis elit sagittis
+                                        accumsan.</p>
+                                </div>
+                            </div>
+
+                            <div className="col-sm-6 col-md-4">
+                                <div className="service">
+                                    <div className="icon icon--circle">
+                                        <i className="icon__item fa fa-magic"></i>
+                                    </div>
+
+                                    {/*<div className="icon icon--circle icon--animate icon--animate-service">
+                                     <div className="icon__item">
+                                     <i className="livicon" data-name="magic" data-color="#fff"
+                                     data-hovercolor="#fff"></i>
+                                     </div>
+                                     </div>*/}
+                                    <a className="service__link" href="single-service.html">
+                                        <h3 className="service__heading">Innovative Technologies</h3>
+                                    </a>
+
+                                    <p>Sed eget placerat arcu. Nullam porta faucibus ligula, egestas tempus tellus
+                                        dapibus
+                                        tincidunt. Nunc vitae interdum massa. Nam in augue quis elit sagittis
+                                        accumsan.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="devider-brand devider--top-xs"></div>
-                </section>
+                        <div className="devider-brand devider--top-xs"></div>
+                    </section>
                 </main>
 
             </div>
@@ -558,7 +563,7 @@ CreateList.Confirm = React.createClass({
 
 
         return (
-            <table className="table table-bordered table--wide table-present">
+            <table className="table table-bordered table--wide table-present table--scroll">
                 <colgroup className="col-sm-width"/>
                 <colgroup className="col-sm-width"/>
                 <colgroup className="col-sm-width"/>
@@ -621,7 +626,7 @@ var ShopsMap = React.createClass({
         initMapVintage(React.findDOMNode(this.refs.shopsMapArea), this.state, this);
 
         $.ajax({
-            url: getApiRequestUrl('store/search'),
+            url: getApiRequestUrl('store/v2/stores'),
             dataType: 'json',
             type: 'GET',
             data: {
@@ -642,7 +647,7 @@ var ShopsMap = React.createClass({
 
                         var marker = new google.maps.Marker({
                             map: this.state.map,
-                            position: new google.maps.LatLng(shop.latitude, shop.longitude),
+                            position: new google.maps.LatLng(shop.store.latitude, shop.store.longitude),
                             icon: shopMarker
                         });
                         google.maps.event.addListener(marker, 'mouseover', function () {
@@ -657,7 +662,7 @@ var ShopsMap = React.createClass({
                         }.bind(this));
                         shopsMarkers.push(marker);
                     }.bind(this))(new google.maps.InfoWindow({
-                        content: shop.brand
+                        content: "<i>" + shop.store.brand + "</i><br>" + (Math.round(shop.distance * 100) / 100) + 'km'
                     }));
 
                 }
@@ -698,8 +703,11 @@ var ShopsMap = React.createClass({
                                 {this.state.shops.map(function (result, i) {
                                     return (
                                         <tr key={i}>
-                                            <td>{result.brand}</td>
-                                            <td>{result.distance}</td>
+                                            <td>
+                                                <b>{result.store.brand}</b><br/>
+                                                <i>{result.store.address}</i>
+                                            </td>
+                                            <td>{Math.round(result.distance*100)/100}km</td>
                                             <td></td>
                                         </tr>
                                     );
