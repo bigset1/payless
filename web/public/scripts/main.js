@@ -266,15 +266,71 @@ var AppIndex = React.createClass({
         return (
             <div className="wrapper" id="top">
                 <AppHeader/>
-                <main>
-                    <div className="search-container start-block">
-                        <SearchBar customClassNames="select-box home-item-search"
+                <section class="container">
+                    <div className="row">
+                        <SearchBar customClassNames="select-box list-item-search"
                                    searchTemplate={this.searchBarTemplate}/>
                         <img
                             src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"/*Insert our logo here  Yopta*/
                             className="search-logo"/>
                     </div>
-                </main>
+                </section>
+                <section className="container">
+                    <div className="row">
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+                                <div className="icon icon--circle icon--animate icon--animate-service">
+                                    <div className="icon__item icon__item--top">
+                                        <i className="livicon" data-name="credit-card" data-color="#fff"
+                                           data-hovercolor="#fff"></i>
+                                    </div>
+                                </div>
+                                <a className="service__link" href="single-service.html">
+                                    <h3 className="service__heading">Reasonable Price</h3>
+                                </a>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in lacinia
+                                    quam. Fusce quis nulla tincidunt, interdum magna vitae, viverra est. Nunc eu sodales
+                                    turpis, varius viverra mauris.</p>
+                            </div>
+                        </div>
+
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+                                <div className="icon icon--circle icon--animate icon--animate-service">
+                                    <div className="icon__item">
+                                        <i className="livicon" data-name="dashboard" data-color="#fff"
+                                           data-hovercolor="#fff"></i>
+                                    </div>
+                                </div>
+                                <a className="service__link" href="single-service.html">
+                                    <h3 className="service__heading">Efficient Workflow</h3>
+                                </a>
+
+                                <p>Sed eget placerat arcu. Nullam porta faucibus ligula, egestas tempus tellus dapibus
+                                    tincidunt. Nunc vitae interdum massa. Nam in augue quis elit sagittis accumsan.</p>
+                            </div>
+                        </div>
+
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+                                <div className="icon icon--circle icon--animate icon--animate-service">
+                                    <div className="icon__item">
+                                        <i className="livicon" data-name="magic" data-color="#fff"
+                                           data-hovercolor="#fff"></i>
+                                    </div>
+                                </div>
+                                <a className="service__link" href="single-service.html">
+                                    <h3 className="service__heading">Innovative Technologies</h3>
+                                </a>
+
+                                <p>Sed eget placerat arcu. Nullam porta faucibus ligula, egestas tempus tellus dapibus
+                                    tincidunt. Nunc vitae interdum massa. Nam in augue quis elit sagittis accumsan.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="devider-brand devider--top-xs"></div>
+                </section>
 
             </div>
         );
@@ -413,7 +469,6 @@ var CreateList = React.createClass({
             <section className="container">
                 <div className="row">
                     {ContentTable}
-                    <AppSidebar/>
                 </div>
             </section>
         );
@@ -591,8 +646,12 @@ var ShopsMap = React.createClass({
                         google.maps.event.addListener(marker, 'mouseover', function () {
                             info.open(this.state.map, marker);
                         }.bind(this));
+
                         google.maps.event.addListener(marker, 'mouseout', function () {
                             info.close(this.state.map, marker);
+                        }.bind(this));
+                        google.maps.event.addListener(marker, 'click', function () {
+                            this.state.map.setCenter(marker.position);
                         }.bind(this));
                         shopsMarkers.push(marker);
                     }.bind(this))(new google.maps.InfoWindow({
@@ -614,12 +673,14 @@ var ShopsMap = React.createClass({
 
     render: function () {
         return (
-            <div className="row">
-                <div className="col-sm-12">
-                    <div id='map-blackwhite-full' className="map map--wide" style={{height:500+'px'}}
-                         ref="shopsMapArea"></div>
+            <section className="container">
+                <div className="row">
+                    <div className="col-sm-12">
+                        <div id='map-blackwhite-full' className="map map--wide" style={{height:500+'px'}}
+                             ref="shopsMapArea"></div>
+                    </div>
                 </div>
-            </div>
+            </section>
         );
     }
 });
