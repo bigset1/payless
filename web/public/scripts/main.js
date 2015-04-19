@@ -520,7 +520,7 @@ CreateList.ListTable = React.createClass({
                             <tr key={i}>
                                 <td><span className="product-name-column">{result.name}</span>
                                     <span>{result.description}</span></td>
-                                <td>{result.country}</td>
+                                <td>{result.country ? result.country: "Ukraine"}</td>
                                 <td>{result.producer}</td>
                                 <td>{result.minPrice + "-" + result.maxPrice}</td>
                                 <td>
@@ -582,8 +582,8 @@ CreateList.Confirm = React.createClass({
                         <tr key={result.store.brand+i}>
                             <td>{result.store.brand}</td>
                             <td>{result.store.workingHours}</td>
-                            <td>{result.distance}</td>
-                            <td>{result.productPricesSum}</td>
+                            <td>{result.distance.toFixed(2)}</td>
+                            <td>{result.totalPrice}</td>
                             <td>
                                 <botton disabled="disabled" className="btn btn-primary btn-sm">View
                                     Order
