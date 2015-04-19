@@ -73,7 +73,7 @@ var formatRepo = function (data, e, e1, e2) {
 };
 
 var getApiRequestUrl = function (path) {
-    var url = " http://payless.cloudapp.net/";
+    var url = " http://payless.cloudapp.net/server/";
     return url + path;
 };
 
