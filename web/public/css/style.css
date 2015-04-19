@@ -22250,7 +22250,7 @@ background-repeat : no-repeat !important;
 background-size: 35px !important;
 }
 
-.home-item-search .select2-search__field{
+.select2-search__field{
   width: 100% !important;
   display: block;
 }
