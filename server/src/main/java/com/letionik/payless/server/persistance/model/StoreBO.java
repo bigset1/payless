@@ -21,6 +21,8 @@ public class StoreBO {
 
     private String workingHours;
 
+    private String address;
+
     public String getId() {
         return id;
     }
@@ -51,5 +53,13 @@ public class StoreBO {
 
     public void setWorkingHours(String workingHours) {
         this.workingHours = workingHours;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
