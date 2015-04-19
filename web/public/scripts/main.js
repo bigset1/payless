@@ -487,7 +487,16 @@ var CreateList = React.createClass({
                                                {ConfirmButton}</div>);
             }
             else{
-                ContentFill = (<div className="no-items-message">Please, add items above</div>);
+                ContentFill = (
+                <div className="alert alert--full alert-info alert-visible ">
+                							<div className="box-inner">
+                							  <span className="alert-market">
+                							  	<i className="fa fa-info-circle"></i>
+                							  </span>
+                						      <strong>Information for you.</strong> Your basket is empty. Please, add some products above.
+                					    	</div>
+                					    </div>
+                );
             }
 
             ContentTable = <div className="col-sm-12 list-creation-content">
