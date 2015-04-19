@@ -183,7 +183,7 @@ var Product = React.createClass({
                                         <th>Market</th>
                                         <th>Price</th>
                                         <th>Address</th>
-                                        <th>Working Hours</th>
+                                        /*{<th>Working Hours</th>}*/
                                         <th>Distance</th>
                                         <th>Action</th>
                                     </tr>
@@ -195,7 +195,7 @@ var Product = React.createClass({
                                                 <td>{result.store.brand}</td>
                                                 <td className="product_price">{result.price}</td>
                                                 <td>{result.address}</td>
-                                                <td>{result.store.workingHours}</td>
+                                                {/*<td>{result.store.workingHours}</td>*/}
                                                 <td>{result.distance.toFixed(2) + " km"}</td>
                                                 <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
                                             </tr>
@@ -440,7 +440,7 @@ var CreateList = React.createClass({
                     </button>
                 </div>
                 <div className="row">
-                    <div className="table-responsive">
+                    <div className="table-responsive product-list-item">
                         <CreateList.Confirm list={this.state.shops}/>
                     </div>
                 </div>
@@ -499,13 +499,13 @@ CreateList.ListTable = React.createClass({
         return (
             <div className="table-responsive product-list-item">
                 <table className="table table--target table-present">
-                    <colgroup className="col-wide">
-                    </colgroup>
-                    <colgroup className="col-middle">
-                    </colgroup>
                     <colgroup className="col-middle">
                     </colgroup>
                     <colgroup className="col-small">
+                    </colgroup>
+                    <colgroup className="col-middle">
+                    </colgroup>
+                    <colgroup className="col-middle">
                     </colgroup>
                     <colgroup className="col-small">
                     </colgroup>
@@ -527,7 +527,7 @@ CreateList.ListTable = React.createClass({
                                     <span>{result.description}</span></td>
                                 <td>{result.country ? result.country: "Ukraine"}</td>
                                 <td>{result.producer}</td>
-                                <td>{result.minPrice + "-" + result.maxPrice}</td>
+                                <td>{result.minPrice + " грн. - " + result.maxPrice+ " грн."}</td>
                                 <td>
                                     <a href={"#product/"+result.barcode}
                                        className="actions-btn btn btn-success btn-sm-rect btn-sm">
@@ -563,41 +563,38 @@ CreateList.Confirm = React.createClass({
 
 
         return (
-            <table className="table table-bordered table--wide table-present table--scroll">
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-
+            <table className="table table--target table-present">
+                <colgroup className="col-middle"/>
+                <colgroup className="col-middle"/>
+                <colgroup className="col-small"/>
+                <colgroup className="col-small"/>
+                <colgroup className="col-small"/>
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Working Hours</th>
+                    <th>Address</th>
                     <th>Distance</th>
                     <th>Total Price</th>
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
 
+                <tbody>
                 {this.props.list.map(function (result, i) {
                     return (
                         <tr key={result.store.brand+i}>
-                            <td>{result.store.brand}</td>
-                            <td>{result.store.workingHours}</td>
-                            <td>{result.distance.toFixed(2)}</td>
-                            <td>{result.totalPrice}</td>
+                            <td><span className="product-name-column">{result.store.brand}</span></td>
+                            <td>{result.store.address}</td>
+                            <td>{result.distance.toFixed(2)+" км."}</td>
+                            <td>{result.totalPrice+" грн."}</td>
                             <td>
-                                <botton disabled="disabled" className="btn btn-primary btn-sm">View
-                                    Order
-                                </botton>
+                                <button disabled="disabled" className="btn btn-primary btn-sm">View Order</button>
                             </td>
                         </tr>
                     );
                 })}
                 </tbody>
+
             </table>
         );
     }
