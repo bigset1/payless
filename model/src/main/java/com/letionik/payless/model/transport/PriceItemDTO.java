@@ -12,6 +12,9 @@ public class PriceItemDTO {
 
     private Double price;
 
+    public PriceItemDTO() {
+    }
+
     public PriceItemDTO(String barcode, String storeId, Double price) {
         this.barcode = barcode;
         this.storeId = storeId;
