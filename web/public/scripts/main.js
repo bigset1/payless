@@ -361,6 +361,11 @@ var AppIndex = React.createClass({
 
 var ItemsStaticListFuck = {};
 
+var ProductListStore = {
+
+};
+
+
 var CreateList = React.createClass({
     getInitialState: function () {
         return {
@@ -542,7 +547,7 @@ CreateList.ListTable = React.createClass({
                                     <span>{result.description}</span></td>
                                 <td>{result.country ? result.country : "Ukraine"}</td>
                                 <td>{result.producer}</td>
-                                <td>{result.minPrice + " грн. - " + result.maxPrice+ " грн."}</td>
+                                <td>{result.minPrice + " грн. - " + result.maxPrice + " грн."}</td>
                                 <td>
                                     <a href={"#product/"+result.barcode}
                                        className="actions-btn btn btn-success btn-sm-rect btn-sm">
@@ -600,8 +605,8 @@ CreateList.Confirm = React.createClass({
                         <tr key={result.store.brand+i}>
                             <td><span className="product-name-column">{result.store.brand}</span></td>
                             <td>{result.store.address}</td>
-                            <td>{result.distance.toFixed(2)+" км."}</td>
-                            <td>{result.totalPrice+" грн."}</td>
+                            <td>{result.distance.toFixed(2) + " км."}</td>
+                            <td>{result.totalPrice + " грн."}</td>
                             <td>
                                 <button disabled="disabled" className="btn btn-primary btn-sm">View Order</button>
                             </td>
