@@ -12,7 +12,7 @@ import com.letionik.payless.server.persistance.model.StoreBO;
 import com.letionik.payless.server.service.ProductService;
 import com.letionik.payless.server.service.ServiceException;
 import com.letionik.payless.server.service.impl.ConversionUtils;
-import com.letionik.payless.server.util.BarcodeInfoParser;
+import com.letionik.payless.server.util.product.details.ProductDetailsProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -28,6 +28,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Anton Nikulin
@@ -35,6 +40,9 @@ import java.util.Map;
  */
 @Component
 public class ProductServiceImpl implements ProductService {
+
+    @Autowired
+    private List<ProductDetailsProvider> productDetailsProviders;
 
     @Autowired
     private ProductRepository productRepository;
@@ -80,21 +88,67 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-    private ProductBO parseAndInsertProduct(String barcode) throws ServiceException {
+    private ProductBO parseAndInsertProduct(final String barcode) throws ServiceException {
         ProductBO product;
-        try {
-            product = BarcodeInfoParser.getProduct(barcode);
-        } catch (Exception e) {
-            throw new ServiceException("An unexpected error occurred during parsing barcode '" + barcode + '\'', e);
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        List<Future<ProductBO>> productDetails = new ArrayList<>();
+        for (final ProductDetailsProvider productDetailsProvider : productDetailsProviders) {
+            Future<ProductBO> productFuture = executorService.submit(new Callable<ProductBO>() {
+                @Override
+                public ProductBO call() throws Exception {
+                    return productDetailsProvider.provide(barcode);
+                }
+            });
+            productDetails.add(productFuture);
         }
-        if (product == null) {
-            product = new ProductBO();
-            product.setBarcode(barcode);
-        }
+
+        product = getMostDetailed(extractList(productDetails));
 
         productRepository.insert(product);
 
         return product;
+    }
+
+    private List<ProductBO> extractList(List<Future<ProductBO>> productDetails) {
+        List<ProductBO> result = new ArrayList<>();
+        for (Future<ProductBO> productDetail : productDetails) {
+            try {
+                result.add(productDetail.get(5, TimeUnit.SECONDS));
+            } catch (Exception e) {
+                // just ignore
+            }
+        }
+        return result;
+    }
+
+    private ProductBO getMostDetailed(List<ProductBO> products) {
+        int maxPoint = 0;
+        ProductBO bestProduct = null;
+        for (ProductBO product : products) {
+            int currentPoint = 0;
+            if (!StringUtils.isBlank(product.getName())) {
+                currentPoint += 3;
+            }
+            if (!StringUtils.isBlank(product.getDescription())) {
+                currentPoint += 2;
+            }
+            if (!StringUtils.isBlank(product.getImageUrl())) {
+                currentPoint += 2;
+            }
+            if (!StringUtils.isBlank(product.getCountry())) {
+                currentPoint += 1;
+            }
+            if (!StringUtils.isBlank(product.getProducer())) {
+                currentPoint += 1;
+            }
+            if (currentPoint >= maxPoint) {
+                bestProduct = product;
+                maxPoint = currentPoint;
+            }
+        }
+
+        return bestProduct;
     }
 
 	@Override
