@@ -123,7 +123,7 @@ function initMapVintage(selector, data, component) {
     //Map start init - location New York
     var mapOptions = {
         scaleControl: true,
-        center: new google.maps.LatLng(data.location.lat, data.location.log),
+        center: new google.maps.LatLng(data.center[0], data.center[1]),
         zoom: 14,
         scrollwheel: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -146,7 +146,7 @@ function initMapVintage(selector, data, component) {
 
     var marker = new google.maps.Marker({
         map: map,
-        position: map.getCenter(),
+        position: new google.maps.LatLng(data.location[0], data.location[1]),
         icon: myIcon
     });
 
