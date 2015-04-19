@@ -19,7 +19,7 @@ public class DefaultExceptionMapper implements ExceptionMapper<Exception> {
     @Override
     public Response toResponse(Exception e) {
         return new ErrorResponseBuilder()
-                .status(HttpStatus.SC_BAD_REQUEST)
+                .status(HttpStatus.SC_INTERNAL_SERVER_ERROR)
                 .message("An unexpected error occurred")
                 .cause(e)
                 .buildErrorResponse();
