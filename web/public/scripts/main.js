@@ -731,13 +731,11 @@ var ShopsMap = React.createClass({
                             <table className="table table-bordered table--wide table-present">
                                 <colgroup className="col-md-width"/>
                                 <colgroup className="col-sm-width"/>
-                                <colgroup className="col-sm-width"/>
 
                                 <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Distance</th>
-                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -750,7 +748,6 @@ var ShopsMap = React.createClass({
                                                 <i>{result.store.address}</i>
                                             </td>
                                             <td>{Math.round(result.distance * 100) / 100}km</td>
-                                            <td></td>
                                         </tr>
                                     );
                                 })}
