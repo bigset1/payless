@@ -266,15 +266,14 @@ var AppIndex = React.createClass({
         return (
             <div className="wrapper" id="top">
                 <AppHeader/>
-                <section class="container">
-                    <div className="row">
-                        <SearchBar customClassNames="select-box list-item-search"
-                                   searchTemplate={this.searchBarTemplate}/>
-                        <img
-                            src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"/*Insert our logo here  Yopta*/
-                            className="search-logo"/>
+                   <main>
+                                   <div className="search-container start-block">
+                                       <SearchBar customClassNames="select-box home-item-search"
+                                                  searchTemplate={this.searchBarTemplate}/>
+                        {/*<img
+                            src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"
+                            className="search-logo"/>*/}
                     </div>
-                </section>
                 <section className="container">
                     <div className="row">
                         <div className="col-sm-6 col-md-4">
@@ -331,6 +330,7 @@ var AppIndex = React.createClass({
                     </div>
                     <div className="devider-brand devider--top-xs"></div>
                 </section>
+                </main>
 
             </div>
         );
