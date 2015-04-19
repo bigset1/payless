@@ -1,6 +1,5 @@
 package com.letionik.payless.server.persistance;
 
-import com.letionik.payless.server.persistance.model.ProductBO;
 import com.letionik.payless.server.persistance.model.StoreBO;
 import com.letionik.payless.server.util.StoreParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,10 @@ public class StoreRepositoryImpl implements CustomStoreRepository {
 			StoreBO storedStoreBO = mongoTemplate.findOne(storeBOQuery, StoreBO.class);
 			if (storedStoreBO == null) {
 				mongoTemplate.insert(storeBO);
-			}
+			} else if (storedStoreBO.getAddress() == null) {
+                storedStoreBO.setAddress(storeBO.getAddress());
+                mongoTemplate.save(storedStoreBO);
+            }
 		}
 	}
 

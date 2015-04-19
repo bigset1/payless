@@ -1,6 +1,7 @@
 package com.letionik.payless.server.service;
 
 import com.letionik.payless.model.Store;
+import com.letionik.payless.model.transport.StoreSearchResult;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -27,4 +28,11 @@ public interface StoreService {
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	Store getStoreById(@QueryParam("id") String id);
+
+    @GET
+    @Path("v2/stores")
+    @Produces(MediaType.APPLICATION_JSON)
+    List<StoreSearchResult> findStoresByLocation(@QueryParam("latitude") double latitude,
+                               @QueryParam("longitude") double longitude,
+                               @QueryParam("distance") @DefaultValue("1.0") double distance);
 }

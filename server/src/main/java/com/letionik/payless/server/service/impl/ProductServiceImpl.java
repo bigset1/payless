@@ -126,7 +126,7 @@ public class ProductServiceImpl implements ProductService {
             throw new ServiceException("Query parameter name '" + name + "' cannot be null");
         }
 
-        Collection<ProductBO> foundProducts = productRepository.searchByName(name);
+        Collection<ProductBO> foundProducts = productRepository.searchByName(name.trim());
 
 		List<Product> results = new ArrayList<Product>(foundProducts.size());
 		for (ProductBO product : foundProducts) {
