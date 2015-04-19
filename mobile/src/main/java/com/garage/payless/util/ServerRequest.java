@@ -50,4 +50,16 @@ public class ServerRequest {
         }).start();
 
     }
+
+    public static void  getProductsByName(final PayLessApi payLessApi,
+                                         final ResponseCallback responseCallback,
+                                         final String name) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Product> products = payLessApi.getProductsByName(name);
+                responseCallback.complete(products);
+            }
+        }).start();
+    }
 }

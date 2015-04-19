@@ -34,4 +34,7 @@ public interface PayLessApi {
     @GET("/product/search/location")
     public List<ProductSearchResult> getShopsProduct(@Query("barcode") String barcode, @Query("latitude") double latitude,
                                                      @Query("longitude") double longitude);
+
+    @GET("/product/search/name")
+    public List<Product> getProductsByName(@Query("name") String name);
 }

@@ -22,7 +22,8 @@
             android:gravity="right|center_vertical"
             android:paddingLeft="110dp"
             android:paddingRight="50dp"
-            android:text="@string/barcode_btn" />
+            android:text="@string/barcode_btn"
+            android:textColor="@color/menu_txt_color"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,7 +46,8 @@
             android:gravity="right|center_vertical"
             android:paddingLeft="110dp"
             android:paddingRight="125dp"
-            android:text="@string/map_btn" />
+            android:text="@string/map_btn"
+            android:textColor="@color/menu_txt_color"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +70,8 @@
             android:gravity="right|center_vertical"
             android:paddingLeft="110dp"
             android:paddingRight="70dp"
-            android:text="@string/list_btn" />
+            android:text="@string/list_btn"
+            android:textColor="@color/menu_txt_color"/>
 
         <LinearLayout
             android:layout_width="match_parent"

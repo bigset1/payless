@@ -1,5 +1,6 @@
 package com.garage.payless;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
@@ -41,4 +42,5 @@ public class MainActivity extends FragmentActivity {
     public void onEventMainThread(LocationEvent event) {
 //        Toast.makeText(this, event.getLatLng().toString(), Toast.LENGTH_SHORT).show();
     }
+
 }
