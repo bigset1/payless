@@ -1,7 +1,9 @@
 routie({
     '': function () {
         React.render(
-            <AppIndex/>,
+            <App>
+                <AppIndex/>
+            </App>,
             document.getElementById('content')
         );
     },
@@ -27,13 +29,25 @@ routie({
             document.getElementById('content')
         );
     },
-    'map': function () {
-        React.render(
-            <App>
-                <ShopsMap/>
-            </App>,
-            document.getElementById('content')
-        );
+
+    'map/:location?': function (location) {
+        if (location) {
+            var data = location.split('&');
+            React.render(
+                <App>
+                    <ShopsMap location={data}/>
+                </App>,
+                document.getElementById('content')
+            );
+        } else {
+            React.render(
+                <App>
+                    <ShopsMap/>
+                </App>,
+                document.getElementById('content')
+            );
+        }
+
     },
     '*': function () {
         routie('');

@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public interface ProductService {
 	@GET
 	@Path("/search/location")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<ProductSearchResult> searchProductByLocation(@QueryParam("barcode") String barcode,
+    Collection<ProductSearchResult> searchProductByLocation(@QueryParam("barcode") String barcode,
 			@QueryParam("latitude") double latitude,
             @QueryParam("longitude") double longitude,
             @QueryParam("maxDistance") Double maxDistance);

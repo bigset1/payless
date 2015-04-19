@@ -71,6 +71,20 @@ var Product = React.createClass({
             },
             success: function (data) {
                 this.setState({info: data});
+
+                JsBarcode(React.findDOMNode(this.refs.barcodeCanvas), data.barcode, {
+                    width: 1,
+                    height: 40,
+                    quite: 15,
+                    format: "CODE128",
+                    displayValue: true,
+                    font: "monospace",
+                    textAlign: "center",
+                    fontSize: 15,
+                    backgroundColor: "",
+                    lineColor: "#000"
+                });
+
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -120,14 +134,14 @@ var Product = React.createClass({
                 </div>
             }
 
-            function getElement(title, str){
-                if(str){
-                return (
-                     <tr>
-                        <td className="vertical-heading">{title}</td>
-                        <td>{str}</td>
-                     </tr>
-                )
+            function getElement(title, str) {
+                if (str) {
+                    return (
+                        <tr>
+                            <td className="vertical-heading">{title}</td>
+                            <td>{str}</td>
+                        </tr>
+                    )
 
                 }
             }
@@ -148,11 +162,17 @@ var Product = React.createClass({
                                 <colgroup className="col-width-3">
                                 </colgroup>
                                 <tbody>
-                                {getElement('Product',info.name)}
-                                {getElement('Producer',info.producer)}
-                                {getElement('Country',info.country ? info.country : 'Ukraine')}
-                                {getElement('Barcode',info.barcode)}
-                                {getElement('Description',info.description)}
+                                {getElement('Product', info.name)}
+                                {getElement('Producer', info.producer)}
+                                {getElement('Country', info.country ? info.country : 'Ukraine')}
+                                <tr>
+                                    <td className="vertical-heading">Barcode</td>
+                                    <td>
+                                        <canvas ref="barcodeCanvas"></canvas>
+                                    </td>
+                                </tr>
+
+                                {getElement('Description', info.description)}
                                 </tbody>
                             </table>
                         </div>
@@ -194,10 +214,12 @@ var Product = React.createClass({
                                             <tr key={i}>
                                                 <td>{result.store.brand}</td>
                                                 <td className="product_price">{result.price}</td>
-                                                <td>{result.address}</td>
                                                 {/*<td>{result.store.workingHours}</td>*/}
+                                                <td>{result.store.address}</td>
                                                 <td>{result.distance.toFixed(2) + " km"}</td>
-                                                <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
+                                                <td><a className="btn btn-primary btn-sm"
+                                                       href={"#map/"+result.store.latitude+"&"+result.store.longitude}>Map</a>
+                                                </td>
                                             </tr>
                                         );
                                     }, this)}
@@ -261,85 +283,78 @@ var AppIndex = React.createClass({
     },
     render: function () {
         return (
-            <div className="wrapper" id="top">
-                <AppHeader/>
-                <main>
-                    <div className="search-container start-block">
-                        <SearchBar customClassNames="select-box home-item-search"
-                                   searchTemplate={this.searchBarTemplate}/>
-                        {/*<img
-                         src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"
-                         className="search-logo"/>*/}
-                    </div>
-                    <section className="container">
-                        <div className="row">
-                            <div className="col-sm-6 col-md-4">
-                                <div className="service">
-                                    <div className="icon icon--circle">
-                                        <i className="icon__item fa fa-credit-card"></i>
-                                    </div>
-                                    <a className="service__link" href="single-service.html">
-                                        <h3 className="service__heading">Reasonable Price</h3>
-                                    </a>
-
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in lacinia
-                                        quam. Fusce quis nulla tincidunt, interdum magna vitae, viverra est. Nunc eu
-                                        sodales
-                                        turpis, varius viverra mauris.</p>
+            <main>
+                <div className="search-container start-block">
+                    <SearchBar customClassNames="select-box home-item-search"
+                               searchTemplate={this.searchBarTemplate}/>
+                    {/*<img
+                     src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"
+                     className="search-logo"/>*/}
+                </div>
+                <section className="container">
+                    <div className="row">
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-credit-card"></i>
                                 </div>
-                            </div>
+                                <a className="service__link" href="single-service.html">
+                                    <h3 className="service__heading">People’s Prices</h3>
+                                </a>
 
-                            <div className="col-sm-6 col-md-4">
-                                <div className="service">
-
-                                    <div className="icon icon--circle">
-                                        <i className="icon__item fa fa-dashboard"></i>
-                                    </div>
-                                    {/*<div className="icon icon--circle icon--animate icon--animate-service">
-                                     <div className="icon__item">
-                                     <i className="livicon" data-name="dashboard" data-color="#fff"
-                                     data-hovercolor="#fff"></i>
-                                     </div>
-                                     </div>*/}
-                                    <a className="service__link" href="single-service.html">
-                                        <h3 className="service__heading">Efficient Workflow</h3>
-                                    </a>
-
-                                    <p>Sed eget placerat arcu. Nullam porta faucibus ligula, egestas tempus tellus
-                                        dapibus
-                                        tincidunt. Nunc vitae interdum massa. Nam in augue quis elit sagittis
-                                        accumsan.</p>
-                                </div>
-                            </div>
-
-                            <div className="col-sm-6 col-md-4">
-                                <div className="service">
-                                    <div className="icon icon--circle">
-                                        <i className="icon__item fa fa-magic"></i>
-                                    </div>
-
-                                    {/*<div className="icon icon--circle icon--animate icon--animate-service">
-                                     <div className="icon__item">
-                                     <i className="livicon" data-name="magic" data-color="#fff"
-                                     data-hovercolor="#fff"></i>
-                                     </div>
-                                     </div>*/}
-                                    <a className="service__link" href="single-service.html">
-                                        <h3 className="service__heading">Innovative Technologies</h3>
-                                    </a>
-
-                                    <p>Sed eget placerat arcu. Nullam porta faucibus ligula, egestas tempus tellus
-                                        dapibus
-                                        tincidunt. Nunc vitae interdum massa. Nam in augue quis elit sagittis
-                                        accumsan.</p>
-                                </div>
+                                <p>PayLess has the most recent price tickets for a diversity of products. We
+                                    guarantee the price actuality as they are based on people’s commitment, not on
+                                    fake price lists from supermarkets.
+                                </p>
                             </div>
                         </div>
-                        <div className="devider-brand devider--top-xs"></div>
-                    </section>
-                </main>
 
-            </div>
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-dashboard"></i>
+                                </div>
+                                {/*<div className="icon icon--circle icon--animate icon--animate-service">
+                                 <div className="icon__item">
+                                 <i className="livicon" data-name="dashboard" data-color="#fff"
+                                 data-hovercolor="#fff"></i>
+                                 </div>
+                                 </div>*/}
+                                <a className="service__link" href="single-service.html">
+                                    <h3 className="service__heading">Cheapest Basket</h3>
+                                </a>
+
+                                <p>We provide a feature to fill the list of goods you are going to buy and the
+                                    system will choose the supermarket near you with the most valuable prices.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-magic"></i>
+                                </div>
+
+                                {/*<div className="icon icon--circle icon--animate icon--animate-service">
+                                 <div className="icon__item">
+                                 <i className="livicon" data-name="magic" data-color="#fff"
+                                 data-hovercolor="#fff"></i>
+                                 </div>
+                                 </div>*/}
+                                <a className="service__link" href="single-service.html">
+                                    <h3 className="service__heading">Only Nearest Places</h3>
+                                </a>
+
+                                <p>PayLess cares about your free time and we suggest you only the nearest stores
+                                    that are located in 5-10 minute walking distance from your current position.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="devider-brand devider--top-xs"></div>
+                </section>
+            </main>
         );
     }
 });
@@ -525,7 +540,7 @@ CreateList.ListTable = React.createClass({
                             <tr key={i}>
                                 <td><span className="product-name-column">{result.name}</span>
                                     <span>{result.description}</span></td>
-                                <td>{result.country ? result.country: "Ukraine"}</td>
+                                <td>{result.country ? result.country : "Ukraine"}</td>
                                 <td>{result.producer}</td>
                                 <td>{result.minPrice + " грн. - " + result.maxPrice+ " грн."}</td>
                                 <td>
@@ -603,7 +618,12 @@ CreateList.Confirm = React.createClass({
 
 var ShopsMap = React.createClass({
     getDefaultProps: function () {
-        return {}
+        return {
+            location: [
+                50.439443,
+                30.514974
+            ]
+        }
     },
     getInitialState: function () {
         return {
@@ -619,8 +639,12 @@ var ShopsMap = React.createClass({
 
     },
     componentDidMount: function () {
-
-        initMapVintage(React.findDOMNode(this.refs.shopsMapArea), this.state, this);
+        var location = this.props.location;
+        console.log(location);
+        initMapVintage(React.findDOMNode(this.refs.shopsMapArea), {
+            center: this.props.location,
+            location: [this.state.location.lat, this.state.location.log]
+        }, this);
 
         $.ajax({
             url: getApiRequestUrl('store/v2/stores'),
@@ -704,7 +728,7 @@ var ShopsMap = React.createClass({
                                                 <b>{result.store.brand}</b><br/>
                                                 <i>{result.store.address}</i>
                                             </td>
-                                            <td>{Math.round(result.distance*100)/100}km</td>
+                                            <td>{Math.round(result.distance * 100) / 100}km</td>
                                             <td></td>
                                         </tr>
                                     );
@@ -714,7 +738,7 @@ var ShopsMap = React.createClass({
 
                         </div>
                         <div className="col-sm-6">
-                            <div id='map-blackwhite-full' className="map map--wide" style={{height:500+'px'}}
+                            <div id='map-blackwhite-full' className="map map--wide" style={{height: 500 + 'px'}}
                                  ref="shopsMapArea"></div>
                         </div>
                     </div>

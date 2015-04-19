@@ -1,4 +1,4 @@
-package com.letionik.payless.server.service.impl;
+package com.letionik.payless.server.service.impl.product;
 
 import com.letionik.payless.model.Product;
 import com.letionik.payless.model.transport.PriceItemDTO;
@@ -11,6 +11,7 @@ import com.letionik.payless.server.persistance.model.ProductBO;
 import com.letionik.payless.server.persistance.model.StoreBO;
 import com.letionik.payless.server.service.ProductService;
 import com.letionik.payless.server.service.ServiceException;
+import com.letionik.payless.server.service.impl.ConversionUtils;
 import com.letionik.payless.server.util.BarcodeInfoParser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,9 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Anton Nikulin
@@ -95,32 +98,37 @@ public class ProductServiceImpl implements ProductService {
     }
 
 	@Override
-    public List<ProductSearchResult> searchProductByLocation(String barcode,
+    public Collection<ProductSearchResult> searchProductByLocation(String barcode,
                                                              double latitude,
                                                              double longitude,
                                                              Double maxDistance) {
         GeoResults<StoreBO> nearestStores = storeRepository.searchStoresByLocation(new Point(longitude, latitude), maxDistance);
-        List<ProductSearchResult> searchResults = new ArrayList<ProductSearchResult>();
+
+        Map<PriceItemKey, ProductSearchResult> searchResults = new HashMap<>();
         for (GeoResult<StoreBO> store : nearestStores) {
-            List<PriceItemBO> priceItems = priceItemRepository.findByStore(store.getContent());
+            List<PriceItemBO> priceItems = priceItemRepository.findByStoreAndProductBarcode(store.getContent(), barcode);
             if (priceItems != null && !priceItems.isEmpty()) {
                 for (PriceItemBO priceItem : priceItems) {
-                    ProductBO product = priceItem.getProduct();
-                    if (product != null && product.getBarcode().equals(barcode)) {
-                        ProductSearchResult searchResult = new ProductSearchResult();
+                    PriceItemKey key = new PriceItemKey(barcode, store.getContent().getId());
+                    ProductSearchResult searchResult = searchResults.get(key);
+                    if (searchResult == null) {
+                        searchResult = new ProductSearchResult();
                         searchResult.setStore(ConversionUtils.convertStore(store.getContent()));
                         searchResult.setDistance(store.getDistance().getValue());
                         searchResult.setPrice(priceItem.getPrice());
-                        searchResults.add(searchResult);
+                    } else {
+                        Double averagePrice = (searchResult.getPrice() + priceItem.getPrice()) / 2;
+                        searchResult.setPrice(averagePrice);
                     }
+                    searchResults.put(key, searchResult);
                 }
 
             }
         }
-		return searchResults;
+		return searchResults.values();
 	}
 
-	@Override
+    @Override
     public List<Product> searchProductsByName(String name, int number) throws ServiceException{
         if (name == null || StringUtils.isBlank(name)) {
             throw new ServiceException("Query parameter name '" + name + "' cannot be null");

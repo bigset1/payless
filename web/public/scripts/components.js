@@ -95,7 +95,7 @@ AppHeader.Menu = React.createClass({
                         </li>
 
                         <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#create-list">Create List</a>
+                            <a className="z-nav__link z-nav__link--simple" href="#create-list">Create Basket</a>
                         </li>
 
                         <li className="z-nav__item">
