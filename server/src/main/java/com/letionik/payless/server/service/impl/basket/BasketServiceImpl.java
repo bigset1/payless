@@ -1,4 +1,4 @@
-package com.letionik.payless.server.service.impl;
+package com.letionik.payless.server.service.impl.basket;
 
 import com.letionik.payless.model.transport.BasketQueryDTO;
 import com.letionik.payless.model.transport.BasketSearchResult;
@@ -8,6 +8,7 @@ import com.letionik.payless.server.persistance.StoreRepository;
 import com.letionik.payless.server.persistance.model.PriceItemBO;
 import com.letionik.payless.server.persistance.model.StoreBO;
 import com.letionik.payless.server.service.BasketService;
+import com.letionik.payless.server.service.impl.ConversionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.GeoResult;
 import org.springframework.data.geo.GeoResults;

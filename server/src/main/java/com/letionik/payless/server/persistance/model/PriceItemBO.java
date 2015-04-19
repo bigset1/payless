@@ -69,7 +69,8 @@ public class PriceItemBO {
         this.product = product;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return "PriceItem{" +
                 "id='" + id + '\'' +
                 ", price=" + price +

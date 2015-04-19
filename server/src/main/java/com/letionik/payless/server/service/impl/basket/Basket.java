@@ -1,4 +1,4 @@
-package com.letionik.payless.server.service.impl;
+package com.letionik.payless.server.service.impl.basket;
 
 import com.letionik.payless.server.persistance.model.PriceItemBO;
 import com.letionik.payless.server.persistance.model.StoreBO;

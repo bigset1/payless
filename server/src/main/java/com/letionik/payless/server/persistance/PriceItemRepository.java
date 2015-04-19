@@ -14,4 +14,6 @@ public interface PriceItemRepository extends MongoRepository<PriceItemBO, String
 
     List<PriceItemBO> findByStore(StoreBO store);
 
+    List<PriceItemBO> findByStoreAndProductBarcode(StoreBO store, String barcode);
+
 }

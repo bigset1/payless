@@ -37,7 +37,7 @@ public class ProductRepositoryImpl implements CustomProductRepository {
     }
 
     private List<ProductBO> makeRegexpQuery(String name) {
-        String regExp = (name.length() > 4) ? name : "^" + name;
+        String regExp = (name.length() > 2) ? name : "^" + name;
         Query regexQuery = Query.query(Criteria.where("name").regex(regExp, "i"));
         return mongoTemplate.find(regexQuery, ProductBO.class);
     }
