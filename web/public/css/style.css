@@ -22255,6 +22255,10 @@ background-size: 35px !important;
   display: block;
 }
 
+[placeholder]:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
 .select2-search.select2-search--inline{
 width:100% !important;
 }
@@ -22273,7 +22277,7 @@ padding:10px;
 
 .select2-results__option a:hover{
 background-color: #BDBDBD;
-font-size:17px;
+/*font-size:17px;*/
 }
 
  .select2-results__option {

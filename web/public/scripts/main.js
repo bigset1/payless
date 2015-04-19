@@ -120,6 +120,18 @@ var Product = React.createClass({
                 </div>
             }
 
+            function getElement(title, str){
+                if(str){
+                return (
+                     <tr>
+                        <td className="vertical-heading">{title}</td>
+                        <td>{str}</td>
+                     </tr>
+                )
+
+                }
+            }
+
 
             return (
                 <div className="product product--single">
@@ -136,26 +148,11 @@ var Product = React.createClass({
                                 <colgroup className="col-width-3">
                                 </colgroup>
                                 <tbody>
-                                <tr>
-                                    <td className="vertical-heading">Name</td>
-                                    <td>{info.name}</td>
-                                </tr>
-                                <tr>
-                                    <td className="vertical-heading">Producer</td>
-                                    <td>{info.producer}</td>
-                                </tr>
-                                <tr>
-                                    <td className="vertical-heading">Country</td>
-                                    <td>{info.country}</td>
-                                </tr>
-                                <tr>
-                                    <td className="vertical-heading">Barcode</td>
-                                    <td>{info.barcode}</td>
-                                </tr>
-                                <tr>
-                                    <td className="vertical-heading">Description</td>
-                                    <td>{info.description}</td>
-                                </tr>
+                                {getElement('Product',info.name)}
+                                {getElement('Producer',info.producer)}
+                                {getElement('Country',info.country ? info.country : 'Ukraine')}
+                                {getElement('Barcode',info.barcode)}
+                                {getElement('Description',info.description)}
                                 </tbody>
                             </table>
                         </div>
