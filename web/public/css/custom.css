@@ -14,3 +14,10 @@ table.table--scroll tbody {
     width: 100%;
     position: absolute;
 }*/
+
+
+.logo img {
+    height: 46px;
+    margin-top: 28px;
+    width: auto;
+}

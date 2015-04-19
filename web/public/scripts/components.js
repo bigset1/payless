@@ -114,9 +114,10 @@ AppHeader.Logo = React.createClass({
     render: function () {
         return (
             <a className="logo" href="#">
-                <h1 className="logo__text">Pay<span className="highlight">Less</span><br/>
+                <img src="images/logo_v1.png" alt="Pay Less"/>
+                    {/*<h1 className="logo__text">Pay<span className="highlight">Less</span><br/>
                     <span className="logo__slogan">buy more</span>
-                </h1>
+                </h1>*/}
             </a>
         );
     }
