@@ -344,7 +344,7 @@ var AppIndex = React.createClass({
                                  </div>
                                  </div>*/}
                                 <a className="service__link" href="single-service.html">
-                                    <h3 className="service__heading">Only Nearest Places</h3>
+                                    <h3 className="service__heading">Nearest Places</h3>
                                 </a>
 
                                 <p>PayLess cares about your free time and we suggest you only the nearest stores
