@@ -203,7 +203,6 @@ var Product = React.createClass({
                                         <th>Market</th>
                                         <th>Price</th>
                                         <th>Address</th>
-                                        /*{<th>Working Hours</th>}*/
                                         <th>Distance</th>
                                         <th>Action</th>
                                     </tr>
@@ -213,8 +212,7 @@ var Product = React.createClass({
                                         return (
                                             <tr key={i}>
                                                 <td>{result.store.brand}</td>
-                                                <td className="product_price">{result.price}</td>
-                                                {/*<td>{result.store.workingHours}</td>*/}
+                                                <td className="product_price">{result.price+" грн."}</td>
                                                 <td>{result.store.address}</td>
                                                 <td>{result.distance.toFixed(2) + " km"}</td>
                                                 <td><a className="btn btn-primary btn-sm"
@@ -475,16 +473,25 @@ var CreateList = React.createClass({
                         Evaluate
                     </button>
             }
+            var hasItems = this.state.list.length > 0;
+            var ContentFill;
+            if(hasItems){
+                ContentFill = (                <div><div className="table-responsive">
+                                                   <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
+                                               </div>
+                                               {ConfirmButton}</div>);
+            }
+            else{
+                ContentFill = (<div className="no-items-message">Please, add items above</div>);
+            }
+
             ContentTable = <div className="col-sm-12 list-creation-content">
                 <SearchBar custom-class-names="select-box list-item-search"
                            searchTemplate={this.searchBarTemplate}
                     />
 
                 <div className="devider-brand present-devider"></div>
-                <div className="table-responsive">
-                    <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
-                </div>
-                {ConfirmButton}
+                {ContentFill}
             </div>
         }
         return (
