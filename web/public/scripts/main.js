@@ -127,11 +127,12 @@ var Product = React.createClass({
 
             var imageContainer;
             if (info.imageUrl) {
-                imageContainer = <div className="col-sm-3">
-                    <div className="img-container thumbnail">
-                        <img alt="" className="img-thumbnail" src={info.imageUrl}/>
+                imageContainer =
+                    <div className="col-sm-3">
+                        <div className="img-container thumbnail">
+                            <img alt="" className="img-thumbnail" src={info.imageUrl}/>
+                        </div>
                     </div>
-                </div>
             }
 
             function getElement(title, str) {
@@ -195,9 +196,6 @@ var Product = React.createClass({
                                     </colgroup>
                                     <colgroup className="col-sm-width">
                                     </colgroup>
-                                    <colgroup className="col-sm-width">
-
-                                    </colgroup>
                                     <thead>
                                     <tr>
                                         <th>Market</th>
@@ -212,7 +210,7 @@ var Product = React.createClass({
                                         return (
                                             <tr key={i}>
                                                 <td>{result.store.brand}</td>
-                                                <td className="product_price">{result.price+" грн."}</td>
+                                                <td className="product_price">{result.price + " грн."}</td>
                                                 <td>{result.store.address}</td>
                                                 <td>{result.distance.toFixed(2) + " km"}</td>
                                                 <td><a className="btn btn-primary btn-sm"
@@ -359,9 +357,7 @@ var AppIndex = React.createClass({
 
 var ItemsStaticListFuck = {};
 
-var ProductListStore = {
-
-};
+var ProductListStore = {};
 
 
 var CreateList = React.createClass({
@@ -480,22 +476,23 @@ var CreateList = React.createClass({
             }
             var hasItems = this.state.list.length > 0;
             var ContentFill;
-            if(hasItems){
-                ContentFill = (                <div><div className="table-responsive">
-                                                   <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
-                                               </div>
-                                               {ConfirmButton}</div>);
+            if (hasItems) {
+                ContentFill = (<div>
+                    <div className="table-responsive">
+                        <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
+                    </div>
+                    {ConfirmButton}</div>);
             }
-            else{
+            else {
                 ContentFill = (
-                <div className="alert alert--full alert-info alert-visible ">
-                							<div className="box-inner">
-                							  <span className="alert-market">
-                							  	<i className="fa fa-info-circle"></i>
-                							  </span>
-                						      <strong>Information for you.</strong> Your basket is empty. Please, add some products above.
-                					    	</div>
-                					    </div>
+                    <div className="alert alert--full alert-info alert-visible ">
+                        <div className="box-inner">
+                              <span className="alert-market">
+                                <i className="fa fa-info-circle"></i>
+                              </span>
+                            <strong>Information for you.</strong> Your basket is empty. Please, add some products above.
+                        </div>
+                    </div>
                 );
             }
 
