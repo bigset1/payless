@@ -298,9 +298,9 @@ var AppIndex = React.createClass({
                                 <div className="icon icon--circle">
                                     <i className="icon__item fa fa-credit-card"></i>
                                 </div>
-                                <a className="service__link" href="single-service.html">
+                                <span className="service__link">
                                     <h3 className="service__heading">People’s Prices</h3>
-                                </a>
+                                </span>
 
                                 <p>PayLess has the most recent price tickets for a diversity of products. We
                                     guarantee the price actuality as they are based on people’s commitment, not on
@@ -321,9 +321,9 @@ var AppIndex = React.createClass({
                                  data-hovercolor="#fff"></i>
                                  </div>
                                  </div>*/}
-                                <a className="service__link" href="single-service.html">
+                                <span className="service__link">
                                     <h3 className="service__heading">Cheapest Basket</h3>
-                                </a>
+                                </span>
 
                                 <p>We provide a feature to fill the list of goods you are going to buy and the
                                     system will choose the supermarket near you with the most valuable prices.
@@ -343,9 +343,9 @@ var AppIndex = React.createClass({
                                  data-hovercolor="#fff"></i>
                                  </div>
                                  </div>*/}
-                                <a className="service__link" href="single-service.html">
+                                <span className="service__link">
                                     <h3 className="service__heading">Nearest Places</h3>
-                                </a>
+                                </span>
 
                                 <p>PayLess cares about your free time and we suggest you only the nearest stores
                                     that are located in 5-10 minute walking distance from your current position.</p>
