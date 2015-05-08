@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,20 +25,19 @@ public class StoreParser {
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode rootNode = objectMapper.readTree(fileReader);
 		JsonNode resultsNode = rootNode.findValue("results");
-		Iterator<JsonNode> iterator = resultsNode.iterator();
 
-		while (iterator.hasNext()) {
-			JsonNode storeNode = iterator.next();
+        for (JsonNode storeNode : resultsNode) {
+            double latitude = storeNode.findValue("lat").asDouble();
+            double longitude = storeNode.findValue("lng").asDouble();
+            String name = storeNode.findValue("name").asText();
+            String address = storeNode.findValue("vicinity").asText();
 
-			double latitude = storeNode.findValue("lat").asDouble();
-			double longitude = storeNode.findValue("lng").asDouble();
-			String name = storeNode.findValue("name").asText();
-
-			StoreBO store = new StoreBO();
-			store.setName(name);
-			store.setLocation(new double[] {longitude, latitude});
-			storeList.add(store);
-		}
+            StoreBO store = new StoreBO();
+            store.setName(name);
+            store.setLocation(new double[]{longitude, latitude});
+            store.setAddress(address);
+            storeList.add(store);
+        }
 		return storeList;
 	}
 

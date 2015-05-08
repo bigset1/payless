@@ -71,6 +71,20 @@ var Product = React.createClass({
             },
             success: function (data) {
                 this.setState({info: data});
+
+                JsBarcode(React.findDOMNode(this.refs.barcodeCanvas), data.barcode, {
+                    width: 1,
+                    height: 40,
+                    quite: 15,
+                    format: "CODE128",
+                    displayValue: true,
+                    font: "monospace",
+                    textAlign: "center",
+                    fontSize: 15,
+                    backgroundColor: "",
+                    lineColor: "#000"
+                });
+
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -113,11 +127,24 @@ var Product = React.createClass({
 
             var imageContainer;
             if (info.imageUrl) {
-                imageContainer = <div className="col-sm-3">
-                    <div className="img-container thumbnail">
-                        <img alt="" className="img-thumbnail" src={info.imageUrl}/>
+                imageContainer =
+                    <div className="col-sm-3">
+                        <div className="img-container thumbnail">
+                            <img alt="" className="img-thumbnail" src={info.imageUrl}/>
+                        </div>
                     </div>
-                </div>
+            }
+
+            function getElement(title, str) {
+                if (str) {
+                    return (
+                        <tr>
+                            <td className="vertical-heading">{title}</td>
+                            <td>{str}</td>
+                        </tr>
+                    )
+
+                }
             }
 
 
@@ -136,26 +163,17 @@ var Product = React.createClass({
                                 <colgroup className="col-width-3">
                                 </colgroup>
                                 <tbody>
-                                <tr>
-                                    <td className="vertical-heading">Name</td>
-                                    <td>{info.name}</td>
-                                </tr>
-                                <tr>
-                                    <td className="vertical-heading">Producer</td>
-                                    <td>{info.producer}</td>
-                                </tr>
-                                <tr>
-                                    <td className="vertical-heading">Country</td>
-                                    <td>{info.country}</td>
-                                </tr>
+                                {getElement('Product', info.name)}
+                                {getElement('Producer', info.producer)}
+                                {getElement('Country', info.country ? info.country : 'Ukraine')}
                                 <tr>
                                     <td className="vertical-heading">Barcode</td>
-                                    <td>{info.barcode}</td>
+                                    <td>
+                                        <canvas ref="barcodeCanvas"></canvas>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td className="vertical-heading">Description</td>
-                                    <td>{info.description}</td>
-                                </tr>
+
+                                {getElement('Description', info.description)}
                                 </tbody>
                             </table>
                         </div>
@@ -178,15 +196,11 @@ var Product = React.createClass({
                                     </colgroup>
                                     <colgroup className="col-sm-width">
                                     </colgroup>
-                                    <colgroup className="col-sm-width">
-
-                                    </colgroup>
                                     <thead>
                                     <tr>
                                         <th>Market</th>
                                         <th>Price</th>
                                         <th>Address</th>
-                                        <th>Working Hours</th>
                                         <th>Distance</th>
                                         <th>Action</th>
                                     </tr>
@@ -196,11 +210,12 @@ var Product = React.createClass({
                                         return (
                                             <tr key={i}>
                                                 <td>{result.store.brand}</td>
-                                                <td className="product_price">{result.price}</td>
-                                                <td>{result.address}</td>
-                                                <td>{result.store.workingHours}</td>
+                                                <td className="product_price">{result.price + " грн."}</td>
+                                                <td>{result.store.address}</td>
                                                 <td>{result.distance.toFixed(2) + " km"}</td>
-                                                <td><a className="btn btn-primary btn-sm" href="#">Map</a></td>
+                                                <td><a className="btn btn-primary btn-sm"
+                                                       href={"#map/"+result.store.latitude+"&"+result.store.longitude}>Map</a>
+                                                </td>
                                             </tr>
                                         );
                                     }, this)}
@@ -264,24 +279,86 @@ var AppIndex = React.createClass({
     },
     render: function () {
         return (
-            <div className="wrapper" id="top">
-                <AppHeader/>
-                <main>
-                    <div className="search-container start-block">
-                        <SearchBar customClassNames="select-box home-item-search"
-                                   searchTemplate={this.searchBarTemplate}/>
-                        <img
-                            src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"/*Insert our logo here  Yopta*/
-                            className="search-logo"/>
-                    </div>
-                </main>
+            <main>
+                <div className="search-container start-block">
+                    <SearchBar customClassNames="select-box home-item-search"
+                               searchTemplate={this.searchBarTemplate}/>
+                    {/*<img
+                     src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Search-icon.png"
+                     className="search-logo"/>*/}
+                </div>
+                <section className="container">
+                    <div className="row">
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-credit-card"></i>
+                                </div>
+                                <span className="service__link">
+                                    <h3 className="service__heading">People’s Prices</h3>
+                                </span>
 
-            </div>
+                                <p>PayLess has the most recent price tickets for a diversity of products. We
+                                    guarantee the price actuality as they are based on people’s commitment, not on
+                                    fake price lists from supermarkets.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-dashboard"></i>
+                                </div>
+                                {/*<div className="icon icon--circle icon--animate icon--animate-service">
+                                 <div className="icon__item">
+                                 <i className="livicon" data-name="dashboard" data-color="#fff"
+                                 data-hovercolor="#fff"></i>
+                                 </div>
+                                 </div>*/}
+                                <span className="service__link">
+                                    <h3 className="service__heading">Cheapest Basket</h3>
+                                </span>
+
+                                <p>We provide a feature to fill the list of goods you are going to buy and the
+                                    system will choose the supermarket near you with the most valuable prices.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="col-sm-6 col-md-4">
+                            <div className="service">
+                                <div className="icon icon--circle">
+                                    <i className="icon__item fa fa-magic"></i>
+                                </div>
+
+                                {/*<div className="icon icon--circle icon--animate icon--animate-service">
+                                 <div className="icon__item">
+                                 <i className="livicon" data-name="magic" data-color="#fff"
+                                 data-hovercolor="#fff"></i>
+                                 </div>
+                                 </div>*/}
+                                <span className="service__link">
+                                    <h3 className="service__heading">Nearest Places</h3>
+                                </span>
+
+                                <p>PayLess cares about your free time and we suggest you only the nearest stores
+                                    that are located in 5-10 minute walking distance from your current position.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="devider-brand devider--top-xs"></div>
+                </section>
+            </main>
         );
     }
 });
 
 var ItemsStaticListFuck = {};
+
+var ProductListStore = {};
+
 
 var CreateList = React.createClass({
     getInitialState: function () {
@@ -377,7 +454,7 @@ var CreateList = React.createClass({
                     </button>
                 </div>
                 <div className="row">
-                    <div className="table-responsive">
+                    <div className="table-responsive product-list-item">
                         <CreateList.Confirm list={this.state.shops}/>
                     </div>
                 </div>
@@ -397,23 +474,41 @@ var CreateList = React.createClass({
                         Evaluate
                     </button>
             }
+            var hasItems = this.state.list.length > 0;
+            var ContentFill;
+            if (hasItems) {
+                ContentFill = (<div>
+                    <div className="table-responsive">
+                        <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
+                    </div>
+                    {ConfirmButton}</div>);
+            }
+            else {
+                ContentFill = (
+                    <div className="alert alert--full alert-info alert-visible ">
+                        <div className="box-inner">
+                              <span className="alert-market">
+                                <i className="fa fa-info-circle"></i>
+                              </span>
+                            <strong>Information for you.</strong> Your basket is empty. Please, add some products above.
+                        </div>
+                    </div>
+                );
+            }
+
             ContentTable = <div className="col-sm-12 list-creation-content">
                 <SearchBar custom-class-names="select-box list-item-search"
                            searchTemplate={this.searchBarTemplate}
                     />
 
                 <div className="devider-brand present-devider"></div>
-                <div className="table-responsive">
-                    <CreateList.ListTable list={this.state.list} removeListItem={this.handleRemoveListItem}/>
-                </div>
-                {ConfirmButton}
+                {ContentFill}
             </div>
         }
         return (
             <section className="container">
                 <div className="row">
                     {ContentTable}
-                    <AppSidebar/>
                 </div>
             </section>
         );
@@ -437,13 +532,13 @@ CreateList.ListTable = React.createClass({
         return (
             <div className="table-responsive product-list-item">
                 <table className="table table--target table-present">
-                    <colgroup className="col-wide">
-                    </colgroup>
-                    <colgroup className="col-middle">
-                    </colgroup>
                     <colgroup className="col-middle">
                     </colgroup>
                     <colgroup className="col-small">
+                    </colgroup>
+                    <colgroup className="col-middle">
+                    </colgroup>
+                    <colgroup className="col-middle">
                     </colgroup>
                     <colgroup className="col-small">
                     </colgroup>
@@ -463,9 +558,9 @@ CreateList.ListTable = React.createClass({
                             <tr key={i}>
                                 <td><span className="product-name-column">{result.name}</span>
                                     <span>{result.description}</span></td>
-                                <td>{result.country}</td>
+                                <td>{result.country ? result.country : "Ukraine"}</td>
                                 <td>{result.producer}</td>
-                                <td>{result.minPrice + "-" + result.maxPrice}</td>
+                                <td>{result.minPrice + " грн. - " + result.maxPrice + " грн."}</td>
                                 <td>
                                     <a href={"#product/"+result.barcode}
                                        className="actions-btn btn btn-success btn-sm-rect btn-sm">
@@ -501,41 +596,38 @@ CreateList.Confirm = React.createClass({
 
 
         return (
-            <table className="table table-bordered table--wide table-present">
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-                <colgroup className="col-sm-width"/>
-
+            <table className="table table--target table-present">
+                <colgroup className="col-middle"/>
+                <colgroup className="col-middle"/>
+                <colgroup className="col-small"/>
+                <colgroup className="col-small"/>
+                <colgroup className="col-small"/>
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Working Hours</th>
+                    <th>Address</th>
                     <th>Distance</th>
                     <th>Total Price</th>
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
 
+                <tbody>
                 {this.props.list.map(function (result, i) {
                     return (
                         <tr key={result.store.brand+i}>
-                            <td>{result.store.brand}</td>
-                            <td>{result.store.workingHours}</td>
-                            <td>{result.distance}</td>
-                            <td>{result.productPricesSum}</td>
+                            <td><span className="product-name-column">{result.store.brand}</span></td>
+                            <td>{result.store.address}</td>
+                            <td>{result.distance.toFixed(2) + " км."}</td>
+                            <td>{result.totalPrice + " грн."}</td>
                             <td>
-                                <botton disabled="disabled" className="btn btn-primary btn-sm">View
-                                    Order
-                                </botton>
+                                <button disabled="disabled" className="btn btn-primary btn-sm">View Order</button>
                             </td>
                         </tr>
                     );
                 })}
                 </tbody>
+
             </table>
         );
     }
@@ -544,11 +636,16 @@ CreateList.Confirm = React.createClass({
 
 var ShopsMap = React.createClass({
     getDefaultProps: function () {
-        return {}
+        return {
+            location: [
+                50.439443,
+                30.514974
+            ]
+        }
     },
     getInitialState: function () {
         return {
-            shops: false,
+            shops: [],
             location: {
                 lat: 50.439443,
                 log: 30.514974
@@ -560,11 +657,15 @@ var ShopsMap = React.createClass({
 
     },
     componentDidMount: function () {
-
-        initMapVintage(React.findDOMNode(this.refs.shopsMapArea), this.state, this);
+        var location = this.props.location;
+        console.log(location);
+        initMapVintage(React.findDOMNode(this.refs.shopsMapArea), {
+            center: this.props.location,
+            location: [this.state.location.lat, this.state.location.log]
+        }, this);
 
         $.ajax({
-            url: getApiRequestUrl('store/search'),
+            url: getApiRequestUrl('store/v2/stores'),
             dataType: 'json',
             type: 'GET',
             data: {
@@ -585,18 +686,22 @@ var ShopsMap = React.createClass({
 
                         var marker = new google.maps.Marker({
                             map: this.state.map,
-                            position: new google.maps.LatLng(shop.latitude, shop.longitude),
+                            position: new google.maps.LatLng(shop.store.latitude, shop.store.longitude),
                             icon: shopMarker
                         });
                         google.maps.event.addListener(marker, 'mouseover', function () {
                             info.open(this.state.map, marker);
                         }.bind(this));
+
                         google.maps.event.addListener(marker, 'mouseout', function () {
                             info.close(this.state.map, marker);
                         }.bind(this));
+                        google.maps.event.addListener(marker, 'click', function () {
+                            this.state.map.setCenter(marker.position);
+                        }.bind(this));
                         shopsMarkers.push(marker);
                     }.bind(this))(new google.maps.InfoWindow({
-                        content: shop.brand
+                        content: "<i>" + shop.store.brand + "</i><br>" + (Math.round(shop.distance * 100) / 100) + 'km'
                     }));
 
                 }
@@ -614,11 +719,45 @@ var ShopsMap = React.createClass({
 
     render: function () {
         return (
-            <div className="row">
-                <div className="col-sm-12">
-                    <div id='map-blackwhite-full' className="map map--wide" style={{height:500+'px'}}
-                         ref="shopsMapArea"></div>
-                </div>
+            <div>
+                <section className="container">
+                    <div className="devider devider--bottom-md"></div>
+                    <div className="row">
+                        <div className="col-sm-6">
+
+                            <table className="table table-bordered table--wide table-present">
+                                <colgroup className="col-md-width"/>
+                                <colgroup className="col-sm-width"/>
+
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Distance</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {this.state.shops.map(function (result, i) {
+                                    return (
+                                        <tr key={i}>
+                                            <td>
+                                                <b>{result.store.brand}</b><br/>
+                                                <i>{result.store.address}</i>
+                                            </td>
+                                            <td>{Math.round(result.distance * 100) / 100}km</td>
+                                        </tr>
+                                    );
+                                })}
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div className="col-sm-6">
+                            <div id='map-blackwhite-full' className="map map--wide" style={{height: 500 + 'px'}}
+                                 ref="shopsMapArea"></div>
+                        </div>
+                    </div>
+                </section>
             </div>
         );
     }

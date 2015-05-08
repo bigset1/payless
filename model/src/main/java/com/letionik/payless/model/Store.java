@@ -11,6 +11,7 @@ public class Store {
 	private double latitude;
 	private double longitude;
 	private String workingHours;
+    private String address;
 
 	public Store() {
 	}
@@ -62,13 +63,23 @@ public class Store {
 		this.workingHours = workingHours;
 	}
 
-	@Override public String toString() {
-		return "Store{" +
-				"id='" + id + '\'' +
-				", brand='" + brand + '\'' +
-				", latitude=" + latitude +
-				", longitude=" + longitude +
-				", workingHours='" + workingHours + '\'' +
-				'}';
-	}
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id='" + id + '\'' +
+                ", brand='" + brand + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", workingHours='" + workingHours + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

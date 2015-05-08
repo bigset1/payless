@@ -72,4 +72,26 @@ public class ProductBO {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductBO productBO = (ProductBO) o;
+
+        if (barcode != null ? !barcode.equals(productBO.barcode) : productBO.barcode != null) return false;
+        if (name != null ? !name.equals(productBO.name) : productBO.name != null) return false;
+        if (producer != null ? !producer.equals(productBO.producer) : productBO.producer != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = barcode != null ? barcode.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (producer != null ? producer.hashCode() : 0);
+        return result;
+    }
 }

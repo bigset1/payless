@@ -95,15 +95,11 @@ AppHeader.Menu = React.createClass({
                         </li>
 
                         <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#create-list">Create List</a>
+                            <a className="z-nav__link z-nav__link--simple" href="#create-list">Create Basket</a>
                         </li>
 
                         <li className="z-nav__item">
                             <a className="z-nav__link z-nav__link--simple" href="#map">Map</a>
-                        </li>
-
-                        <li className="z-nav__item">
-                            <a className="z-nav__link z-nav__link--simple" href="#about">About</a>
                         </li>
                     </ul>
                 </div>
@@ -118,9 +114,10 @@ AppHeader.Logo = React.createClass({
     render: function () {
         return (
             <a className="logo" href="#">
-                <h1 className="logo__text">Pay<span className="highlight">Less</span><br/>
+                <img src="images/logo_v1.png" alt="Pay Less"/>
+                    {/*<h1 className="logo__text">Pay<span className="highlight">Less</span><br/>
                     <span className="logo__slogan">buy more</span>
-                </h1>
+                </h1>*/}
             </a>
         );
     }

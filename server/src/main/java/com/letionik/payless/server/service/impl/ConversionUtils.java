@@ -41,6 +41,7 @@ public class ConversionUtils {
         store.setLongitude(location[0]);
         store.setLatitude(location[1]);
         store.setWorkingHours(storeBO.getWorkingHours());
+        store.setAddress(storeBO.getAddress());
         return store;
     }
 }

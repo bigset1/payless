@@ -73,7 +73,7 @@ var formatRepo = function (data, e, e1, e2) {
 };
 
 var getApiRequestUrl = function (path) {
-    var url = " http://payless.cloudapp.net/";
+    var url = " http://payless.cloudapp.net/server/";
     return url + path;
 };
 
@@ -110,7 +110,7 @@ var InitSearchBar = function (selector, resultTemplateFunction) {
         escapeMarkup: function (markup) {
             return markup;
         }, // let our custom formatter work
-        minimumInputLength: 4,
+//        minimumInputLength: 4,
         templateResult: resultTemplateFunction // omitted for brevity, see the source of this page
         //templateSelection: formatBarcodeSearchResults// omitted for brevity, see the source of this page
     })
@@ -123,7 +123,7 @@ function initMapVintage(selector, data, component) {
     //Map start init - location New York
     var mapOptions = {
         scaleControl: true,
-        center: new google.maps.LatLng(data.location.lat, data.location.log),
+        center: new google.maps.LatLng(data.center[0], data.center[1]),
         zoom: 14,
         scrollwheel: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -146,7 +146,7 @@ function initMapVintage(selector, data, component) {
 
     var marker = new google.maps.Marker({
         map: map,
-        position: map.getCenter(),
+        position: new google.maps.LatLng(data.location[0], data.location[1]),
         icon: myIcon
     });
 

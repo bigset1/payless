@@ -2,7 +2,7 @@ package com.letionik.payless.server.persistance;
 
 import com.letionik.payless.server.persistance.model.ProductBO;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author Roman Kishchenko
@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface CustomProductRepository {
 
-    List<ProductBO> searchByName(String name, int page, int perPage);
+    Collection<ProductBO> searchByName(String name);
 
 }
