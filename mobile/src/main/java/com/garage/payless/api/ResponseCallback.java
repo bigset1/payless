@@ -5,4 +5,5 @@ package com.garage.payless.api;
  */
 public interface ResponseCallback {
     public void complete(Object response);
+    public void failed();
 }

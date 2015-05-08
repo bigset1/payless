@@ -10,6 +10,8 @@ import com.letionik.payless.model.transport.ProductSearchResult;
 
 import java.util.List;
 
+import retrofit.RetrofitError;
+
 /**
  * Created by Paryshkura Roman on 18.04.2015.
  */
@@ -20,8 +22,14 @@ public class ServerRequest {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Product product = payLessApi.getProduct(barcode);
-                responseCallback.complete(product);
+                try {
+                    Product product = payLessApi.getProduct(barcode);
+                    responseCallback.complete(product);
+                } catch (RetrofitError e) {
+                    responseCallback.failed();
+                } catch (Exception e) {
+                    responseCallback.failed();
+                }
             }
         }).start();
     }
@@ -32,8 +40,15 @@ public class ServerRequest {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<Store> stores = payLessApi.getStores(latitude, longitude, distance);
-                responseCallback.complete(stores);
+
+                try {
+                    List<Store> stores = payLessApi.getStores(latitude, longitude, distance);
+                    responseCallback.complete(stores);
+                } catch (RetrofitError e) {
+                    responseCallback.failed();
+                } catch (Exception e) {
+                    responseCallback.failed();
+                }
             }
         }).start();
     }
@@ -44,21 +59,33 @@ public class ServerRequest {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<ProductSearchResult> productSearchResults = payLessApi.getShopsProduct(barcode, latitude, longitude);
-                responseCallback.complete(productSearchResults);
+                try {
+                    List<ProductSearchResult> productSearchResults = payLessApi.getShopsProduct(barcode, latitude, longitude);
+                    responseCallback.complete(productSearchResults);
+                } catch (RetrofitError e) {
+                    responseCallback.failed();
+                } catch (Exception e) {
+                    responseCallback.failed();
+                }
             }
         }).start();
 
     }
 
-    public static void  getProductsByName(final PayLessApi payLessApi,
+    public static void getProductsByName(final PayLessApi payLessApi,
                                          final ResponseCallback responseCallback,
                                          final String name) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<Product> products = payLessApi.getProductsByName(name);
-                responseCallback.complete(products);
+                try {
+                    List<Product> products = payLessApi.getProductsByName(name);
+                    responseCallback.complete(products);
+                } catch (RetrofitError e) {
+                    responseCallback.failed();
+                } catch (Exception e) {
+                    responseCallback.failed();
+                }
             }
         }).start();
     }

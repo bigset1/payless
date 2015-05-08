@@ -7,7 +7,10 @@
         android:id="@+id/product_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_barcode"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:background="#FFFFFF"
         android:paddingRight="30dp">
 
         <ImageView
@@ -42,7 +45,6 @@
             android:id="@+id/line"
             android:layout_width="fill_parent"
             android:layout_height="2dp"
-            android:layout_alignLeft="@id/tv_product_name"
             android:layout_below="@id/tv_product_name"
             android:layout_toRightOf="@id/img_product"
             android:background="@color/btn_background" />
@@ -51,19 +53,20 @@
             android:id="@+id/tv_producer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_description"
             android:layout_below="@id/line"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/img_product"
             android:text="Producer" />
 
-        <TextView
-            android:id="@+id/tv_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/tv_producer"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/tv_producer"
-            android:text="Country" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_country"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@id/tv_producer"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:layout_toRightOf="@id/tv_producer"-->
+        <!--android:text="Country" />-->
     </RelativeLayout>
 
     <LinearLayout
@@ -71,6 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_info"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
         android:weightSum="10">
 
@@ -93,20 +97,54 @@
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/listview_shops"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/container_table_header">
+        android:layout_above="@+id/button_scan_new"
+        android:layout_below="@+id/container_table_header"
+        android:layout_margin="5dp"
+        android:background="#FFFFFF" />
 
-        <TextView
-            android:id="@+id/textview_shops"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    <!--<ScrollView-->
+        <!--android:id="@+id/container_shops"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_above="@+id/bottom_view"-->
+        <!--android:layout_below="@+id/container_table_header"-->
+        <!--android:layout_margin="5dp">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#FFFFFF"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:weightSum="10">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/textview_shops"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="3dp"-->
+                <!--android:layout_weight="7"-->
+                <!--android:textColor="#000000" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/textview_price"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="3"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:textColor="#000000" />-->
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
 
     <Button
+        android:id="@+id/button_scan_new"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/btn_background" />
+        android:background="@color/btn_background"
+        android:text="@string/new_scan"
+        android:textColor="#FFFFFF" />
 </RelativeLayout>

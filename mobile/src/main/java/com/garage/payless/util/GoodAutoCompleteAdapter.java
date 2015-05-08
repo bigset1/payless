@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.garage.payless.MainActivity;
 import com.garage.payless.R;
@@ -66,6 +67,11 @@ public class GoodAutoCompleteAdapter  extends BaseAdapter implements Filterable 
             }
 //    }
 //            });
+        }
+
+        @Override
+        public void failed() {
+            Toast.makeText(mContext, "failed", Toast.LENGTH_SHORT).show();
         }
     };
 

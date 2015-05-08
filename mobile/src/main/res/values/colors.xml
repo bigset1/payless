@@ -4,4 +4,5 @@
     <color name="btn_background">#e6206da4</color>
     <color name="btn_underline_background">#ffffff</color>
     <color name="menu_txt_color">#b3cfdae4</color>
+    <color name="menu_white_background">#e6cfdae4</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.garage.payless.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
 
 import com.garage.payless.entity.LocationEvent;
@@ -25,7 +26,7 @@ public class ReactiveLocationHelper {
     private static final int UPDATE_TIME = 20000;
     private static final int LOCATION_OBTAIN_TIMEOUT = 5000;
 
-    public void requestUpdateLocation(Context context, int numUpdates) {
+    public void requestUpdateLocation(final Context context, int numUpdates) {
         if (locationSubscription != null && !locationSubscription.isUnsubscribed()) {
             locationSubscription.unsubscribe();
         }
@@ -42,9 +43,15 @@ public class ReactiveLocationHelper {
                     @Override
                     public void call(Location location) {
                         if (location == null) {
+                            LatLng latLng = new LatLng(50.439443, 30.514974);
+                            SharedPreferencesHelper.save(context, SharedPreferencesHelper.LATLNG, latLng);
+                            EventBus.getDefault().postSticky(new LocationEvent(latLng));
                             return;
                         }
 
+
+                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        SharedPreferencesHelper.save(context, SharedPreferencesHelper.LATLNG, latLng);
 //                        PayLess.getUserPrefs().edit()
 //                                .latitude().put((float) location.getLatitude())
 //                                .longitude().put(((float) location.getLongitude()))

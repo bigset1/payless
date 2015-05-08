@@ -6,4 +6,4 @@
     android:background="#FFFFFF"
     android:padding="5dip"
     android:singleLine="true"
-    android:textColor="#FF0000" />
+    android:textColor="@color/btn_background" />

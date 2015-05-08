@@ -9,13 +9,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="35dp"
         android:background="@color/btn_background"
-        android:paddingBottom="20px"
+        android:gravity="center"
+        android:paddingBottom="10dp"
         android:paddingLeft="45dp"
         android:paddingRight="45dp"
-        android:paddingTop="20px"
-        android:text="barcode"
+        android:paddingTop="10dp"
+        android:text="@string/barcode"
         android:textColor="#FFFFFF" />
 
     <RelativeLayout
@@ -23,6 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_barcode"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/menu_white_background"
         android:paddingRight="30dp">
 
         <ImageView
@@ -30,6 +35,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp" />
 
@@ -41,17 +47,18 @@
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/img_product"
             android:padding="10dp"
-            android:text="Name" />
+            android:text="Name"
+            android:textColor="@color/background" />
 
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@id/tv_product_name"
-            android:padding="10dp"
-            android:text="Description" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_description"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_toRightOf="@id/tv_product_name"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="Description" />-->
 
         <View
             android:id="@+id/line"
@@ -66,19 +73,20 @@
             android:id="@+id/tv_producer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_description"
             android:layout_below="@id/line"
-            android:layout_marginTop="10dp"
-            android:text="Producer" />
-
-        <TextView
-            android:id="@+id/tv_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/tv_producer"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/tv_producer"
-            android:text="Country" />
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/img_product"
+            android:textColor="@color/background" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_country"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@id/tv_producer"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:layout_toRightOf="@id/tv_producer"-->
+        <!--android:text="Country" />-->
     </RelativeLayout>
 
     <LinearLayout
@@ -95,7 +103,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:background="#FFFFFF"
+            android:background="@color/menu_white_background"
             android:orientation="vertical">
 
             <TextView
@@ -117,9 +125,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:hint="@string/enter_price"
                     android:inputType="numberDecimal"
-                    android:padding="10dp"
-                    android:hint="@string/enter_price" />
+                    android:padding="10dp" />
 
                 <View
                     android:layout_width="fill_parent"
@@ -144,7 +152,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:background="#FFFFFF">
+            android:background="@color/menu_white_background">
 
             <TextView
                 android:id="@+id/textview_choose_shop"
@@ -161,7 +169,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textview_choose_shop"
                 android:layout_marginTop="2dp"
-                android:background="@drawable/choose_store_btn"
                 android:padding="10dp" />
         </RelativeLayout>
 
@@ -171,19 +178,12 @@
         android:id="@+id/btn_submit_price"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/send_price_info"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
         android:background="@color/btn_background"
         android:text="@string/btn_submit_price_lbl"
         android:textColor="#FFFFFF" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/btn_background" />
-
 
 </RelativeLayout>

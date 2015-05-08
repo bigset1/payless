@@ -49,6 +49,7 @@ public class FragmentMain extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.button_open_scan_barcode:
                 FragmentHelper.add(getFragmentManager(), FragmentBarcodeScan.newInstance(), MainActivity.FRAME_CONTAINER);
+//                FragmentHelper.add(getFragmentManager(), FragmentFillPriceItem.newInstance("4820034921739"), MainActivity.FRAME_CONTAINER);
                 break;
             case R.id.map_btn:
                 FragmentHelper.add(getFragmentManager(), FragmentMap.newInstance(), MainActivity.FRAME_CONTAINER);
