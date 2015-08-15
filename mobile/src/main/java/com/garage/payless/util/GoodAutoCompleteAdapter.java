@@ -4,22 +4,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.garage.payless.MainActivity;
 import com.garage.payless.R;
-import com.garage.payless.api.PayLessApi;
-import com.garage.payless.api.ResponseCallback;
+import com.garage.payless.api.RetrofitCallback;
 import com.letionik.payless.model.Product;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit.client.Response;
 
 /**
  * Created by Виталий on 18.04.15.
@@ -28,16 +25,13 @@ public class GoodAutoCompleteAdapter  extends BaseAdapter implements Filterable 
 
     private static final int MAX_RESULTS = 10;
 
-    private final Context mContext;
+    private Context mContext;
     private List<String> mResults;
-    List<String> productsNames = new ArrayList<String>();
-    List<Product> products = new ArrayList<Product>();
-    public static final PayLessApi payLessApi =
-            RestProvider.getInstanse().create(PayLessApi.class);
+    private List<String> productsNames = new ArrayList<>();
 
     public GoodAutoCompleteAdapter(Context context) {
         mContext = context;
-        mResults = new ArrayList<String>();
+        mResults = new ArrayList<>();
     }
 
     @Override
@@ -55,23 +49,12 @@ public class GoodAutoCompleteAdapter  extends BaseAdapter implements Filterable 
         return position;
     }
 
-    private ResponseCallback responseCallbackProduct = new ResponseCallback() {
+    private RetrofitCallback<List<Product>> retrofitCallbackProduct = new RetrofitCallback<List<Product>>(mContext) {
         @Override
-        public void complete(Object response) {
-            products = (List<Product>) response;
-//            mContext.getApplicationContext().runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
+        public void success(List<Product> products, Response response) {
             for (Product p : products) {
                 productsNames.add(p.getName());
             }
-//    }
-//            });
-        }
-
-        @Override
-        public void failed() {
-            Toast.makeText(mContext, "failed", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -124,7 +107,7 @@ public class GoodAutoCompleteAdapter  extends BaseAdapter implements Filterable 
 //        GoogleBooksService service = new GoogleBooksService (mContext, MAX_RESULTS);
 //        return service.findProducts(bookTitle);
         if(!name.isEmpty()) {
-            ServerRequest.getProductsByName(payLessApi, responseCallbackProduct, name);
+            NetworkHelper.payLessApi.getProductsByName(name, retrofitCallbackProduct);
         }
         return productsNames;
     }

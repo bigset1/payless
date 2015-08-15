@@ -16,12 +16,10 @@ import android.widget.Toast;
 import com.garage.payless.FragmentHelper;
 import com.garage.payless.MainActivity;
 import com.garage.payless.R;
-import com.garage.payless.api.PayLessApi;
-import com.garage.payless.api.ResponseCallback;
+import com.garage.payless.api.RetrofitCallback;
 import com.garage.payless.entity.ListProductEvent;
 import com.garage.payless.entity.LocationEvent;
-import com.garage.payless.util.RestProvider;
-import com.garage.payless.util.ServerRequest;
+import com.garage.payless.util.NetworkHelper;
 import com.garage.payless.util.SharedPreferencesHelper;
 import com.google.android.gms.maps.model.LatLng;
 import com.letionik.payless.model.Product;
@@ -33,12 +31,14 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
-import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class FragmentFillPriceItem extends Fragment implements View.OnClickListener {
+
+    private static final double DEFAULT_RADIUS = 1;
     private static final String BARCODE = "barcode";
+    
     private TextView textViewBarcode, textViewProductName, textViewProducer;
     private Spinner spinner;
     private EditText editTextPrice;
@@ -46,12 +46,8 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
     private ProgressDialog progressDialog;
     private ImageView imgProduct;
     private List<Store> storeList;
-    private static final double DEFAULT_RADIUS = 1;
     private Product product;
-
-    public static final PayLessApi payLessApi =
-            RestProvider.getInstanse().create(PayLessApi.class);
-
+    
     public static FragmentFillPriceItem newInstance(String barcode) {
         FragmentFillPriceItem fragment = new FragmentFillPriceItem();
         Bundle args = new Bundle();
@@ -99,8 +95,7 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
 //        latLng.longitude = 30.5150145
 //        latLng.latitude = 50.4396704
         progressDialog.show();
-        ServerRequest.getStores(payLessApi, responseCallbackStores,
-                latLng.latitude, latLng.longitude, DEFAULT_RADIUS);
+        NetworkHelper.payLessApi.getStores(latLng.latitude, latLng.longitude, DEFAULT_RADIUS, retrofitCallbackStores);
     }
 
     @Override
@@ -116,45 +111,62 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
         }
     }
 
-    private ResponseCallback responseCallbackProduct = new ResponseCallback() {
+    private RetrofitCallback<List<ProductSearchResult>> retrofitCallbackShopsProduct =
+            new RetrofitCallback<List<ProductSearchResult>>(getActivity()) {
         @Override
-        public void complete(Object response) {
-            product = (Product) response;
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    String productName = product.getName();
-                    if(productName != null) {
-                        textViewProductName.setText(product.getName());
-                        textViewProducer.setText(product.getProducer());
-                        String imageUrl = product.getImageUrl();
-                        if (imageUrl != null && !imageUrl.isEmpty()){
-                            Picasso.with(getActivity()).load(imageUrl).into(imgProduct);
-                        }
-                    } else {
-                        textViewProductName.setText("product not found");
-                    }
-
-                    if (progressDialog != null && progressDialog.isShowing()) {
-                        progressDialog.cancel();
-                    }
-                }
-            });
+        public void success(List<ProductSearchResult> productSearchResults, Response response) {
+            EventBus.getDefault().postSticky(new ListProductEvent(productSearchResults));
+            EventBus.getDefault().postSticky(product);
+            FragmentHelper.add(getFragmentManager(), FragmentShopsProduct.newInstance(),
+                    MainActivity.FRAME_CONTAINER);
         }
-
+    };
+    
+    private RetrofitCallback<Product> retrofitCallbackProduct = new RetrofitCallback<Product>(getActivity()) {
         @Override
-        public void failed() {
+        public void success(final Product product, Response response) {
+            FragmentFillPriceItem.this.product = product;
+
+            String productName = product.getName();
+            if(productName != null) {
+                textViewProductName.setText(product.getName());
+                textViewProducer.setText(product.getProducer());
+                String imageUrl = product.getImageUrl();
+                if (imageUrl != null && !imageUrl.isEmpty()){
+                    Picasso.with(getActivity()).load(imageUrl).into(imgProduct);
+                }
+            } else {
+                textViewProductName.setText("product not found");
+            }
+
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.cancel();
             }
-            Toast.makeText(getActivity(), "failed", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            super.failure(error);
+
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.cancel();
+            }
         }
     };
 
-    private ResponseCallback responseCallbackStores = new ResponseCallback() {
+    private RetrofitCallback<Object> retrofitCallbackAddPriceItem = new RetrofitCallback<Object>(getActivity()) {
         @Override
-        public void complete(Object response) {
-            storeList = (List<Store>) response;
+        public void success(Object o, Response response) {
+            LocationEvent locationEvent = EventBus.getDefault().getStickyEvent(LocationEvent.class);
+            NetworkHelper.payLessApi.getShopsProduct(barcode, locationEvent.getLatLng().latitude,
+                    locationEvent.getLatLng().longitude, retrofitCallbackShopsProduct);
+        }
+    };
+
+    private RetrofitCallback<List<Store>> retrofitCallbackStores = new RetrofitCallback<List<Store>>(getActivity()) {
+        @Override
+        public void success(List<Store> stores, Response response) {
+            storeList = stores;
             String array_spinner[] = new String[storeList.size()];
             for (int i = 0; i < storeList.size(); i++) {
                 array_spinner[i] = storeList.get(i).getBrand();
@@ -167,28 +179,7 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
                 }
             });
 
-            ServerRequest.getProduct(payLessApi, responseCallbackProduct, barcode);
-        }
-
-        @Override
-        public void failed() {
-            Toast.makeText(getActivity(), "failed", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private ResponseCallback responseCallbackShopsProduct = new ResponseCallback() {
-        @Override
-        public void complete(Object response) {
-            List<ProductSearchResult> productSearchResults = (List<ProductSearchResult>)response;
-            EventBus.getDefault().postSticky(new ListProductEvent(productSearchResults));
-            EventBus.getDefault().postSticky(product);
-            FragmentHelper.add(getFragmentManager(), FragmentShopsProduct.newInstance(),
-                    MainActivity.FRAME_CONTAINER);
-        }
-
-        @Override
-        public void failed() {
-            Toast.makeText(getActivity(), "failed", Toast.LENGTH_SHORT).show();
+            NetworkHelper.payLessApi.getProduct(barcode, retrofitCallbackProduct);
         }
     };
 
@@ -201,20 +192,7 @@ public class FragmentFillPriceItem extends Fragment implements View.OnClickListe
                     double price = Double.parseDouble(priceStr);
                     int selectedIndex = (int) spinner.getSelectedItemId();
                     String storeId = storeList.get(selectedIndex).getId();
-                    payLessApi.addPriceItem(new PriceItemDTO(barcode, storeId, price), new Callback<Object>() {
-                        @Override
-                        public void success(Object o, Response response) {
-                            LocationEvent locationEvent = EventBus.getDefault().getStickyEvent(LocationEvent.class);
-                            ServerRequest.getShopsProduct(payLessApi, responseCallbackShopsProduct, barcode,
-                                    locationEvent.getLatLng().latitude, locationEvent.getLatLng().longitude);
-                        }
-
-                        @Override
-                        public void failure(RetrofitError error) {
-                            String responseStr = error.toString();
-                        }
-                    });
-//                    ServerRequest.addPriceItem(payLessApi, responseCallbackPriceItem, barcode, storeId, price);
+                    NetworkHelper.payLessApi.addPriceItem(new PriceItemDTO(barcode, storeId, price), retrofitCallbackAddPriceItem);
                 } else {
                     Toast.makeText(getActivity(), getString(R.string.enter_price), Toast.LENGTH_SHORT).show();
                 }
